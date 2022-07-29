@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 43,
     fontFamily: 'Roboto',
-    fontSize: 18,
+    fontSize: 24,
     borderColor: '#B1B1B1',
     borderBottomWidth: 1,
     paddingHorizontal: 5,
@@ -28,16 +28,14 @@ const styles = StyleSheet.create({
   },
   authButton: {
     width: '100%',
-    display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#000',
-    padding: 10,
-    marginTop: 50
+    marginTop: 50,
+    height: 80
   },
   authText: {
-    fontFamily: 'Montserrat',
-    fontSize: 24,
+    fontSize: 30,
     color: '#fff'
   },
   authError: {
