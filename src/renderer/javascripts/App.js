@@ -1,24 +1,22 @@
 import React from 'react'
-import { Text, View, StyleSheet } from 'react-native-web'
+import { Routes, Route } from 'react-router-dom'
 
-const App = () => {
+import Auth from './pages/Auth'
+import Main from './pages/Main'
+
+import { Provider } from 'react-redux'
+import store from './redux/store'
+import { setAxiosSettings } from './Constants'
+
+setAxiosSettings()
+
+export default function App() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>MSA</Text>
-    </View>
+    <Provider store={store}>
+      <Routes>
+        <Route path='/' element={<Auth />} />
+        <Route path='/main' element={<Main />} />
+      </Routes>
+    </Provider>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'red',
-    height: '100vh',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  text: {
-    fontSize: 50
-  }
-})
-
-export default App

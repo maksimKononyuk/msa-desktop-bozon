@@ -18,6 +18,8 @@ const createWindow = () => {
   // and load the index.html of the app.
   win.loadFile('renderer/index.html')
 
+  win.webContents.openDevTools()
+
   win.on('closed', () => {
     win = null
   })
