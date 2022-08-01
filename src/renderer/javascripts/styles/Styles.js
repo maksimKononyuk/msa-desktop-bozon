@@ -60,11 +60,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#000',
     width: '100%',
     height: 55,
-    padding: 10,
-    paddingTop: 23
+    padding: 10
   },
   headerName: {
-    fontFamily: 'Roboto',
     fontSize: 15,
     color: '#fff',
     marginLeft: 10

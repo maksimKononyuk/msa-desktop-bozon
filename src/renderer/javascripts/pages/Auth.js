@@ -62,7 +62,9 @@ function Auth() {
           .then(() => {
             dispatch(setLogin(''))
             dispatch(setPassword(''))
-            navigate('/main', { state: { userName: userData.data[0].name } })
+            navigate('/main', {
+              state: { userName: userData.data[0].name }
+            })
           })
       })
       .catch((err) => {
