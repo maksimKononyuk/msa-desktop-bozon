@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, TouchableOpacity, Image, Text, Alert } from 'react-native'
+import { View, TouchableOpacity, Image, Text, Alert } from 'react-native-web'
 import { useDispatch, useSelector } from 'react-redux'
 import { setModalVisible, setIsConfirmation } from '../../redux/actionCreators'
 import styles from '../../styles/Styles'

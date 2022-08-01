@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text } from 'react-native-web'
 import { useSelector } from 'react-redux'
 import { Stopwatch } from '../../lib/react-native-stopwatch-timer'
 import componentStyles from './styles'

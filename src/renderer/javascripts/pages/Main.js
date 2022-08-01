@@ -9,7 +9,7 @@ import Orders from '../components/Orders/Orders'
 // import BarCode from '../components/BarCode/BarCode'
 // import TechMaps from '../components/TechMaps/TechMaps'
 // import ActiveOrderHeader from '../components/Adaptive/ActiveOrderHeader'
-// import RightBlock from '../components/Adaptive/RightBlock'
+import RightBlock from '../components/Adaptive/RightBlock'
 // import OrderCancelModal from '../components/OrderCancelModal/OrderCancelModal'
 // import Messages from '../components/Messages/Messages'
 // import OperationContainer from '../components/OperationContainer/OperationContainer'
@@ -364,7 +364,7 @@ const Main = () => {
             {/* {activeIndex === 2 && !activeBarCode ? <TechMaps /> : null}
           {activeBarCode && orders.length ? <BarCode /> : null} */}
           </View>
-          {/* {windowWidth > 480 && <RightBlock startOrder={startOrder} />} */}
+          <RightBlock startOrder={startOrder} />
         </View>
       )}
       {/* {windowWidth <= 480 && orders.length && !activeBarCode ? (

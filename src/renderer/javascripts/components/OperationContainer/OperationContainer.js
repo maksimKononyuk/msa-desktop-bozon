@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text } from 'react-native-web'
 import { useSelector } from 'react-redux'
 import { windowWidth } from '../../Constants'
 import styles from '../../styles/Styles'

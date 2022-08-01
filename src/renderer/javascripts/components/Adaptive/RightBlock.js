@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, Text } from 'react-native'
+import { StyleSheet, View, Text } from 'react-native-web'
 import { useSelector } from 'react-redux'
 import OperationContainer from '../OperationContainer/OperationContainer'
 import StartFinishButton from '../StartFinishButton/StartFinishButton'
@@ -52,7 +52,7 @@ const RightBlock = ({ startOrder }) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#000',
-    height: '100%',
+    height: '79vh',
     width: '25%',
     justifyContent: 'space-between'
   },

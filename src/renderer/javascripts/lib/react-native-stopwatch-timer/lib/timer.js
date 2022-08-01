@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { Text, View } from 'react-native-web'
 import PropTypes from 'prop-types'
 import { formatTimeString } from './utils'
 
