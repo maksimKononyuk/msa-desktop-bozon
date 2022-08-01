@@ -100,19 +100,11 @@ const styles = StyleSheet.create({
     padding: 20
   },
   operationContainer: {
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: -5
-    },
-    shadowOpacity: 0.34,
-    shadowRadius: 6.27,
     padding: 15,
     backgroundColor: '#fff',
     width: '100%',
     borderTopWidth: 3,
-    borderTopColor: '#f2f2f2',
-    elevation: 15
+    borderTopColor: '#f2f2f2'
   },
   shadow: {
     width: '100%'

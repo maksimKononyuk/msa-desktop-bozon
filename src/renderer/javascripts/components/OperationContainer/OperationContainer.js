@@ -9,11 +9,13 @@ const OperationContainer = () => {
   const name = useSelector((state) => state.main.activeOrder?.description?.name)
   return (
     <View
-      style={{
-        ...styles.operationContainer,
-        paddingLeft: 10,
-        backgroundColor: windowWidth > 480 ? 'transparent' : '#fff'
-      }}
+      style={[
+        styles.operationContainer,
+        {
+          paddingLeft: 10,
+          backgroundColor: 'transparent'
+        }
+      ]}
     >
       <Text style={componentStyles.operationText}>Operation</Text>
       <Text style={componentStyles.descriptionNameText}>{name}</Text>
