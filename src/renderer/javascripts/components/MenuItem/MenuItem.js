@@ -1,23 +1,17 @@
 import React from 'react'
-import { Text, TouchableOpacity } from 'react-native'
+import { Text, TouchableOpacity } from 'react-native-web'
 import { useSelector } from 'react-redux'
 
 import styles from '../../styles/Styles'
 
-const MenuItem = ({ item, index, carousel }) => {
+const MenuItem = ({ item, index }) => {
   const activeIndex = useSelector((state) => state.main.activeIndex)
   const orderStarted = useSelector((state) => state.main.orderStarted)
   return (
     <TouchableOpacity
       activeOpacity={0.5}
-      style={{
-        ...styles.container,
-        backgroundColor: 'transparent',
-        height: 10,
-        padding: 0,
-        margin: 0
-      }}
-      onPress={() => orderStarted && carousel.snapToItem(index, true, true)}
+      style={{}}
+      onPress={() => orderStarted && console.log('Press')}
     >
       <Text
         style={{

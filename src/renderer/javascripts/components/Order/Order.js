@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo } from 'react'
-import { View, Text, TouchableOpacity, Image } from 'react-native'
-import QRCode from 'react-native-qrcode-svg'
+import { View, Text, TouchableOpacity, Image } from 'react-native-web'
+// import QRCode from 'react-native-qrcode-svg'
 import { windowWidth } from '../../Constants'
-import * as Print from 'expo-print'
+// import * as Print from 'expo-print'
 import styles from '../../styles/Styles'
 import qrcode from '../../lib/createImgTagQr/qrcode'
 import { htmlPrint } from '../../Constants'
@@ -34,34 +34,23 @@ const Order = ({ item, idx, icon }) => {
     }
   }
 
-  const print = async () => {
-    await Print.printAsync({
-      html
-    })
-  }
+  // const print = async () => {
+  //   await Print.printAsync({
+  //     html
+  //   })
+  // }
 
   return (
     <View
       style={{
         ...styles.orderContainer,
-        width: windowWidth > 480 ? 260 : windowWidth,
-        borderRightWidth: windowWidth > 480 ? 0.5 : 0,
+        width: 250,
+        borderRightWidth: 0.5,
         borderRightColor: '#00000029'
       }}
     >
       <View style={componentStyles.qrItemName}>
-        <TouchableOpacity
-          activeOpacity={0.5}
-          onPress={() => {
-            dispatch(setActiveBarCode(!activeBarCode))
-          }}
-        >
-          {windowWidth <= 480 ? (
-            <QRCode value={item._id} size={40} logoMargin={2} />
-          ) : (
-            <Image source={icon} style={componentStyles.iconStyle}></Image>
-          )}
-        </TouchableOpacity>
+        <Image source={icon} style={{ width: 16, height: 16 }}></Image>
         <View style={componentStyles.itemIdName}>
           <Text style={componentStyles.itemIdText}>{item._id}</Text>
           <Text
@@ -73,14 +62,6 @@ const Order = ({ item, idx, icon }) => {
           </Text>
         </View>
       </View>
-      {windowWidth <= 480 && (
-        <TouchableOpacity activeOpacity={0.5} onPress={() => print()}>
-          <Image
-            style={componentStyles.printIcon}
-            source={require('../../assets/images/print.png')}
-          />
-        </TouchableOpacity>
-      )}
     </View>
   )
 }

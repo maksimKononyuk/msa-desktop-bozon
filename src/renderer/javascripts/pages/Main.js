@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import { View, Modal, ActivityIndicator, Text } from 'react-native-web'
-// import Carousel from '../components/Carousel/CarouselComponent'
+import { View, Modal, ActivityIndicator } from 'react-native-web'
+import Carousel from '../components/Carousel/CarouselComponent'
 import axios from 'axios'
 import Header from '../components/Header/Header'
-// import Orders from '../components/Orders/Orders'
+import Orders from '../components/Orders/Orders'
 // import ActiveOrder from '../components/ActiveOrder/ActiveOrder'
 // import BarCode from '../components/BarCode/BarCode'
 // import TechMaps from '../components/TechMaps/TechMaps'
@@ -335,12 +335,12 @@ const Main = () => {
   return (
     <View style={{ flex: 1, alignItems: 'center', backgroundColor: '#fff' }}>
       <Header logOut={logOut} userName={state.userName} />
-      {/* {!activeBarCode && <Orders />}
-
-      <View style={{ flexDirection: 'row', width: '100%', flex: 1 }}>
-        <View style={{ flex: 3 }}>
-          {!activeBarCode && <Carousel />}
-          {activeIndex === 0 && orders.length && !activeBarCode ? (
+      <Orders />
+      {orders.length > 0 && (
+        <View style={{ flexDirection: 'row', width: '100%', flex: 1 }}>
+          <View style={{ flex: 3 }}>
+            <Carousel />
+            {/* {activeIndex === 0 && orders.length && !activeBarCode ? (
             <Messages />
           ) : null}
           {activeIndex === 1 && orders.length && !activeBarCode ? (
@@ -360,13 +360,14 @@ const Main = () => {
                 <Equipment equipmentRequest={equipmentRequest} />
               )}
             </>
-          ) : null}
-          {activeIndex === 2 && !activeBarCode ? <TechMaps /> : null}
-          {activeBarCode && orders.length ? <BarCode /> : null}
+          ) : null} */}
+            {/* {activeIndex === 2 && !activeBarCode ? <TechMaps /> : null}
+          {activeBarCode && orders.length ? <BarCode /> : null} */}
+          </View>
+          {/* {windowWidth > 480 && <RightBlock startOrder={startOrder} />} */}
         </View>
-        {windowWidth > 480 && <RightBlock startOrder={startOrder} />}
-      </View>
-      {windowWidth <= 480 && orders.length && !activeBarCode ? (
+      )}
+      {/* {windowWidth <= 480 && orders.length && !activeBarCode ? (
         <View style={{ width: '100%' }}>
           <OperationContainer />
           <View style={{ ...styles.center }}>

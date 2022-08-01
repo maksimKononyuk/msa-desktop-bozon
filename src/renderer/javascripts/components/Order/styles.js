@@ -1,8 +1,9 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native-web'
 
 const styles = StyleSheet.create({
   qrItemName: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    alignItems: 'center'
   },
   iconStyle: {
     marginRight: 10

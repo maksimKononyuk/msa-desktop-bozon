@@ -74,12 +74,11 @@ const styles = StyleSheet.create({
     marginRight: 10
   },
   orderContainer: {
-    display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     height: 80,
-    width: 260,
+    width: 280,
     padding: 8,
     backgroundColor: '#fff'
   },
@@ -116,15 +115,7 @@ const styles = StyleSheet.create({
     elevation: 15
   },
   shadow: {
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: -5
-    },
-    shadowOpacity: 0.34,
-    shadowRadius: 6.27,
-    elevation: 10,
-    backgroundColor: '#fff'
+    width: '100%'
   },
   sendContainer: {
     justifyContent: 'center',
