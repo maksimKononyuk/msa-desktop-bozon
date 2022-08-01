@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import { View, Modal, ActivityIndicator } from 'react-native-web'
+import { View, Modal, ActivityIndicator, Text } from 'react-native-web'
 import Carousel from '../components/Carousel/CarouselComponent'
 import axios from 'axios'
 import Header from '../components/Header/Header'
@@ -11,7 +11,7 @@ import Orders from '../components/Orders/Orders'
 // import ActiveOrderHeader from '../components/Adaptive/ActiveOrderHeader'
 import RightBlock from '../components/Adaptive/RightBlock'
 // import OrderCancelModal from '../components/OrderCancelModal/OrderCancelModal'
-// import Messages from '../components/Messages/Messages'
+import Messages from '../components/Messages/Messages'
 // import OperationContainer from '../components/OperationContainer/OperationContainer'
 // import styles from '../styles/Styles'
 // import Materials from '../components/Materials/Materials'
@@ -23,7 +23,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import {
   setOrders,
   setUser,
-  setIsPlaySound,
   setActiveOrder,
   setOrderStarted,
   setModalVisible,
@@ -39,7 +38,6 @@ import {
   setIsLoading,
   setIsUserMenuModal,
   setIsCompleteWorkShiftVisible,
-  setSound,
   setIsErrorComponentVisible,
   setErrorMessage,
   setShowMaterialsComponent,
@@ -126,10 +124,6 @@ const Main = () => {
         .get(`order_worker/${user.u_id}`)
         .then((res) => {
           dispatch(setOrders(res.data))
-          if (res.data.length > ordersCount) {
-            dispatch(setIsPlaySound(true))
-          }
-          ordersCount = res.data.length
           if (res.data.length) {
             getOrderInfo(res.data[0]._id, user.u_id)
             getPreviousOperation(user)
@@ -340,27 +334,25 @@ const Main = () => {
         <View style={{ flexDirection: 'row', width: '100%', flex: 1 }}>
           <View style={{ flex: 3 }}>
             <Carousel />
-            {/* {activeIndex === 0 && orders.length && !activeBarCode ? (
-            <Messages />
-          ) : null}
-          {activeIndex === 1 && orders.length && !activeBarCode ? (
-            <>
-              {windowWidth > 480 && <ActiveOrderHeader />}
-              {isEquipmentLoading ? (
-                <ActivityIndicator
-                  style={{ flex: 1 }}
-                  size='large'
-                  color='#000088'
-                />
-              ) : equipmentArr.length === 0 || !isEquipmentVisible ? (
-                <ActiveOrder
-                  schedulePushNotification={schedulePushNotification}
-                />
-              ) : (
-                <Equipment equipmentRequest={equipmentRequest} />
-              )}
-            </>
-          ) : null} */}
+            {activeIndex === 0 && orders.length ? <Messages /> : null}
+            {/* {activeIndex === 1 && orders.length && !activeBarCode ? (
+              <>
+                {windowWidth > 480 && <ActiveOrderHeader />}
+                {isEquipmentLoading ? (
+                  <ActivityIndicator
+                    style={{ flex: 1 }}
+                    size='large'
+                    color='#000088'
+                  />
+                ) : equipmentArr.length === 0 || !isEquipmentVisible ? (
+                  <ActiveOrder
+                    schedulePushNotification={schedulePushNotification}
+                  />
+                ) : (
+                  <Equipment equipmentRequest={equipmentRequest} />
+                )}
+              </>
+            ) : null} */}
             {/* {activeIndex === 2 && !activeBarCode ? <TechMaps /> : null}
           {activeBarCode && orders.length ? <BarCode /> : null} */}
           </View>

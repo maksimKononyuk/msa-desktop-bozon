@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect } from 'react'
-import { View, Text, ScrollView } from 'react-native'
+import { View, Text, ScrollView } from 'react-native-web'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   setMessages,
@@ -13,7 +13,7 @@ import styles from './styles'
 
 const Messages = () => {
   const dispatch = useDispatch()
-  const orderId = useSelector((state) => state.main.activeOrder._id)
+  const orderId = useSelector((state) => state.main.activeOrder?._id)
   const userId = useSelector((state) => state.main.user.u_id)
   const messages = useSelector((state) => state.messages.messages)
 
@@ -37,26 +37,23 @@ const Messages = () => {
 
   return (
     <View style={styles.container}>
-      <ScrollView style={styles.scroll}>
-        {messages.length === 0 ? (
-          <Text style={styles.notMessageText}>You have not messages</Text>
-        ) : (
-          messages.map((item, index) => {
-            return (
-              <MessageItem
-                key={index}
-                isYourMessage={userId === item.w_id}
-                userName={item.worker}
-                operation={item.operation}
-                date={item.m_data}
-                message={item.message}
-              />
-            )
-          })
-        )}
-        <View style={{ height: 80 }} />
-      </ScrollView>
-
+      {messages.length === 0 ? (
+        <Text style={styles.notMessageText}>You have not messages</Text>
+      ) : (
+        messages.map((item, index) => {
+          return (
+            <MessageItem
+              key={index}
+              isYourMessage={userId === item.w_id}
+              userName={item.worker}
+              operation={item.operation}
+              date={item.m_data}
+              message={item.message}
+            />
+          )
+        })
+      )}
+      <View style={{ height: 80 }} />
       <View style={styles.newMessageItemContainer}>
         <NewMessagesItem orderId={orderId} userId={userId} />
       </View>

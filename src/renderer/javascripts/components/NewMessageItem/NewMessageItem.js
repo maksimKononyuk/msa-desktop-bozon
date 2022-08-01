@@ -1,12 +1,6 @@
 import axios from 'axios'
 import React from 'react'
-import {
-  View,
-  TouchableOpacity,
-  TextInput,
-  Image,
-  Keyboard
-} from 'react-native'
+import { View, TouchableOpacity, TextInput, Image } from 'react-native-web'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   setNewMessage,
@@ -21,7 +15,6 @@ const NewMessagesItem = ({ orderId, userId }) => {
   const newMessage = useSelector((state) => state.newMessageItem.newMessage)
 
   const buttonHendler = () => {
-    Keyboard.dismiss()
     axios
       .post('order_worker_new_message', {
         _id: orderId,
