@@ -12,7 +12,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   input: {
-    width: '90%'
+    width: '90%',
+    padding: 5
   },
   sendButton: {
     width: 46,
