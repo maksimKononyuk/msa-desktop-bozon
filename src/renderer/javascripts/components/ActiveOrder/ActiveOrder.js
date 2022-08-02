@@ -20,25 +20,12 @@ const ActiveOrder = () => {
   const order = useSelector((state) => state.main.activeOrder)
 
   return (
-    <ScrollView>
-      <View
-        style={{
-          ...styles.container,
-          width: '100%',
-          height: windowHeight - 340
-        }}
-      >
-        <View
-          style={{
-            ...styles.container,
-            justifyContent: 'center',
-            backgroundColor: '#fff'
-          }}
-        >
-          {orderStarted ? (
-            <ScrollView style={{ maxHeight: windowWidth }}>
-              <Text>Json Tree</Text>
-              {/* <JSONTree
+    <View style={[styles.container]}>
+      <View style={[styles.container, { backgroundColor: '#fff' }]}>
+        {orderStarted ? (
+          <View style={{ maxHeight: windowWidth }}>
+            <Text>Json Tree</Text>
+            {/* <JSONTree
                 data={order?.order?.list || {}}
                 theme={{
                   extend: jsonTreeTheme,
@@ -61,29 +48,34 @@ const ActiveOrder = () => {
                   <Text style={componentStyles.labelText}>{raw}</Text>
                 )}
               /> */}
-            </ScrollView>
-          ) : (
-            <>
-              <TouchableOpacity
-                activeOpacity={0.5}
-                style={{}}
-                onPress={() => {
-                  dispatch(setActiveBarCode(true))
-                }}
-              >
-                <Image
-                  style={componentStyles.qrcodeIcon}
-                  source={require('../../assets/images/qrcodeIcon.png')}
-                />
-              </TouchableOpacity>
-              <Text style={componentStyles.mainText}>
-                Complete order information will appear after clicking "START"
-              </Text>
-            </>
-          )}
-        </View>
+          </View>
+        ) : (
+          <>
+            <TouchableOpacity
+              activeOpacity={0.5}
+              style={{
+                width: 65,
+                height: 65,
+                borderRadius: 35,
+                borderColor: 'red',
+                borderWidth: 2,
+                marginBottom: 25,
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+              onPress={() => {
+                dispatch(setActiveBarCode(true))
+              }}
+            >
+              <Text style={{ color: 'red', fontSize: 24 }}>i</Text>
+            </TouchableOpacity>
+            <Text style={componentStyles.mainText}>
+              Complete order information will appear after clicking "START"
+            </Text>
+          </>
+        )}
       </View>
-    </ScrollView>
+    </View>
   )
 }
 

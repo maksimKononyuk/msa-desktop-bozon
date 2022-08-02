@@ -13,10 +13,10 @@ const styles = StyleSheet.create({
   },
   mainText: {
     fontFamily: 'Roboto',
-    fontSize: 20,
+    fontSize: 18,
     color: '#282A2D',
     textAlign: 'center',
-    paddingHorizontal: 50
+    width: 250
   }
 })
 
