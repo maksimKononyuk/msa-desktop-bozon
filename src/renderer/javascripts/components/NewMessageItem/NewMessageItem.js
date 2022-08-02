@@ -36,9 +36,6 @@ const NewMessagesItem = ({ orderId, userId }) => {
         placeholder='New message'
         value={newMessage}
         onChangeText={(text) => dispatch(setNewMessage(text))}
-        onFocus={(event) => {
-          event.currentTarget.style.outline = 'none'
-        }}
       />
       <TouchableOpacity
         activeOpacity={0.5}

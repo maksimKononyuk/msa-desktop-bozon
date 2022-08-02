@@ -8,7 +8,7 @@ import Orders from '../components/Orders/Orders'
 // import ActiveOrder from '../components/ActiveOrder/ActiveOrder'
 // import BarCode from '../components/BarCode/BarCode'
 // import TechMaps from '../components/TechMaps/TechMaps'
-// import ActiveOrderHeader from '../components/Adaptive/ActiveOrderHeader'
+import ActiveOrderHeader from '../components/Adaptive/ActiveOrderHeader'
 import RightBlock from '../components/Adaptive/RightBlock'
 // import OrderCancelModal from '../components/OrderCancelModal/OrderCancelModal'
 import Messages from '../components/Messages/Messages'
@@ -335,10 +335,10 @@ const Main = () => {
           <View style={{ flex: 3 }}>
             <Carousel />
             {activeIndex === 0 && orders.length ? <Messages /> : null}
-            {/* {activeIndex === 1 && orders.length && !activeBarCode ? (
+            {activeIndex === 1 && orders.length ? (
               <>
-                {windowWidth > 480 && <ActiveOrderHeader />}
-                {isEquipmentLoading ? (
+                <ActiveOrderHeader />
+                {/* {isEquipmentLoading ? (
                   <ActivityIndicator
                     style={{ flex: 1 }}
                     size='large'
@@ -350,9 +350,9 @@ const Main = () => {
                   />
                 ) : (
                   <Equipment equipmentRequest={equipmentRequest} />
-                )}
+                )} */}
               </>
-            ) : null} */}
+            ) : null}
             {/* {activeIndex === 2 && !activeBarCode ? <TechMaps /> : null}
           {activeBarCode && orders.length ? <BarCode /> : null} */}
           </View>

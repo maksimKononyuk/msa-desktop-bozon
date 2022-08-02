@@ -13,7 +13,8 @@ const styles = StyleSheet.create({
   },
   input: {
     width: '90%',
-    padding: 5
+    padding: 5,
+    outlineWidth: 0
   },
   sendButton: {
     width: 46,
