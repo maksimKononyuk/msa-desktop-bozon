@@ -8,9 +8,9 @@ import {
   TouchableOpacity,
   Modal,
   Dimensions
-} from 'react-native'
-import AppIntroSlider from 'react-native-app-intro-slider'
-import ImageZoom from 'react-native-image-pan-zoom'
+} from 'react-native-web'
+// import AppIntroSlider from 'react-native-app-intro-slider'
+// import ImageZoom from 'react-native-image-pan-zoom'
 // import { Video } from 'expo-av'
 import styles from './styles'
 import { useDispatch, useSelector } from 'react-redux'
@@ -68,15 +68,16 @@ const TechMaps = () => {
   return (
     <View style={[styles.container, { height: '90%' }]}>
       {mapsArr?.length > 0 ? (
-        <AppIntroSlider
-          keyExtractor={(item, index) => 'key' + index}
-          renderItem={renderItem}
-          data={mapsArr}
-          showNextButton={false}
-          dotStyle={{ backgroundColor: '#DFDFDF' }}
-          activeDotStyle={{ backgroundColor: '#009C6D' }}
-        />
+        <Text>Slider</Text>
       ) : (
+        // <AppIntroSlider
+        //   keyExtractor={(item, index) => 'key' + index}
+        //   renderItem={renderItem}
+        //   data={mapsArr}
+        //   showNextButton={false}
+        //   dotStyle={{ backgroundColor: '#DFDFDF' }}
+        //   activeDotStyle={{ backgroundColor: '#009C6D' }}
+        // />
         <ActivityIndicator size='large' color='#000088' />
       )}
       <Modal visible={modalVisible} transparent={false}>
@@ -101,7 +102,7 @@ const TechMaps = () => {
           />
         </TouchableOpacity>
         {/* {item?.file_name.split('.').pop() == 'jpg' && ( */}
-        <ImageZoom
+        {/* <ImageZoom
           cropWidth={Dimensions.get('window').width}
           cropHeight={Dimensions.get('window').height}
           imageWidth={Dimensions.get('window').width}
@@ -115,7 +116,7 @@ const TechMaps = () => {
             }}
             resizeMode={'contain'}
           />
-        </ImageZoom>
+        </ImageZoom> */}
         {/* )} */}
         {/* {item?.file_name.split('.').pop() == 'pdf' && <Text>PDF</Text>}
         {item?.file_name.split('.').pop() == 'm4v' && (

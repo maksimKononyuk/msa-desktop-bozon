@@ -7,7 +7,7 @@ import Header from '../components/Header/Header'
 import Orders from '../components/Orders/Orders'
 import ActiveOrder from '../components/ActiveOrder/ActiveOrder'
 // import BarCode from '../components/BarCode/BarCode'
-// import TechMaps from '../components/TechMaps/TechMaps'
+import TechMaps from '../components/TechMaps/TechMaps'
 import ActiveOrderHeader from '../components/Adaptive/ActiveOrderHeader'
 import RightBlock from '../components/Adaptive/RightBlock'
 // import OrderCancelModal from '../components/OrderCancelModal/OrderCancelModal'
@@ -351,8 +351,8 @@ const Main = () => {
                 )}
               </>
             ) : null}
-            {/* {activeIndex === 2 && !activeBarCode ? <TechMaps /> : null}
-          {activeBarCode && orders.length ? <BarCode /> : null} */}
+            {activeIndex === 2 ? <TechMaps /> : null}
+            {/* {activeBarCode && orders.length ? <BarCode /> : null}  */}
           </View>
           <RightBlock startOrder={startOrder} />
         </View>
