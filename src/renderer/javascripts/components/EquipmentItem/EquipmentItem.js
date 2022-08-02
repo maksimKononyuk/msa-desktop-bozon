@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { View, Text, Image, TouchableOpacity } from 'react-native'
+import { View, Text, Image, TouchableOpacity } from 'react-native-web'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   setSelectedItemsCheced,
@@ -8,6 +8,7 @@ import {
   setIsCheckedArr
 } from '../../redux/actionCreators'
 import styles from './styles'
+import okIcon from '../../assets/images/ok.png'
 
 const EquipmentItem = ({ index }) => {
   const dispatch = useDispatch()
@@ -48,15 +49,10 @@ const EquipmentItem = ({ index }) => {
       <View
         style={[
           styles.checkIcon,
-          { backgroundColor: isChecked[index] ? '#0080FF' : '#F2F2F2' }
+          { backgroundColor: isChecked[index] ? '#0080FF' : '#E0E0E0' }
         ]}
       >
-        {isChecked[index] && (
-          <Image
-            source={require('../../assets/images/ok.png')}
-            style={styles.okButton}
-          />
-        )}
+        {isChecked[index] && <Image source={okIcon} style={styles.okButton} />}
       </View>
       <Text style={styles.title}>{title}</Text>
       <View style={[styles.busy, { opacity: isBusy ? 1 : 0 }]}>

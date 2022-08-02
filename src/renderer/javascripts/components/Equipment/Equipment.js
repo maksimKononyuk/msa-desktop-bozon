@@ -6,7 +6,7 @@ import {
   Image,
   TouchableOpacity,
   ActivityIndicator
-} from 'react-native'
+} from 'react-native-web'
 import { useSelector, useDispatch } from 'react-redux'
 import { setIsLoading } from '../../redux/actionCreators'
 import EquipmentItem from '../EquipmentItem/EquipmentItem'

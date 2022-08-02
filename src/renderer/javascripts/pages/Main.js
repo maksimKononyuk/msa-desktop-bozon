@@ -5,7 +5,7 @@ import Carousel from '../components/Carousel/CarouselComponent'
 import axios from 'axios'
 import Header from '../components/Header/Header'
 import Orders from '../components/Orders/Orders'
-// import ActiveOrder from '../components/ActiveOrder/ActiveOrder'
+import ActiveOrder from '../components/ActiveOrder/ActiveOrder'
 // import BarCode from '../components/BarCode/BarCode'
 // import TechMaps from '../components/TechMaps/TechMaps'
 import ActiveOrderHeader from '../components/Adaptive/ActiveOrderHeader'
@@ -15,7 +15,7 @@ import Messages from '../components/Messages/Messages'
 // import OperationContainer from '../components/OperationContainer/OperationContainer'
 // import styles from '../styles/Styles'
 // import Materials from '../components/Materials/Materials'
-// import Equipment from '../components/Equipment/Equipment'
+import Equipment from '../components/Equipment/Equipment'
 // import Timer from '../components/Timer/Timer'
 // import StartFinishButton from '../components/StartFinishButton/StartFinishButton'
 // import OperationResult from '../components/OperationResult/OperationResult'
@@ -338,7 +338,7 @@ const Main = () => {
             {activeIndex === 1 && orders.length ? (
               <>
                 <ActiveOrderHeader />
-                {/* {isEquipmentLoading ? (
+                {isEquipmentLoading ? (
                   <ActivityIndicator
                     style={{ flex: 1 }}
                     size='large'
@@ -350,7 +350,7 @@ const Main = () => {
                   />
                 ) : (
                   <Equipment equipmentRequest={equipmentRequest} />
-                )} */}
+                )}
               </>
             ) : null}
             {/* {activeIndex === 2 && !activeBarCode ? <TechMaps /> : null}

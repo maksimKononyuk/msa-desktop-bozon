@@ -1,6 +1,12 @@
 import React from 'react'
-import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native'
-import JSONTree from 'react-native-json-tree'
+import {
+  View,
+  Text,
+  Image,
+  ScrollView,
+  TouchableOpacity
+} from 'react-native-web'
+// import JSONTree from 'react-native-json-tree'
 import componentStyles from './styles'
 
 import styles from '../../styles/Styles'
@@ -31,7 +37,8 @@ const ActiveOrder = ({ schedulePushNotification }) => {
         >
           {orderStarted ? (
             <ScrollView style={{ maxHeight: windowWidth }}>
-              <JSONTree
+              <Text>Json Tree</Text>
+              {/* <JSONTree
                 data={order?.order?.list || {}}
                 theme={{
                   extend: jsonTreeTheme,
@@ -53,7 +60,7 @@ const ActiveOrder = ({ schedulePushNotification }) => {
                 valueRenderer={(raw) => (
                   <Text style={componentStyles.labelText}>{raw}</Text>
                 )}
-              />
+              /> */}
             </ScrollView>
           ) : (
             <>

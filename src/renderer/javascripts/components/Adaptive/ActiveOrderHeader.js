@@ -31,7 +31,7 @@ const ActiveOrderHeader = () => {
               : dispatch(setActiveBarCode(true))
           }}
         >
-          <QRCodeSVG value={item._id} size={60} />
+          <QRCodeSVG value={item._id} size={58} />
         </TouchableOpacity>
         <View style={{ flexDirection: 'column', paddingLeft: 10 }}>
           <Text
