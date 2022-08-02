@@ -14,7 +14,7 @@ import { windowWidth, jsonTreeTheme, windowHeight } from '../../Constants'
 import { useDispatch, useSelector } from 'react-redux'
 import { setActiveBarCode } from '../../redux/actionCreators'
 
-const ActiveOrder = ({ schedulePushNotification }) => {
+const ActiveOrder = () => {
   const dispatch = useDispatch()
   const orderStarted = useSelector((state) => state.main.orderStarted)
   const order = useSelector((state) => state.main.activeOrder)

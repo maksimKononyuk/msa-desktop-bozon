@@ -345,9 +345,7 @@ const Main = () => {
                     color='#000088'
                   />
                 ) : equipmentArr.length === 0 || !isEquipmentVisible ? (
-                  <ActiveOrder
-                    schedulePushNotification={schedulePushNotification}
-                  />
+                  <ActiveOrder />
                 ) : (
                   <Equipment equipmentRequest={equipmentRequest} />
                 )}

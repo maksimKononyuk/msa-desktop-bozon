@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setIsLoading } from '../../redux/actionCreators'
 import EquipmentItem from '../EquipmentItem/EquipmentItem'
 import styles from './styles'
+import equipmentIcon from '../../assets/icons/equipment.png'
 
 const Equipment = ({ equipmentRequest }) => {
   const dispatch = useDispatch()
@@ -34,10 +35,7 @@ const Equipment = ({ equipmentRequest }) => {
             style={styles.button}
             onPress={buttonHandler}
           >
-            <Image
-              style={styles.buttonIcon}
-              source={require('../../assets/icons/equipment.png')}
-            />
+            <Image style={styles.buttonIcon} source={equipmentIcon} />
           </TouchableOpacity>
         )}
       </View>

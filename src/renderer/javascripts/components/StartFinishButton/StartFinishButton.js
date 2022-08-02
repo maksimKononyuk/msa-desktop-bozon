@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setModalVisible, setIsConfirmation } from '../../redux/actionCreators'
 import styles from '../../styles/Styles'
 import componentStyles from './styles'
+import okIcon from '../../assets/images/ok.png'
+import closeIcon from '../../assets/images/close.png'
 
 const StartFinishButton = ({ startOrder }) => {
   const dispatch = useDispatch()
@@ -30,10 +32,7 @@ const StartFinishButton = ({ startOrder }) => {
                 : () => startOrder()
             }
           >
-            <Image
-              source={require('../../assets/images/ok.png')}
-              style={componentStyles.okIcon}
-            />
+            <Image source={okIcon} style={componentStyles.okIcon} />
           </TouchableOpacity>
           <TouchableOpacity
             activeOpacity={0.5}
@@ -43,10 +42,7 @@ const StartFinishButton = ({ startOrder }) => {
             ]}
             onPress={() => dispatch(setIsConfirmation(false))}
           >
-            <Image
-              source={require('../../assets/images/close.png')}
-              style={componentStyles.closeIcon}
-            />
+            <Image source={closeIcon} style={componentStyles.closeIcon} />
           </TouchableOpacity>
         </View>
       ) : (
