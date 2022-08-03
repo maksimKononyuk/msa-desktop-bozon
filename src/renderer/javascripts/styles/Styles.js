@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     backgroundColor: '#000',
     width: '100%',
-    height: 55,
+    height: 42,
     padding: 10
   },
   headerName: {

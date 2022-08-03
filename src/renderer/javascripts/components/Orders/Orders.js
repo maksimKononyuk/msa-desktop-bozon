@@ -11,7 +11,7 @@ import arrowMain from '../../assets/icons/arrowMain.jpg'
 const Orders = () => {
   const orders = useSelector((state) => state.main.orders)
   return (
-    <View style={[styles.shadow, { height: 80 }]}>
+    <View style={[styles.shadow, { height: 83 }]}>
       <View style={{ width: windowWidth, flexDirection: 'row' }}>
         {orders.length ? (
           orders.map((item, idx) => {

@@ -333,8 +333,8 @@ const Main = () => {
       <Header logOut={logOut} userName={state.userName} />
       <Orders />
       {orders.length > 0 && (
-        <View style={{ flexDirection: 'row', width: '100%', flexGrow: 1 }}>
-          <View style={{ flex: 3 }}>
+        <View style={{ flexDirection: 'row', width: '100%', flex: 1 }}>
+          <View style={{ flex: 1 }}>
             <Carousel />
             {activeIndex === 0 && orders.length ? <Messages /> : null}
             {activeIndex === 1 && orders.length ? (

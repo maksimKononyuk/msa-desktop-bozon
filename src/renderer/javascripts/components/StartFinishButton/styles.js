@@ -3,8 +3,8 @@ import { windowWidth } from '../../Constants'
 
 const styles = StyleSheet.create({
   container: {
-    width: windowWidth <= 480 ? '50%' : '100%',
-    height: windowWidth <= 480 ? 80 : 128
+    width: '100%',
+    height: 125
   },
   okCloseButtonsContainer: {
     flexDirection: 'row',
