@@ -52,7 +52,6 @@ const RightBlock = ({ startOrder }) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#000',
-    height: '79vh',
     width: '25%',
     justifyContent: 'space-between'
   },

@@ -327,11 +327,13 @@ const Main = () => {
   }, [modalVisible])
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', backgroundColor: '#fff' }}>
+    <View
+      style={{ alignItems: 'center', backgroundColor: '#fff', height: '100vh' }}
+    >
       <Header logOut={logOut} userName={state.userName} />
       <Orders />
       {orders.length > 0 && (
-        <View style={{ flexDirection: 'row', width: '100%', flex: 1 }}>
+        <View style={{ flexDirection: 'row', width: '100%', flexGrow: 1 }}>
           <View style={{ flex: 3 }}>
             <Carousel />
             {activeIndex === 0 && orders.length ? <Messages /> : null}

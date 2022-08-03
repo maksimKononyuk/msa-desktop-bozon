@@ -13,7 +13,7 @@ const MenuItem = ({ item, index }) => {
     <TouchableOpacity
       activeOpacity={0.5}
       style={{}}
-      onPress={() => !orderStarted && dispatch(setActiveIndex(index))}
+      onPress={() => orderStarted && dispatch(setActiveIndex(index))}
     >
       <Text
         style={{
