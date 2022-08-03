@@ -6,8 +6,7 @@ import {
   Text,
   Image,
   TouchableOpacity,
-  Modal,
-  Dimensions
+  Modal
 } from 'react-native-web'
 // import AppIntroSlider from 'react-native-app-intro-slider'
 // import ImageZoom from 'react-native-image-pan-zoom'
@@ -21,6 +20,8 @@ import {
   setErrorMessage,
   setIsErrorComponentVisible
 } from '../../redux/actionCreators'
+
+import ImageCorousel from '../ImageCarousel/ImageCarousel'
 
 const TechMaps = () => {
   const dispatch = useDispatch()
@@ -68,7 +69,7 @@ const TechMaps = () => {
   return (
     <View style={[styles.container, { height: '90%' }]}>
       {mapsArr?.length > 0 ? (
-        <Text>Slider</Text>
+        <ImageCorousel />
       ) : (
         // <AppIntroSlider
         //   keyExtractor={(item, index) => 'key' + index}
