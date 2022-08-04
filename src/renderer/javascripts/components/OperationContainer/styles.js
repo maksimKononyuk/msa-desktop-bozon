@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native-web'
-import { windowWidth } from '../../Constants'
 
 const styles = StyleSheet.create({
   operationText: {
@@ -9,8 +8,8 @@ const styles = StyleSheet.create({
   },
   descriptionNameText: {
     fontFamily: 'Montserrat',
-    fontSize: 16,
-    color: windowWidth > 480 ? '#fff' : '#000'
+    fontSize: 26,
+    color: '#fff'
   }
 })
 

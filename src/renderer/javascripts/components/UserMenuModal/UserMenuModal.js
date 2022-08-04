@@ -5,15 +5,12 @@ import {
   Modal,
   TouchableOpacity,
   Image,
-  TextInput,
-  ScrollView
-} from 'react-native'
-import AsyncStorage from '@react-native-async-storage/async-storage'
+  TextInput
+} from 'react-native-web'
 import styles from '../../styles/Styles'
 import componentStyles from './styles'
 import axios from 'axios'
 import CompleteWorkShift from '../CompleteWorkShift/CompleteWorkShift'
-import * as Application from 'expo-application'
 import {
   setIsUserMenuModal,
   setIsCompleteWorkShiftVisible,
@@ -24,7 +21,8 @@ import {
   setErrorMessage
 } from '../../redux/actionCreators'
 import { useDispatch, useSelector } from 'react-redux'
-import ErrorComponent from '../ErrorComponent/ErrorComponent'
+import closeIcon from '../../assets/images/close.png'
+// import ErrorComponent from '../ErrorComponent/ErrorComponent'
 
 const UsersMenuModal = ({ logOut }) => {
   const [isModalNewOrder, setIsModalNewOrder] = useState(false)
@@ -73,7 +71,7 @@ const UsersMenuModal = ({ logOut }) => {
   }, [createdOrderId])
 
   const menuItemHandler = async (item) => {
-    const user = JSON.parse(await AsyncStorage.getItem('user'))
+    const user = JSON.parse(localStorage.getItem('user'))
     item.order.composition['Worker'] = user.name
     item.order.composition['Worker id'] = user.u_id
     dispatch(setTempDetail(item))
@@ -151,16 +149,11 @@ const UsersMenuModal = ({ logOut }) => {
             }}
             onPress={() => dispatch(setIsUserMenuModal(false))}
           >
-            <Image
-              style={componentStyles.closeIcon}
-              source={require('../../assets/images/close.png')}
-            />
+            <Image style={componentStyles.closeIcon} source={closeIcon} />
             <Text style={componentStyles.cancelText}>Cancel</Text>
           </TouchableOpacity>
         </View>
-        <Text style={styles.versionText}>
-          Version: {Application.nativeApplicationVersion}
-        </Text>
+        <Text style={styles.versionText}>Version: 1.0.1</Text>
         <Modal
           animationType='slider'
           transparent={true}
@@ -201,10 +194,7 @@ const UsersMenuModal = ({ logOut }) => {
               }}
               onPress={() => setIsModalNewOrder(false)}
             >
-              <Image
-                style={componentStyles.closeIcon}
-                source={require('../../assets/images/close.png')}
-              />
+              <Image style={componentStyles.closeIcon} source={closeIcon} />
               <Text style={componentStyles.cancelText}>Cancel</Text>
             </TouchableOpacity>
           </View>
@@ -218,7 +208,7 @@ const UsersMenuModal = ({ logOut }) => {
                 <Text style={componentStyles.orderNameText}>
                   {tempDetail?.order?.name}
                 </Text>
-                <ScrollView style={componentStyles.scroll}>
+                <View style={componentStyles.scroll}>
                   {tempDetail.order &&
                     Object.entries(tempDetail.order.composition)
                       .sort()
@@ -239,7 +229,7 @@ const UsersMenuModal = ({ logOut }) => {
                           />
                         </View>
                       ))}
-                </ScrollView>
+                </View>
                 <TouchableOpacity
                   activeOpacity={0.5}
                   style={componentStyles.okButton}
@@ -255,10 +245,7 @@ const UsersMenuModal = ({ logOut }) => {
                   }}
                   onPress={() => setIsModalGetDetails(false)}
                 >
-                  <Image
-                    style={componentStyles.closeIcon}
-                    source={require('../../assets/images/close.png')}
-                  />
+                  <Image style={componentStyles.closeIcon} source={closeIcon} />
                   <Text style={componentStyles.cancelText}>Cancel</Text>
                 </TouchableOpacity>
               </View>
@@ -266,9 +253,9 @@ const UsersMenuModal = ({ logOut }) => {
           </Modal>
         </Modal>
         {isCompleteWorkShiftVisible && <CompleteWorkShift logOut={logOut} />}
-        {isErrorComponentVisible && <ErrorComponent />}
+        {/* {isErrorComponentVisible && <ErrorComponent />} */}
       </View>
-      {isErrorComponentVisible && <ErrorComponent />}
+      {/* {isErrorComponentVisible && <ErrorComponent />} */}
     </Modal>
   )
 }

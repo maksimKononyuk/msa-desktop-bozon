@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, Modal, TouchableOpacity, Image } from 'react-native'
+import { View, Text, Modal, TouchableOpacity, Image } from 'react-native-web'
 import done from '../../assets/images/ok.png'
 import cancel from '../../assets/images/no.png'
 import styles from './styles'

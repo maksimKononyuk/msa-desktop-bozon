@@ -4,7 +4,7 @@ import { View, Text, Image, TouchableOpacity } from 'react-native-web'
 import styles from '../../styles/Styles'
 import componentStyles from './styles'
 import { setIsUserMenuModal } from '../../redux/actionCreators'
-// import UsersMenuModal from '../UserMenuModal/UserMenuModal'
+import UsersMenuModal from '../UserMenuModal/UserMenuModal'
 import { useDispatch, useSelector } from 'react-redux'
 import personIcon from '../../assets/images/person.png'
 
@@ -26,7 +26,7 @@ const Header = ({ logOut, userName }) => {
         <View style={componentStyles.headerButtonLine}></View>
         <View style={componentStyles.headerButtonLine}></View>
       </TouchableOpacity>
-      {/* {isUserMenuModal && <UsersMenuModal logOut={logOut} />} */}
+      {isUserMenuModal && <UsersMenuModal logOut={logOut} />}
     </View>
   )
 }

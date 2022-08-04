@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text } from 'react-native-web'
 import * as Animatable from 'react-native-animatable'
 import { useDispatch, useSelector } from 'react-redux'
 import { setIsErrorComponentVisible } from '../../redux/actionCreators'
