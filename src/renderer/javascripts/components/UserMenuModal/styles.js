@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     backgroundColor: '#000',
-    flex: 1,
+    height: '100vh',
     paddingTop: 20,
     paddingBottom: 45
   },
@@ -58,7 +58,8 @@ const styles = StyleSheet.create({
   },
   orderContainer: {
     width: '100%',
-    alignItems: 'center'
+    alignItems: 'center',
+    height: '95%'
   },
   orderNameText: {
     color: '#fff',
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   scroll: {
-    height: '70%',
+    height: '80%',
     width: '100%',
     overflow: 'auto'
   },
