@@ -75,6 +75,7 @@ const UsersMenuModal = ({ logOut }) => {
     item.order.composition['Worker'] = user.name
     item.order.composition['Worker id'] = user.u_id
     dispatch(setTempDetail(item))
+    setIsModalNewOrder(false)
     setIsModalGetDetails(true)
   }
 
@@ -124,37 +125,134 @@ const UsersMenuModal = ({ logOut }) => {
   return (
     <Modal animationType='slide' transparent={true} visible={true}>
       <View style={componentStyles.container}>
-        <View style={componentStyles.menuItemBlock}>
-          <TouchableOpacity
-            activeOpacity={0.5}
-            style={componentStyles.menuItem}
-            onPress={getNewOrder}
-          >
-            <Text style={componentStyles.menuItemText}>New order</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            activeOpacity={0.5}
-            style={componentStyles.menuItem}
-            onPress={() => dispatch(setIsCompleteWorkShiftVisible(true))}
-          >
-            <Text style={componentStyles.menuItemText}>Logout</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={componentStyles.closeButtomContainer}>
-          <TouchableOpacity
-            activeOpacity={0.5}
-            style={{
-              ...styles.center,
-              ...styles.cancelContainer
-            }}
-            onPress={() => dispatch(setIsUserMenuModal(false))}
-          >
-            <Image style={componentStyles.closeIcon} source={closeIcon} />
-            <Text style={componentStyles.cancelText}>Cancel</Text>
-          </TouchableOpacity>
-        </View>
-        <Text style={styles.versionText}>Version: 1.0.1</Text>
-        <Modal
+        {!isModalGetDetails && !isModalNewOrder && (
+          <>
+            <View style={componentStyles.menuItemBlock}>
+              <TouchableOpacity
+                activeOpacity={0.5}
+                style={componentStyles.menuItem}
+                onPress={getNewOrder}
+              >
+                <Text style={componentStyles.menuItemText}>New order</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                activeOpacity={0.5}
+                style={componentStyles.menuItem}
+                onPress={() => dispatch(setIsCompleteWorkShiftVisible(true))}
+              >
+                <Text style={componentStyles.menuItemText}>Logout</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={componentStyles.closeButtomContainer}>
+              <TouchableOpacity
+                activeOpacity={0.5}
+                style={{
+                  ...styles.center,
+                  ...styles.cancelContainer
+                }}
+                onPress={() => dispatch(setIsUserMenuModal(false))}
+              >
+                <Image style={componentStyles.closeIcon} source={closeIcon} />
+                <Text style={componentStyles.cancelText}>Cancel</Text>
+              </TouchableOpacity>
+            </View>
+            <Text style={styles.versionText}>Version: 1.0.1</Text>
+          </>
+        )}
+        {isModalNewOrder && (
+          <>
+            <View style={componentStyles.orderContainer}>
+              <Text
+                style={[
+                  componentStyles.menuItemText,
+                  componentStyles.newOrderText
+                ]}
+              >
+                New order
+              </Text>
+              <View style={componentStyles.menuItemBlock}>
+                {orders.map((item, index) => {
+                  return (
+                    <TouchableOpacity
+                      activeOpacity={0.5}
+                      style={componentStyles.menuItem}
+                      key={index}
+                      onPress={() => menuItemHandler(item)}
+                    >
+                      <Text style={componentStyles.menuItemText}>
+                        {item?.order?.name || ''}
+                      </Text>
+                    </TouchableOpacity>
+                  )
+                })}
+              </View>
+            </View>
+            <TouchableOpacity
+              activeOpacity={0.5}
+              style={{
+                ...styles.center,
+                ...styles.cancelContainer
+              }}
+              onPress={() => setIsModalNewOrder(false)}
+            >
+              <Image style={componentStyles.closeIcon} source={closeIcon} />
+              <Text style={componentStyles.cancelText}>Cancel</Text>
+            </TouchableOpacity>
+          </>
+        )}
+        {isModalGetDetails && (
+          <>
+            <View style={componentStyles.orderContainer}>
+              <Text style={componentStyles.orderNameText}>
+                {tempDetail?.order?.name}
+              </Text>
+              <View style={componentStyles.scroll}>
+                {tempDetail.order &&
+                  Object.entries(tempDetail.order.composition)
+                    .sort()
+                    .map(([key, value]) => (
+                      <View
+                        style={componentStyles.whatToDeliverContainer}
+                        key={key}
+                      >
+                        <Text style={componentStyles.whatToDeliverText}>
+                          {key}
+                        </Text>
+                        <TextInput
+                          style={componentStyles.input}
+                          value={value}
+                          onChangeText={(text) => {
+                            textInputHandler(text, key)
+                          }}
+                        />
+                      </View>
+                    ))}
+              </View>
+              <TouchableOpacity
+                activeOpacity={0.5}
+                style={componentStyles.okButton}
+                onPress={() => sendFormData()}
+              >
+                <Text style={componentStyles.okButtonText}>OK!</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                activeOpacity={0.5}
+                style={{
+                  ...styles.center,
+                  ...styles.cancelContainer
+                }}
+                onPress={() => {
+                  setIsModalGetDetails(false)
+                  setIsModalNewOrder(true)
+                }}
+              >
+                <Image style={componentStyles.closeIcon} source={closeIcon} />
+                <Text style={componentStyles.cancelText}>Cancel</Text>
+              </TouchableOpacity>
+            </View>
+          </>
+        )}
+        {/* <Modal
           animationType='slider'
           transparent={true}
           visible={isModalNewOrder}
@@ -200,7 +298,7 @@ const UsersMenuModal = ({ logOut }) => {
           </View>
           <Modal
             animationType='slider'
-            transparent={false}
+            transparent={true}
             visible={isModalGetDetails}
           >
             <View style={componentStyles.container}>
@@ -251,7 +349,7 @@ const UsersMenuModal = ({ logOut }) => {
               </View>
             </View>
           </Modal>
-        </Modal>
+        </Modal> */}
         {isCompleteWorkShiftVisible && <CompleteWorkShift logOut={logOut} />}
         {/* {isErrorComponentVisible && <ErrorComponent />} */}
       </View>

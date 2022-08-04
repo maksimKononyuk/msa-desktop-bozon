@@ -36,7 +36,8 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     paddingHorizontal: 10,
     fontSize: 16,
-    fontFamily: 'Roboto'
+    fontFamily: 'Roboto',
+    outlineWidth: 0
   },
   closeButtomContainer: {
     marginTop: 20
