@@ -6,7 +6,7 @@ import {
   ScrollView,
   TouchableOpacity
 } from 'react-native-web'
-// import JSONTree from 'react-native-json-tree'
+import { JSONTree } from 'react-json-tree'
 import componentStyles from './styles'
 
 import styles from '../../styles/Styles'
@@ -25,29 +25,27 @@ const ActiveOrder = () => {
         {orderStarted ? (
           <View style={{ maxHeight: windowWidth }}>
             <Text>Json Tree</Text>
-            {/* <JSONTree
-                data={order?.order?.list || {}}
-                theme={{
-                  extend: jsonTreeTheme,
-                  nestedNodeLabel: ({ style }, nodeType, expanded) => ({
-                    style: {
-                      ...style,
-                      textTransform: expanded
-                        ? 'uppercase'
-                        : style.textTransform
-                    }
-                  })
-                }}
-                hideRoot={true}
-                invertTheme={false}
-                getItemString={() => <Text></Text>}
-                labelRenderer={([label]) => (
-                  <Text style={componentStyles.labelText}>{label}:</Text>
-                )}
-                valueRenderer={(raw) => (
-                  <Text style={componentStyles.labelText}>{raw}</Text>
-                )}
-              /> */}
+            <JSONTree
+              data={order?.order?.list || {}}
+              theme={{
+                extend: jsonTreeTheme,
+                nestedNodeLabel: ({ style }, nodeType, expanded) => ({
+                  style: {
+                    ...style,
+                    textTransform: expanded ? 'uppercase' : style.textTransform
+                  }
+                })
+              }}
+              hideRoot={true}
+              invertTheme={false}
+              getItemString={() => <Text></Text>}
+              labelRenderer={([label]) => (
+                <Text style={componentStyles.labelText}>{label}:</Text>
+              )}
+              valueRenderer={(raw) => (
+                <Text style={componentStyles.labelText}>{raw}</Text>
+              )}
+            />
           </View>
         ) : (
           <>

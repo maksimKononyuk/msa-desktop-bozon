@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, TextInput } from 'react-native'
+import { View, Text, TouchableOpacity, TextInput } from 'react-native-web'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   setMaterialsCondition,

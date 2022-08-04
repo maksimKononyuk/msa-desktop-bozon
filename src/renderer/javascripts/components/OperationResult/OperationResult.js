@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, Image } from 'react-native'
+import { View, Text, TouchableOpacity, Image } from 'react-native-web'
 import styles from '../../styles/Styles'
 import axios from 'axios'
 import componentStyles from './styles'
@@ -12,7 +12,7 @@ import {
   setErrorMessage,
   setIsErrorComponentVisible
 } from '../../redux/actionCreators'
-import ErrorComponent from '../ErrorComponent/ErrorComponent'
+// import ErrorComponent from '../ErrorComponent/ErrorComponent'
 
 const OperationResult = ({ finishOrder }) => {
   const dispatch = useDispatch()
@@ -99,7 +99,7 @@ const OperationResult = ({ finishOrder }) => {
           <Text style={componentStyles.canselButtonTitle}>Cancel</Text>
         </TouchableOpacity>
       </View>
-      {isErrorComponentVisible && <ErrorComponent />}
+      {/* {isErrorComponentVisible && <ErrorComponent />} */}
     </View>
   )
 }

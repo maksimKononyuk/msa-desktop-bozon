@@ -3,9 +3,8 @@ import {
   ActivityIndicator,
   View,
   Text,
-  ScrollView,
   TouchableOpacity
-} from 'react-native'
+} from 'react-native-web'
 import { useSelector, useDispatch } from 'react-redux'
 import { setShowMaterialsComponent } from '../../redux/actionCreators'
 import MaterialItem from '../MaterialItem/MaterialItem'
@@ -27,7 +26,7 @@ const Materials = ({ finishOrder }) => {
           Materials, semi-finished products, finished products
         </Text>
       </View>
-      <ScrollView style={styles.container}>
+      <View style={styles.container}>
         {materialsArr.length === 0 ? (
           <ActivityIndicator size='large' color='#000088' />
         ) : (
@@ -49,7 +48,7 @@ const Materials = ({ finishOrder }) => {
             </TouchableOpacity>
           </>
         )}
-      </ScrollView>
+      </View>
       <TouchableOpacity
         activeOpacity={0.5}
         style={styles.cancelButton}

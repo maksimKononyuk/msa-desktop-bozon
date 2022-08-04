@@ -5,7 +5,7 @@ import {
   Modal,
   TouchableOpacity,
   ActivityIndicator
-} from 'react-native'
+} from 'react-native-web'
 import { useDispatch, useSelector } from 'react-redux'
 import { setOrderCancelModalVisible } from '../../redux/actionCreators'
 import styles from './styles'

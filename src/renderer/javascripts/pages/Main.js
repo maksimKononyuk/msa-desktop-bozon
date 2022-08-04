@@ -10,15 +10,15 @@ import ActiveOrder from '../components/ActiveOrder/ActiveOrder'
 import TechMaps from '../components/TechMaps/TechMaps'
 import ActiveOrderHeader from '../components/Adaptive/ActiveOrderHeader'
 import RightBlock from '../components/Adaptive/RightBlock'
-// import OrderCancelModal from '../components/OrderCancelModal/OrderCancelModal'
+import OrderCancelModal from '../components/OrderCancelModal/OrderCancelModal'
 import Messages from '../components/Messages/Messages'
 // import OperationContainer from '../components/OperationContainer/OperationContainer'
 // import styles from '../styles/Styles'
-// import Materials from '../components/Materials/Materials'
+import Materials from '../components/Materials/Materials'
 import Equipment from '../components/Equipment/Equipment'
 // import Timer from '../components/Timer/Timer'
 // import StartFinishButton from '../components/StartFinishButton/StartFinishButton'
-// import OperationResult from '../components/OperationResult/OperationResult'
+import OperationResult from '../components/OperationResult/OperationResult'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   setOrders,
@@ -359,15 +359,6 @@ const Main = () => {
           <RightBlock startOrder={startOrder} />
         </View>
       )}
-      {/* {windowWidth <= 480 && orders.length && !activeBarCode ? (
-        <View style={{ width: '100%' }}>
-          <OperationContainer />
-          <View style={{ ...styles.center }}>
-            <Timer />
-            <StartFinishButton startOrder={startOrder} />
-          </View>
-        </View>
-      ) : null}
       {orderCancelModalVisible && <OrderCancelModal />}
       <Modal
         animationType='slide'
@@ -393,7 +384,7 @@ const Main = () => {
           <OperationResult finishOrder={finishOrder} />
         )}
       </Modal>
-      {isErrorComponentVisible && <ErrorComponent />} */}
+      {/* {isErrorComponentVisible && <ErrorComponent />} */}
     </View>
   )
 }
