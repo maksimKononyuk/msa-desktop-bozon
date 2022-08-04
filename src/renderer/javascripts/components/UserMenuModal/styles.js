@@ -67,7 +67,8 @@ const styles = StyleSheet.create({
   },
   scroll: {
     height: '70%',
-    width: '100%'
+    width: '100%',
+    overflow: 'auto'
   },
   whatToDeliverContainer: {
     alignItems: 'center',
