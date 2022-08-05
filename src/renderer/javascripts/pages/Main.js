@@ -41,7 +41,9 @@ import {
   setIsErrorComponentVisible,
   setErrorMessage,
   setShowMaterialsComponent,
-  setMaterialsArr
+  setMaterialsArr,
+  setActiveIndex,
+  setMessages
 } from '../redux/actionCreators'
 // import ErrorComponent from '../components/ErrorComponent/ErrorComponent'
 
@@ -203,6 +205,8 @@ const Main = () => {
         dispatch(setOrderStarted(false))
         dispatch(setMaterialsArr([]))
         dispatch(setShowMaterialsComponent(false))
+        dispatch(setActiveIndex(1))
+        dispatch(setMessages([]))
         Alert.alert('MSA Mobile', 'Your operation has been completed.', [
           {
             text: 'Ok'
