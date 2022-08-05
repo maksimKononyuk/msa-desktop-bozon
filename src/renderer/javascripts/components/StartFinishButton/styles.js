@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native-web'
-import { windowWidth } from '../../Constants'
 
 const styles = StyleSheet.create({
   container: {

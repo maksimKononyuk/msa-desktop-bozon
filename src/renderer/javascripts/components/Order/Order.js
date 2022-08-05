@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo } from 'react'
 import { View, Text, TouchableOpacity, Image } from 'react-native-web'
 // import QRCode from 'react-native-qrcode-svg'
-import { windowWidth } from '../../Constants'
 // import * as Print from 'expo-print'
 import styles from '../../styles/Styles'
 import qrcode from '../../lib/createImgTagQr/qrcode'

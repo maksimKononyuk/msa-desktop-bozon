@@ -4,7 +4,7 @@ import { JSONTree } from 'react-json-tree'
 import componentStyles from './styles'
 
 import styles from '../../styles/Styles'
-import { windowWidth, jsonTreeTheme, windowHeight } from '../../Constants'
+import { jsonTreeTheme } from '../../Constants'
 import { useDispatch, useSelector } from 'react-redux'
 import { setActiveBarCode } from '../../redux/actionCreators'
 
@@ -17,7 +17,7 @@ const ActiveOrder = () => {
     <View style={[styles.container]}>
       <View style={[styles.container, { backgroundColor: '#fff' }]}>
         {orderStarted ? (
-          <View style={{ maxHeight: windowWidth }}>
+          <View>
             <Text>Json Tree</Text>
             <JSONTree
               data={order?.order?.list || {}}

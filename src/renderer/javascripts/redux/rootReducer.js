@@ -6,7 +6,6 @@ import mainReducer from './reducers/mainReducer'
 import messagesReducer from './reducers/messagesReducer'
 import techMapsReducer from './reducers/techMapsReducer'
 import equipmentItemReducer from './reducers/equipmentItemReducer'
-import newMessageItemReducer from './reducers/newMessageItemReducer'
 import orderReducer from './reducers/orderReducer'
 import usersMenuModalReducer from './reducers/usersMenuModalReducer'
 import authReducer from './reducers/authReducer'
@@ -21,7 +20,6 @@ const rootReducer = combineReducers({
   TechMaps: techMapsReducer,
   barCode: barCodeReducer,
   equipmentItem: equipmentItemReducer,
-  newMessageItem: newMessageItemReducer,
   order: orderReducer,
   usersMenuModal: usersMenuModalReducer,
   auth: authReducer,

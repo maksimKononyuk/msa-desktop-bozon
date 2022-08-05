@@ -1,21 +1,20 @@
 import { StyleSheet } from 'react-native-web'
-import { windowWidth } from '../../Constants'
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#000',
     flex: 1,
-    paddingTop: windowWidth > 480 ? 95 : 120
+    paddingTop: 95
   },
   modalTitle: {
     textAlign: 'center',
     color: '#fff',
     fontFamily: 'Roboto',
-    fontSize: windowWidth > 480 ? 30 : 22
+    fontSize: 30
   },
   buttonBlock: {
     marginTop: 80,
-    flexDirection: windowWidth > 480 ? 'row' : 'column',
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -31,8 +30,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#CF3B23'
   },
   greenButton: {
-    marginRight: windowWidth > 480 ? 20 : 0,
-    marginBottom: windowWidth > 480 ? 0 : 35,
+    marginRight: 20,
+    marginBottom: 0,
     backgroundColor: '#009C6D'
   },
   buttonText: {

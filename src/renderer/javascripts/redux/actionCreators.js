@@ -29,7 +29,6 @@ import {
   SET_MESSAGES,
   SET_MODAL_VISIBLE,
   SET_MODAL_VISIBLE_TECH_MAPS,
-  SET_NEW_MESSAGE,
   SET_ORDERS,
   SET_ORDER_CANCEL_MODAL_VISIBLE,
   SET_ORDER_STARTED,
@@ -299,15 +298,6 @@ export const setIsChecked = (index) => {
 export const setIsLoading = (data) => {
   return {
     type: SET_IS_LOADING,
-    data
-  }
-}
-
-// For newMessageItemReducer
-
-export const setNewMessage = (data) => {
-  return {
-    type: SET_NEW_MESSAGE,
     data
   }
 }

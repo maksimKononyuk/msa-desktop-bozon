@@ -1,9 +1,15 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import { View, Text, Image } from 'react-native-web'
 import avatar from '../../assets/images/avatar_local.png'
 import styles from './styles'
 
 const MessageItem = ({ isYourMessage, userName, operation, data, message }) => {
+  const scrollRef = useRef()
+
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView(false)
+  }, [])
+
   return (
     <View
       style={[
@@ -15,6 +21,7 @@ const MessageItem = ({ isYourMessage, userName, operation, data, message }) => {
           alignSelf: isYourMessage ? 'flex-end' : 'flex-start'
         }
       ]}
+      ref={scrollRef}
     >
       <View style={styles.infoBlock}>
         <View style={styles.leftPart}>

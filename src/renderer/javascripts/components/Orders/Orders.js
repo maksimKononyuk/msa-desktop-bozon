@@ -1,7 +1,6 @@
 import React from 'react'
 import { View, ActivityIndicator, Text } from 'react-native-web'
 import Order from '../Order/Order'
-import { windowWidth } from '../../Constants'
 import styles from '../../styles/Styles'
 import componentStyles from './styles'
 import { useSelector } from 'react-redux'
@@ -12,7 +11,7 @@ const Orders = () => {
   const orders = useSelector((state) => state.main.orders)
   return (
     <View style={[styles.shadow, { overflow: 'auto' }]}>
-      <View style={{ width: windowWidth, flexDirection: 'row' }}>
+      <View style={{ flexDirection: 'row' }}>
         {orders.length ? (
           orders.map((item, idx) => {
             return (

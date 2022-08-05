@@ -1,10 +1,9 @@
 import { StyleSheet } from 'react-native-web'
-import { windowWidth } from '../../Constants'
 
 const styles = StyleSheet.create({
   container: {
-    width: windowWidth <= 480 ? '50%' : '100%',
-    height: windowWidth <= 480 ? 80 : 100,
+    width: '100%',
+    height: 100,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#000'

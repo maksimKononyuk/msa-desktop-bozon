@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native-web'
-import { windowWidth } from '../../Constants'
 
 const styles = StyleSheet.create({
   container: {
@@ -9,15 +8,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   infoBlock: {
-    width: windowWidth > 480 ? '66%' : '90%',
-    height: windowWidth * (windowWidth > 480 ? 0.38 : 1.3),
+    width: '66%',
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center'
   },
   infoBlockText: {
     fontFamily: 'Montserrat',
-    fontSize: windowWidth > 480 ? 30 : 26,
+    fontSize: 30,
     lineHeight: 37
   },
   infoBlockTextId: {

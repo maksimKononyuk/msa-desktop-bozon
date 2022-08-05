@@ -1,9 +1,8 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { View, TouchableOpacity, TextInput, Image } from 'react-native-web'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import axios from 'axios'
 import {
-  setNewMessage,
   setErrorMessage,
   setIsErrorComponentVisible
 } from '../../redux/actionCreators'
@@ -12,17 +11,17 @@ import styles from './styles'
 
 const NewMessagesItem = ({ orderId, userId }) => {
   const dispatch = useDispatch()
-  const newMessage = useSelector((state) => state.newMessageItem.newMessage)
+  const [newMessage, setNewMessage] = useState('')
 
-  const buttonHandler = () => {
-    if (newMessage) {
+  const buttonHandler = (message) => {
+    if (message) {
       axios
         .post('order_worker_new_message', {
           _id: orderId,
           u_id: userId,
-          message: newMessage
+          message
         })
-        .then(() => dispatch(setNewMessage('')))
+        .then(() => setNewMessage(''))
         .catch((err) => {
           console.log('Network error when sending a message ' + err)
           dispatch(setErrorMessage('when sending a message ' + err))
@@ -30,6 +29,20 @@ const NewMessagesItem = ({ orderId, userId }) => {
         })
     }
   }
+  const input = useRef()
+
+  useEffect(() => {
+    const keyDownHandler = (event) => {
+      if (event.key === 'Enter') {
+        event.preventDefault()
+        buttonHandler(input.current.value)
+      }
+    }
+    input.current.addEventListener('keydown', keyDownHandler)
+    return () => {
+      input.current.removeEventListener('keydown', keyDownHandler)
+    }
+  }, [])
 
   return (
     <View style={styles.container}>
@@ -37,12 +50,13 @@ const NewMessagesItem = ({ orderId, userId }) => {
         style={styles.input}
         placeholder='New message'
         value={newMessage}
-        onChangeText={(text) => dispatch(setNewMessage(text))}
+        onChangeText={(text) => setNewMessage(text)}
+        ref={input}
       />
       <TouchableOpacity
         activeOpacity={0.5}
         style={styles.sendButton}
-        onPress={buttonHandler} // отправка сообщения только если тело сообщения не пустое
+        onPress={() => buttonHandler(newMessage)} // отправка сообщения только если тело сообщения не пустое
       >
         <Image source={sendButton} style={styles.sendButtonImage} />
       </TouchableOpacity>
