@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 import { Text, View } from 'react-native-web'
 import PropTypes from 'prop-types'
 import { formatTimeString } from './utils'
@@ -42,6 +42,7 @@ class StopWatch extends Component {
         marginLeft: 7
       }
     }
+    this.ref = createRef()
   }
 
   componentDidMount() {
@@ -127,7 +128,7 @@ class StopWatch extends Component {
     const styles = this.props.options ? this.props.options : this.defaultStyles
 
     return (
-      <View ref='stopwatch' style={styles.container}>
+      <View ref={this.ref} style={styles.container}>
         <Text style={styles.text}>{this.formatTime()}</Text>
       </View>
     )
