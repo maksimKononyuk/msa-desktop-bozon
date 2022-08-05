@@ -1,6 +1,5 @@
 import React from 'react'
 import {
-  ScrollView,
   View,
   Text,
   Image,
@@ -39,11 +38,11 @@ const Equipment = ({ equipmentRequest }) => {
           </TouchableOpacity>
         )}
       </View>
-      <ScrollView>
+      <View style={{ overflow: 'auto' }}>
         {equipmentArr.map((item, index) => {
           return <EquipmentItem key={item._id} index={index} />
         })}
-      </ScrollView>
+      </View>
     </View>
   )
 }

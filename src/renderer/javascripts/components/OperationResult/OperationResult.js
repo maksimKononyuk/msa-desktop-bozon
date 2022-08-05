@@ -12,6 +12,8 @@ import {
   setErrorMessage,
   setIsErrorComponentVisible
 } from '../../redux/actionCreators'
+import arrowWhiteIcon from '../../assets/images/arrow_white.png'
+import closeIcon from '../../assets/images/close.png'
 // import ErrorComponent from '../ErrorComponent/ErrorComponent'
 
 const OperationResult = ({ finishOrder }) => {
@@ -78,10 +80,7 @@ const OperationResult = ({ finishOrder }) => {
           }}
         >
           <Text style={componentStyles.itemResultText}>{item.result}</Text>
-          <Image
-            style={componentStyles.arrowIcon}
-            source={require('../../assets/images/arrow_white.png')}
-          />
+          <Image style={componentStyles.arrowIcon} source={arrowWhiteIcon} />
         </TouchableOpacity>
       ))}
       <View style={componentStyles.canselButtonContainer}>
@@ -92,10 +91,7 @@ const OperationResult = ({ finishOrder }) => {
             dispatch(setModalVisible(false))
           }}
         >
-          <Image
-            style={componentStyles.closeIcon}
-            source={require('../../assets/images/close.png')}
-          />
+          <Image style={componentStyles.closeIcon} source={closeIcon} />
           <Text style={componentStyles.canselButtonTitle}>Cancel</Text>
         </TouchableOpacity>
       </View>

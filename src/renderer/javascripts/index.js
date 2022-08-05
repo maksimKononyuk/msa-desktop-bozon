@@ -5,10 +5,8 @@ import App from './App'
 
 window.onload = () => {
   ReactDOM.createRoot(document.getElementById('root')).render(
-    <React.StrictMode>
-      <HashRouter>
-        <App />
-      </HashRouter>
-    </React.StrictMode>
+    <HashRouter>
+      <App />
+    </HashRouter>
   )
 }

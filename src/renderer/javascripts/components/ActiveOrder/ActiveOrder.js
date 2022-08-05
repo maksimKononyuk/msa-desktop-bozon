@@ -1,11 +1,5 @@
 import React from 'react'
-import {
-  View,
-  Text,
-  Image,
-  ScrollView,
-  TouchableOpacity
-} from 'react-native-web'
+import { View, Text, TouchableOpacity } from 'react-native-web'
 import { JSONTree } from 'react-json-tree'
 import componentStyles from './styles'
 
