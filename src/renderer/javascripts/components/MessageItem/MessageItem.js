@@ -3,7 +3,7 @@ import { View, Text, Image } from 'react-native-web'
 import avatar from '../../assets/images/avatar_local.png'
 import styles from './styles'
 
-const MessageItem = ({ isYourMessage, userName, operation, date, message }) => {
+const MessageItem = ({ isYourMessage, userName, operation, data, message }) => {
   return (
     <View
       style={[
@@ -11,7 +11,8 @@ const MessageItem = ({ isYourMessage, userName, operation, date, message }) => {
         {
           backgroundColor: isYourMessage ? '#0080FF' : '#F5F5F5',
           borderTopLeftRadius: isYourMessage ? 14 : 0,
-          borderTopRightRadius: isYourMessage ? 0 : 14
+          borderTopRightRadius: isYourMessage ? 0 : 14,
+          alignSelf: isYourMessage ? 'flex-end' : 'flex-start'
         }
       ]}
     >
@@ -32,7 +33,7 @@ const MessageItem = ({ isYourMessage, userName, operation, date, message }) => {
           </Text>
         </View>
         <Text style={[styles.text, isYourMessage && { color: '#ffffff' }]}>
-          {new Date(date).toLocaleString().split(',').join('')}
+          {new Date(data).toLocaleString().split(',').join('')}
         </Text>
       </View>
       <Text style={[styles.message, isYourMessage && { color: '#ffffff' }]}>

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect } from 'react'
-import { View, Text, ScrollView } from 'react-native-web'
+import { View, Text } from 'react-native-web'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   setMessages,
@@ -40,23 +40,22 @@ const Messages = () => {
       {messages.length === 0 ? (
         <Text style={styles.notMessageText}>You have not messages</Text>
       ) : (
-        messages.map((item, index) => {
-          return (
-            <MessageItem
-              key={index}
-              isYourMessage={userId === item.w_id}
-              userName={item.worker}
-              operation={item.operation}
-              date={item.m_data}
-              message={item.message}
-            />
-          )
-        })
+        <View style={styles.messagesBlock}>
+          {messages.map((item, index) => {
+            return (
+              <MessageItem
+                key={index}
+                isYourMessage={userId === item.w_id}
+                userName={item.worker}
+                operation={item.operation}
+                data={item.m_data}
+                message={item.message}
+              />
+            )
+          })}
+        </View>
       )}
-      <View style={{ height: 80 }} />
-      <View style={styles.newMessageItemContainer}>
-        <NewMessagesItem orderId={orderId} userId={userId} />
-      </View>
+      <NewMessagesItem orderId={orderId} userId={userId} />
     </View>
   )
 }
