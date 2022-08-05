@@ -42,12 +42,10 @@ const Order = ({ item, idx, icon }) => {
 
   return (
     <View
-      style={{
-        ...styles.orderContainer,
-        width: 250,
-        borderRightWidth: 0.5,
-        borderRightColor: '#00000029'
-      }}
+      style={[
+        styles.orderContainer,
+        { width: '25%', borderRightWidth: 0.5, borderRightColor: '#00000029' }
+      ]}
     >
       <View style={componentStyles.qrItemName}>
         <Image source={icon} style={{ width: 16, height: 16 }}></Image>
