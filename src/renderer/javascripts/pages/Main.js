@@ -46,7 +46,11 @@ import {
   setMessages
 } from '../redux/actionCreators'
 import OperationComplited from '../components/OperationComplited/OperationComplited'
+import addNotification, { Notifications } from 'react-push-notification'
+import soundNitify from '../assets/sounds/sound.mp3'
 // import ErrorComponent from '../components/ErrorComponent/ErrorComponent'
+
+let ordersCount = 0
 
 const Main = () => {
   const { state } = useLocation()
@@ -128,6 +132,10 @@ const Main = () => {
         .get(`order_worker/${user.u_id}`)
         .then((res) => {
           dispatch(setOrders(res.data))
+          if (res.data.length > ordersCount) {
+            notificationCall()
+          }
+          ordersCount = res.data.length
           if (res.data.length) {
             getOrderInfo(res.data[0]._id, user.u_id)
             getPreviousOperation(user)
@@ -328,6 +336,22 @@ const Main = () => {
     if (modalVisible) dispatch(setIsConfirmation(false))
   }, [modalVisible])
 
+  const notify = () => {
+    addNotification({
+      duration: 5000,
+      title: 'Warning',
+      subtitle: 'New order',
+      message: 'You have a new order',
+      theme: 'darkblue',
+      closeButton: 'X'
+    })
+  }
+
+  const notificationCall = () => {
+    notify()
+    new Audio(soundNitify).play()
+  }
+
   return (
     <View
       style={{
@@ -336,6 +360,7 @@ const Main = () => {
         height: '100vh'
       }}
     >
+      <Notifications />
       <Header logOut={logOut} userName={state.userName} />
       <Orders />
       {orders.length > 0 && (

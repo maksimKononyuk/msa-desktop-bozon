@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#000',
     height: '100vh',
     paddingTop: 20,
-    paddingBottom: 45
+    paddingBottom: 10
   },
   scrollViewStyle: {
     backgroundColor: '#000'
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   orderContainer: {
     width: '100%',
     alignItems: 'center',
-    height: '95%'
+    height: '90%'
   },
   orderNameText: {
     color: '#fff',

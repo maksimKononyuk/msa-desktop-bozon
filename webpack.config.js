@@ -16,8 +16,8 @@ module.exports = {
           ]
         },
         {
-          test: /\.(png|jpg|gif|svg)$/,
-          loader: 'react-image-element-loader',
+          test: /\.(png|jpg|gif|svg|mp3)$/,
+          loader: 'file-loader',
           exclude: /node_modules/
         }
       ]
