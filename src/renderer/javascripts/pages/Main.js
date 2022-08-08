@@ -45,6 +45,7 @@ import {
   setActiveIndex,
   setMessages
 } from '../redux/actionCreators'
+import OperationComplited from '../components/OperationComplited/OperationComplited'
 // import ErrorComponent from '../components/ErrorComponent/ErrorComponent'
 
 const Main = () => {
@@ -82,6 +83,7 @@ const Main = () => {
   )
 
   const [operationFinishLoading, setOperationFinishLoading] = useState(false)
+  const [isOperationComplited, setIsOperationComplited] = useState(false)
 
   const equipmentBusy = (isBusy) => {
     axios
@@ -200,6 +202,7 @@ const Main = () => {
         function: materialsArr
       })
       .then(() => {
+        setIsOperationComplited(true)
         setOperationFinishLoading(false)
         dispatch(setModalVisible(false))
         dispatch(setOrderStarted(false))
@@ -207,11 +210,6 @@ const Main = () => {
         dispatch(setShowMaterialsComponent(false))
         dispatch(setActiveIndex(1))
         dispatch(setMessages([]))
-        Alert.alert('MSA Mobile', 'Your operation has been completed.', [
-          {
-            text: 'Ok'
-          }
-        ])
       })
       .catch((err) => {
         console.log('Network error at the end of the operation ' + err)
@@ -332,7 +330,11 @@ const Main = () => {
 
   return (
     <View
-      style={{ alignItems: 'center', backgroundColor: '#fff', height: '100vh' }}
+      style={{
+        alignItems: 'center',
+        backgroundColor: '#fff',
+        height: '100vh'
+      }}
     >
       <Header logOut={logOut} userName={state.userName} />
       <Orders />
@@ -388,6 +390,9 @@ const Main = () => {
           <OperationResult finishOrder={finishOrder} />
         )}
       </Modal>
+      {isOperationComplited && (
+        <OperationComplited setIsOperationComplited={setIsOperationComplited} />
+      )}
       {/* {isErrorComponentVisible && <ErrorComponent />} */}
     </View>
   )
