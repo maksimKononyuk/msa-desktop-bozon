@@ -50,9 +50,8 @@ import addNotification, { Notifications } from 'react-push-notification'
 import soundNitify from '../assets/sounds/sound.mp3'
 // import ErrorComponent from '../components/ErrorComponent/ErrorComponent'
 
-let ordersCount = 0
-
 const Main = () => {
+  let ordersCount = 0
   const { state } = useLocation()
   const dispatch = useDispatch()
 

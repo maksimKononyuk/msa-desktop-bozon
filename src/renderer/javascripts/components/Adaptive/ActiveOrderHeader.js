@@ -1,19 +1,22 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native-web'
 import { QRCodeSVG } from 'qrcode.react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setActiveBarCode } from '../../redux/actionCreators'
+import { useReactToPrint } from 'react-to-print'
+import ComponentToPrint from '../ComponentToPrint/ComponentToPrint'
 
 import styles from '../../styles/Styles'
 
 const ActiveOrderHeader = () => {
+  const componentRef = useRef()
   const dispatch = useDispatch()
   const activeBarCode = useSelector((state) => state.main.activeBarCode)
   const item = useSelector((state) => state.main.orders[0])
 
-  const print = () => {
-    console.log('print')
-  }
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current
+  })
 
   return (
     <View
@@ -22,6 +25,8 @@ const ActiveOrderHeader = () => {
         { backgroundColor: '#FFFFFF', width: '100%', paddingHorizontal: 20 }
       ]}
     >
+      {/**Component for print (unvisible) */}
+      <ComponentToPrint ref={componentRef} name={item.name} id={item._id} />
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <TouchableOpacity
           activeOpacity={0.5}
@@ -46,11 +51,11 @@ const ActiveOrderHeader = () => {
       </View>
       <TouchableOpacity
         activeOpacity={0.5}
-        onPress={print}
+        onPress={handlePrint}
         style={{
           width: 80,
           height: 40,
-          backgroundColor: '#F0F0F0',
+          backgroundColor: '#E0E0E0',
           borderRadius: 20,
           alignItems: 'center',
           justifyContent: 'center'
