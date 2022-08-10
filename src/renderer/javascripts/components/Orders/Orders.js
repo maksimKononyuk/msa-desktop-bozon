@@ -6,11 +6,13 @@ import componentStyles from './styles'
 import { useSelector } from 'react-redux'
 import arrowNotMain from '../../assets/icons/arrowNotMain.jpg'
 import arrowMain from '../../assets/icons/arrowMain.jpg'
+import { useHorizontalScroll } from '../../lib/useHorizontalScroll/useHorizontalScroll'
 
 const Orders = () => {
+  const scrollRef = useHorizontalScroll()
   const orders = useSelector((state) => state.main.orders)
   return (
-    <View style={[styles.shadow, { overflow: 'auto' }]}>
+    <View ref={scrollRef} style={[styles.shadow, { overflow: 'auto' }]}>
       <View style={{ flexDirection: 'row' }}>
         {orders.length ? (
           orders.map((item, idx) => {
