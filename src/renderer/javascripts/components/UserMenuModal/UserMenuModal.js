@@ -27,8 +27,11 @@ import closeIcon from '../../assets/images/close.png'
 const UsersMenuModal = ({ logOut }) => {
   const [isModalNewOrder, setIsModalNewOrder] = useState(false)
   const [isModalGetDetails, setIsModalGetDetails] = useState(false)
+  const [isFileSystemVisible, setIsFileSystemVisible] = useState(false)
+  const [fsStorage, setFsStorage] = useState('*******')
 
   const dispatch = useDispatch()
+  const activeOrder = useSelector((state) => state.main.activeOrder)
   const isCompleteWorkShiftVisible = useSelector(
     (state) => state.usersMenuModal.isCompleteWorkShiftVisible
   )
@@ -122,10 +125,26 @@ const UsersMenuModal = ({ logOut }) => {
       })
   }
 
+  const getStorage = () => {
+    subscribeForEntries.subGetSrtorage((_, data) => {
+      setFsStorage(data)
+    })
+    subscribeForEntries.getStorage()
+  }
+
+  const setStorage = () => {
+    subscribeForEntries.setStorage(activeOrder)
+  }
+
+  const deleteStorage = () => {
+    subscribeForEntries.deleteStorage()
+    getStorage()
+  }
+
   return (
     <Modal animationType='slide' transparent={true} visible={true}>
       <View style={componentStyles.container}>
-        {!isModalGetDetails && !isModalNewOrder && (
+        {!isModalGetDetails && !isModalNewOrder && !isFileSystemVisible && (
           <>
             <View style={componentStyles.menuItemBlock}>
               <TouchableOpacity
@@ -141,6 +160,13 @@ const UsersMenuModal = ({ logOut }) => {
                 onPress={() => dispatch(setIsCompleteWorkShiftVisible(true))}
               >
                 <Text style={componentStyles.menuItemText}>Logout</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                activeOpacity={0.5}
+                style={componentStyles.menuItem}
+                onPress={() => setIsFileSystemVisible(true)}
+              >
+                <Text style={componentStyles.menuItemText}>File system</Text>
               </TouchableOpacity>
             </View>
             <View style={componentStyles.closeButtomContainer}>
@@ -250,6 +276,54 @@ const UsersMenuModal = ({ logOut }) => {
                 <Text style={componentStyles.cancelText}>Cancel</Text>
               </TouchableOpacity>
             </View>
+          </>
+        )}
+        {isFileSystemVisible && (
+          <>
+            <View style={componentStyles.orderContainer}>
+              <Text
+                style={[
+                  componentStyles.menuItemText,
+                  componentStyles.newOrderText
+                ]}
+              >
+                File System
+              </Text>
+              <View style={componentStyles.getSetButtons}>
+                <TouchableOpacity
+                  onPress={getStorage}
+                  activeOpacity={0.5}
+                  style={styles.cancelContainer}
+                >
+                  <Text style={componentStyles.cancelText}>Get Storage</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={setStorage}
+                  activeOpacity={0.5}
+                  style={styles.cancelContainer}
+                >
+                  <Text style={componentStyles.cancelText}>Set Storage</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={deleteStorage}
+                  activeOpacity={0.5}
+                  style={styles.cancelContainer}
+                >
+                  <Text style={componentStyles.cancelText}>Delete Storage</Text>
+                </TouchableOpacity>
+              </View>
+              <View style={componentStyles.storageBlock}>
+                <Text>{fsStorage}</Text>
+              </View>
+            </View>
+            <TouchableOpacity
+              activeOpacity={0.5}
+              style={[styles.center, styles.cancelContainer]}
+              onPress={() => setIsFileSystemVisible(false)}
+            >
+              <Image style={componentStyles.closeIcon} source={closeIcon} />
+              <Text style={componentStyles.cancelText}>Cancel</Text>
+            </TouchableOpacity>
           </>
         )}
         {isCompleteWorkShiftVisible && <CompleteWorkShift logOut={logOut} />}

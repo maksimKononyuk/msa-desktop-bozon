@@ -1,9 +1,10 @@
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 import path from 'path'
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, ipcMain } from 'electron'
+import Storage from './Storage'
 
-const createWindow = () => {
+const createWindow = async () => {
   // Create the browser window.
   let win = new BrowserWindow({
     title: CONFIG.name,
@@ -15,6 +16,8 @@ const createWindow = () => {
     }
   })
 
+  const storage = new Storage()
+
   // and load the index.html of the app.
   win.loadFile('renderer/index.html')
 
@@ -23,9 +26,22 @@ const createWindow = () => {
   win.on('closed', () => {
     win = null
   })
+
+  ipcMain.on('getStorage', () => {
+    win.webContents.send('subGetSrtorage', storage.read('storageFile'))
+  })
+
+  ipcMain.on('setStorage', (event, data) => {
+    storage.write('storageFile', data)
+  })
+
+  ipcMain.on('deleteStorage', (event, data) => {
+    storage.deliteFile('storageFile')
+  })
 }
 
 // This method will be called when Electron has finished
+
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(createWindow)

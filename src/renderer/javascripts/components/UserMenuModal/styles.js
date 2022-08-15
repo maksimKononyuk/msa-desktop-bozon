@@ -112,6 +112,17 @@ const styles = StyleSheet.create({
   okButtonText: {
     color: '#fff',
     fontSize: 24
+  },
+  getSetButtons: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly'
+  },
+  storageBlock: {
+    width: '100%',
+    height: 400,
+    backgroundColor: '#fff',
+    marginTop: 10
   }
 })
 
