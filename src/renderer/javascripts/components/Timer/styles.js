@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   },
   titleText: {
     fontFamily: 'Roboto',
-    fontSize: 12,
+    fontSize: 14,
     color: '#888'
   }
 })

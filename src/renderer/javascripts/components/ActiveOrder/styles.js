@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   },
   mainText: {
     fontFamily: 'Roboto',
-    fontSize: 18,
+    fontSize: 16,
     color: '#282A2D',
     textAlign: 'center',
     width: 250

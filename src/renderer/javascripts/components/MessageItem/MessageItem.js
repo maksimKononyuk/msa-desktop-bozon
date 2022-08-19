@@ -39,7 +39,13 @@ const MessageItem = ({ isYourMessage, userName, operation, data, message }) => {
             Operation: {operation}
           </Text>
         </View>
-        <Text style={[styles.text, isYourMessage && { color: '#ffffff' }]}>
+        <Text
+          style={[
+            styles.text,
+            { fontSize: 12 },
+            isYourMessage && { color: '#ffffff' }
+          ]}
+        >
           {new Date(data).toLocaleString().split(',').join('')}
         </Text>
       </View>

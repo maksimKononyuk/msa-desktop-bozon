@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 43,
     fontFamily: 'Roboto',
-    fontSize: 24,
+    fontSize: 18,
     borderColor: '#B1B1B1',
     borderBottomWidth: 1,
     paddingHorizontal: 5,
@@ -36,7 +36,8 @@ const styles = StyleSheet.create({
   },
   authText: {
     fontSize: 30,
-    color: '#fff'
+    color: '#fff',
+    fontFamily: 'Montserrat'
   },
   authError: {
     position: 'absolute',
@@ -65,7 +66,8 @@ const styles = StyleSheet.create({
   headerName: {
     fontSize: 15,
     color: '#fff',
-    marginLeft: 10
+    marginLeft: 10,
+    fontFamily: 'Roboto'
   },
   headerComplete: {
     fontFamily: 'Roboto',

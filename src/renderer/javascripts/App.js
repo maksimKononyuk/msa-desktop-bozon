@@ -7,6 +7,7 @@ import Main from './pages/Main'
 import { Provider } from 'react-redux'
 import store from './redux/store'
 import { setAxiosSettings } from './Constants'
+import '../stylesheets/fonts.css'
 
 setAxiosSettings()
 

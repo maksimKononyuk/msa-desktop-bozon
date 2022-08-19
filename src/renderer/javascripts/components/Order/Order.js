@@ -1,43 +1,12 @@
-import React, { useEffect, useMemo } from 'react'
-import { View, Text, TouchableOpacity, Image } from 'react-native-web'
-// import QRCode from 'react-native-qrcode-svg'
-// import * as Print from 'expo-print'
+import React from 'react'
+import { View, Text, Image } from 'react-native-web'
+
 import styles from '../../styles/Styles'
-import qrcode from '../../lib/createImgTagQr/qrcode'
-import { htmlPrint } from '../../Constants'
 import componentStyles from './styles'
-import { useDispatch, useSelector } from 'react-redux'
-import { setActiveBarCode, setImgTag } from '../../redux/actionCreators'
+import { useDispatch } from 'react-redux'
 
-const Order = ({ item, idx, icon }) => {
+const Order = ({ item, icon }) => {
   const dispatch = useDispatch()
-  const activeBarCode = useSelector((state) => state.main.activeBarCode)
-  const ImgTag = useSelector((state) => state.order.ImgTag)
-
-  const html = useMemo(
-    () => htmlPrint(item._id, item.name, ImgTag),
-    [item, ImgTag]
-  )
-
-  useEffect(() => {
-    imgCreate()
-  }, [item])
-
-  const imgCreate = () => {
-    if (item._id) {
-      const qr = qrcode(0, 'L')
-      qr.addData(item._id)
-      qr.make()
-      const res = qr.createImgTag()
-      dispatch(setImgTag(res))
-    }
-  }
-
-  // const print = async () => {
-  //   await Print.printAsync({
-  //     html
-  //   })
-  // }
 
   return (
     <View

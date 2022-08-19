@@ -13,11 +13,12 @@ const styles = StyleSheet.create({
   },
   itemIdText: {
     fontFamily: 'Roboto',
+    fontSize: 11,
     color: '#8F8F8F'
   },
   itemNameText: {
     fontFamily: 'Roboto',
-    fontSize: 12
+    fontSize: 16
   },
   printIcon: {
     width: 40,

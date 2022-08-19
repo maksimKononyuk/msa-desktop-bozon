@@ -45,40 +45,11 @@ const TechMaps = () => {
       })
   }, [])
 
-  const renderItem = ({ item }) => {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.mapName}>{item.name}</Text>
-        <TouchableOpacity
-          activeOpacity={0.5}
-          onPress={() => {
-            dispatch(setItem(item))
-            dispatch(setModalVisibleTechMaps(true))
-          }}
-        >
-          <Image
-            source={{ uri: item.file_url }}
-            style={{ height: '100%' }}
-            resizeMode='contain'
-          />
-        </TouchableOpacity>
-      </View>
-    )
-  }
-
   return (
     <View style={[styles.container, { height: '90%' }]}>
       {mapsArr?.length > 0 ? (
         <ImageCorousel />
       ) : (
-        // <AppIntroSlider
-        //   keyExtractor={(item, index) => 'key' + index}
-        //   renderItem={renderItem}
-        //   data={mapsArr}
-        //   showNextButton={false}
-        //   dotStyle={{ backgroundColor: '#DFDFDF' }}
-        //   activeDotStyle={{ backgroundColor: '#009C6D' }}
-        // />
         <ActivityIndicator size='large' color='#000088' />
       )}
       <Modal visible={modalVisible} transparent={false}>

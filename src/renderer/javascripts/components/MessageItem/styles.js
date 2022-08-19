@@ -24,12 +24,14 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 14,
     marginHorizontal: 5,
+    fontFamily: 'Roboto',
     color: '#8F8F8F'
   },
   message: {
     marginLeft: 25,
     color: '#282A2D',
-    fontSize: 18
+    fontSize: 18,
+    fontFamily: 'Roboto'
   },
   operationText: {
     width: 100

@@ -59,7 +59,7 @@ export const options = {
   },
   text: {
     fontFamily: 'Montserrat',
-    fontSize: 30,
+    fontSize: 46,
     color: '#fff'
   }
 }

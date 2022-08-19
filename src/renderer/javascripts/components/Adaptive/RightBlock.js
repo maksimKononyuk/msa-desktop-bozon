@@ -59,11 +59,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10
   },
   previousOperationTitle: {
-    color: '#8F8F8F'
+    color: '#8F8F8F',
+    fontFamily: 'Roboto'
   },
   previousOperationText: {
     color: '#FFFFFF',
-    fontSize: 14
+    fontSize: 16,
+    fontFamily: 'Roboto'
   },
   previousOperationTextContainer: {
     width: '88%',

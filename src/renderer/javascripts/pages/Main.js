@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { View, Modal, ActivityIndicator, Text } from 'react-native-web'
 import Carousel from '../components/Carousel/CarouselComponent'
 import axios from 'axios'
@@ -52,6 +52,7 @@ import soundNitify from '../assets/sounds/sound.mp3'
 
 const Main = () => {
   let ordersCount = 0
+  const navigate = useNavigate()
   const { state } = useLocation()
   const dispatch = useDispatch()
 
@@ -112,7 +113,8 @@ const Main = () => {
       })
       .then(async () => {
         localStorage.clear()
-        navigation.navigate('Auth')
+        navigate('/')
+        dispatch(setOrders([]))
         dispatch(setIsUserMenuModal(false))
         dispatch(setOrderStarted(false))
         dispatch(setIsCompleteWorkShiftVisible(false))
@@ -301,7 +303,6 @@ const Main = () => {
             if (res.data[0].at_work === false) {
               clearInterval(checkLogout)
               localStorage.clear()
-              // navigation.navigate('Auth')
               Updates.reloadAsync()
               Alert.alert(
                 'MSA Mobile',
@@ -384,7 +385,6 @@ const Main = () => {
               </>
             ) : null}
             {activeIndex === 2 ? <TechMaps /> : null}
-            {/* {activeBarCode && orders.length ? <BarCode /> : null}  */}
           </View>
           <RightBlock startOrder={startOrder} />
         </View>

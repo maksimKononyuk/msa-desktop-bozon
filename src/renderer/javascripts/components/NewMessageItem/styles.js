@@ -14,7 +14,9 @@ const styles = StyleSheet.create({
   input: {
     width: '90%',
     padding: 5,
-    outlineWidth: 0
+    outlineWidth: 0,
+    fontFamily: 'Roboto',
+    fontSize: 18
   },
   sendButton: {
     width: 46,

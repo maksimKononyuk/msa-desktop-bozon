@@ -40,13 +40,17 @@ const ActiveOrderHeader = () => {
         </TouchableOpacity>
         <View style={{ flexDirection: 'column', paddingLeft: 10 }}>
           <Text
-            style={{ fontFamily: 'Roboto', fontSize: 26 }}
+            style={{ fontFamily: 'Montserrat', fontSize: 26 }}
             numberOfLines={2}
             ellipsizeMode={'middle'}
           >
             {item.name}
           </Text>
-          <Text style={{ color: '#8F8F8F' }}>{item._id}</Text>
+          <Text
+            style={{ color: '#8F8F8F', fontFamily: 'Roboto', fontSize: 13 }}
+          >
+            {item._id}
+          </Text>
         </View>
       </View>
       <TouchableOpacity
@@ -61,7 +65,7 @@ const ActiveOrderHeader = () => {
           justifyContent: 'center'
         }}
       >
-        <Text style={{ fontSize: 15 }}>Print</Text>
+        <Text style={{ fontSize: 15, fontFamily: 'Roboto' }}>print</Text>
       </TouchableOpacity>
     </View>
   )

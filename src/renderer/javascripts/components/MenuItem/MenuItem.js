@@ -19,7 +19,7 @@ const MenuItem = ({ item, index }) => {
         style={{
           fontFamily: 'Montserrat',
           fontSize: index === activeIndex ? 32 : 20,
-          color: index === activeIndex ? '#000' : '#444'
+          color: index === activeIndex ? '#000' : '#C8C8C8'
         }}
       >
         {item.title}

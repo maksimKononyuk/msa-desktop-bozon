@@ -32,26 +32,27 @@ const NewMessagesItem = ({ orderId, userId }) => {
   const input = useRef()
 
   useEffect(() => {
+    const ref = input.current
     const keyDownHandler = (event) => {
       if (event.key === 'Enter') {
         event.preventDefault()
         buttonHandler(input.current.value)
       }
     }
-    input.current.addEventListener('keydown', keyDownHandler)
+    ref.addEventListener('keydown', keyDownHandler)
     return () => {
-      input.current.removeEventListener('keydown', keyDownHandler)
+      ref.removeEventListener('keydown', keyDownHandler)
     }
   }, [])
 
   return (
     <View style={styles.container}>
       <TextInput
+        ref={input}
         style={styles.input}
         placeholder='New message'
         value={newMessage}
         onChangeText={(text) => setNewMessage(text)}
-        ref={input}
       />
       <TouchableOpacity
         activeOpacity={0.5}
