@@ -1,10 +1,12 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useMemo } from 'react'
 import { View, Text, Image } from 'react-native-web'
 import avatar from '../../assets/images/avatar_local.png'
 import styles from './styles'
+import { parseDate } from '../../Constants'
 
-const MessageItem = ({ isYourMessage, userName, operation, data, message }) => {
+const MessageItem = ({ isYourMessage, userName, operation, date, message }) => {
   const scrollRef = useRef()
+  const dateStr = useMemo(() => parseDate(date), [])
 
   useEffect(() => {
     scrollRef.current?.scrollIntoView(false)
@@ -15,7 +17,7 @@ const MessageItem = ({ isYourMessage, userName, operation, data, message }) => {
       style={[
         styles.container,
         {
-          backgroundColor: isYourMessage ? '#0080FF' : '#F5F5F5',
+          backgroundColor: isYourMessage ? '#0080FF' : '#DCDCDC',
           borderTopLeftRadius: isYourMessage ? 14 : 0,
           borderTopRightRadius: isYourMessage ? 0 : 14,
           alignSelf: isYourMessage ? 'flex-end' : 'flex-start'
@@ -46,7 +48,7 @@ const MessageItem = ({ isYourMessage, userName, operation, data, message }) => {
             isYourMessage && { color: '#ffffff' }
           ]}
         >
-          {new Date(data).toLocaleString().split(',').join('')}
+          {dateStr}
         </Text>
       </View>
       <Text style={[styles.message, isYourMessage && { color: '#ffffff' }]}>

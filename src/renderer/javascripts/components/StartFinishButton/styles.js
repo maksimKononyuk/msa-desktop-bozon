@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native-web'
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: 125
+    height: 100
   },
   okCloseButtonsContainer: {
     flexDirection: 'row',

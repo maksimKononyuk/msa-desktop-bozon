@@ -3,20 +3,25 @@ import { View, Text, Image } from 'react-native-web'
 
 import styles from '../../styles/Styles'
 import componentStyles from './styles'
-import { useDispatch } from 'react-redux'
 
-const Order = ({ item, icon }) => {
-  const dispatch = useDispatch()
-
+const Order = ({ item, icon, idx }) => {
   return (
     <View
       style={[
         styles.orderContainer,
-        { width: '25%', borderRightWidth: 0.5, borderRightColor: '#00000029' }
+        {
+          width: '25%',
+          borderRightWidth: 0.5,
+          borderRightColor: '#00000029',
+          backgroundColor: idx === 0 ? '#EBEBEB' : '#fff'
+        }
       ]}
     >
       <View style={componentStyles.qrItemName}>
-        <Image source={icon} style={{ width: 16, height: 16 }}></Image>
+        <Image
+          source={icon}
+          style={{ width: idx === 0 ? 16 : 8, height: idx === 0 ? 21 : 11 }}
+        ></Image>
         <View style={componentStyles.itemIdName}>
           <Text style={componentStyles.itemIdText}>{item._id}</Text>
           <Text

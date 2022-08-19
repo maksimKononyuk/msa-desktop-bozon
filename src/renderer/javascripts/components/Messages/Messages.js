@@ -16,6 +16,9 @@ const Messages = () => {
   const orderId = useSelector((state) => state.main.activeOrder?._id)
   const userId = useSelector((state) => state.main.user.u_id)
   const messages = useSelector((state) => state.messages.messages)
+  const operation = useSelector(
+    (state) => state.main.activeOrder.description.name
+  )
 
   useEffect(() => {
     const getMessage = setInterval(() => {
@@ -47,8 +50,8 @@ const Messages = () => {
                 key={index}
                 isYourMessage={userId === item.w_id}
                 userName={item.worker}
-                operation={item.operation}
-                data={item.m_data}
+                operation={operation}
+                date={item.m_data}
                 message={item.message}
               />
             )

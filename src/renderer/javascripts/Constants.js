@@ -64,23 +64,12 @@ export const options = {
   }
 }
 
-export const htmlPrint = (id, name, ImgTag) => {
-  return `
-  <html>
-    <head>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
-    </head>
-    <body>
-      <div style="font-size: 50px; font-family: Helvetica Neue; text-align: center;">
-        <p style="margin: 0 0 20px; font-weight: bold";>Order's id</p>
-        <p style="margin: 0px">${id}</p>
-        <p style="margin: 40px 0 20px; font-weight: bold"">Order's name</p>
-        <p style="margin: 0px">${name}</p>
-        <div style="width: 500px; height: 500px; margin: 0 auto;">
-         ${ImgTag}
-        </div>
-      </div>
-    </body>
-  </html>
-  `
+export const parseDate = (dateStr) => {
+  const date = new Date(Date.parse(dateStr))
+    .toLocaleString('ru', {
+      timeZone: 'UTC'
+    })
+    .replace(',', '')
+    .slice(0, -3)
+  return date
 }

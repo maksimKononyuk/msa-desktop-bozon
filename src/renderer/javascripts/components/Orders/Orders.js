@@ -4,8 +4,8 @@ import Order from '../Order/Order'
 import styles from '../../styles/Styles'
 import componentStyles from './styles'
 import { useSelector } from 'react-redux'
-import arrowNotMain from '../../assets/icons/arrowNotMain.jpg'
-import arrowMain from '../../assets/icons/arrowMain.jpg'
+import arrowNotMain from '../../assets/icons/arrowNotMain.png'
+import arrowMain from '../../assets/icons/arrowMain.png'
 import { useHorizontalScroll } from '../../lib/useHorizontalScroll/useHorizontalScroll'
 
 const Orders = () => {

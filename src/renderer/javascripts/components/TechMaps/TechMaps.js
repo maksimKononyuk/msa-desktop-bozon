@@ -46,7 +46,7 @@ const TechMaps = () => {
   }, [])
 
   return (
-    <View style={[styles.container, { height: '90%' }]}>
+    <View style={[styles.container, { height: '89%' }]}>
       {mapsArr?.length > 0 ? (
         <ImageCorousel />
       ) : (

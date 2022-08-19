@@ -42,7 +42,6 @@ function Auth() {
         dispatch(setAppIsReady(true))
       }
     }
-
     prepare()
   }, [])
 
@@ -69,7 +68,12 @@ function Auth() {
       })
       .catch((err) => {
         console.warn(err)
+        dispatch(setLogin(''))
+        dispatch(setPassword(''))
         dispatch(setShowError(true))
+        setTimeout(() => {
+          dispatch(setShowError(false))
+        }, 5000)
       })
   }
 
