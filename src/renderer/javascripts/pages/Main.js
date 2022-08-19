@@ -55,15 +55,10 @@ const Main = () => {
   const navigate = useNavigate()
   const { state } = useLocation()
   const dispatch = useDispatch()
-
-  const isPlaySound = useSelector((state) => state.main.isPlaySound)
-  const sound = useSelector((state) => state.activeOrder?.sound)
-
   const user = useSelector((state) => state.main.user)
   const orders = useSelector((state) => state.main.orders)
   const activeOrder = useSelector((state) => state.main.activeOrder)
   const activeIndex = useSelector((state) => state.main.activeIndex)
-  const activeBarCode = useSelector((state) => state.main.activeBarCode)
   const modalVisible = useSelector((state) => state.main.modalVisible)
   const orderCancelModalVisible = useSelector((state) => {
     state.main.orderCancelModalVisible
@@ -118,6 +113,8 @@ const Main = () => {
         dispatch(setIsUserMenuModal(false))
         dispatch(setOrderStarted(false))
         dispatch(setIsCompleteWorkShiftVisible(false))
+        dispatch(setMessages([]))
+        dispatch(setActiveIndex(1))
       })
       .catch((err) => {
         console.log('Network error when logging out ' + err)
@@ -367,7 +364,9 @@ const Main = () => {
         <View style={{ flexDirection: 'row', width: '100%', flex: 1 }}>
           <View style={{ flex: 1 }}>
             <Carousel />
-            {activeIndex === 0 && orders.length ? <Messages /> : null}
+            {activeIndex === 0 && orders.length ? (
+              <Messages userName={state.userName} />
+            ) : null}
             {activeIndex === 1 && orders.length ? (
               <>
                 <ActiveOrderHeader />

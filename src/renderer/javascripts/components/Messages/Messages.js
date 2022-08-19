@@ -11,7 +11,7 @@ import MessageItem from '../MessageItem/MessageItem'
 import NewMessagesItem from '../NewMessageItem/NewMessageItem'
 import styles from './styles'
 
-const Messages = () => {
+const Messages = ({ userName }) => {
   const dispatch = useDispatch()
   const orderId = useSelector((state) => state.main.activeOrder?._id)
   const userId = useSelector((state) => state.main.user.u_id)
@@ -49,7 +49,7 @@ const Messages = () => {
               <MessageItem
                 key={index}
                 isYourMessage={userId === item.w_id}
-                userName={item.worker}
+                userName={userId === item.w_id ? userName : item.worker}
                 operation={operation}
                 date={item.m_data}
                 message={item.message}
