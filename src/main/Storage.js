@@ -26,7 +26,7 @@ class Storage {
     writeFileSync(this.file(key), JSON.stringify(data))
   }
 
-  deliteFile(key) {
+  deleteFile(key) {
     unlinkSync(this.file(key))
   }
 }

@@ -29,7 +29,7 @@ const createWindow = async () => {
   })
 
   ipcMain.on('getStorage', () => {
-    win.webContents.send('subGetSrtorage', storage.read('storageFile'))
+    win.webContents.send('subGetStorage', storage.read('storageFile'))
   })
 
   ipcMain.on('setStorage', (event, data) => {
@@ -37,7 +37,7 @@ const createWindow = async () => {
   })
 
   ipcMain.on('deleteStorage', (event, data) => {
-    storage.deliteFile('storageFile')
+    storage.deleteFile('storageFile')
   })
 }
 
