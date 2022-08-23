@@ -2,12 +2,9 @@
   "name": "msa-desktop",
   "version": "0.1.0",
   "description": "MSA Desktop application built with Electron",
-  "author": {
-    "name": "Naskella &lt;boryskatowsky@gmail.com&gt;"
-  },
   "scripts": {
     "start": "bozon start --reload",
-    "build": "bozon package win"
+    "build": "bozon package windows"
   },
   "repository": {},
   "dependencies": {

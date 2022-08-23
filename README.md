@@ -1,7 +1,6 @@
-# MsaDesktop
+# MSA Desktop
 
-> My MsaDesktop app built with Electron
-
+> My MSA Desktop app built with Electron
 
 ## Dev
 
@@ -22,8 +21,3 @@ $ bozon package
 ```
 
 Builds the app for OS X, Linux, and Windows, using [electron-builder](https://github.com/electron-userland/electron-builder).
-
-
-## License
-
-The MIT License (MIT) © Naskella &lt;boryskatowsky@gmail.com&gt; 2022

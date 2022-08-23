@@ -7,9 +7,9 @@ import Storage from './Storage'
 const createWindow = async () => {
   // Create the browser window.
   let win = new BrowserWindow({
-    title: CONFIG.name,
-    width: CONFIG.width,
-    height: CONFIG.height,
+    title: 'MSA Desktop',
+    width: 1280,
+    height: 720,
     webPreferences: {
       worldSafeExecuteJavaScript: true,
       preload: path.join(app.getAppPath(), 'preload', 'index.js')
