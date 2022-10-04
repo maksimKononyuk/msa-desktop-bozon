@@ -11,7 +11,7 @@ const OperationContainer = () => {
       style={[
         styles.operationContainer,
         {
-          paddingLeft: 10,
+          paddingLeft: 25,
           backgroundColor: 'transparent'
         }
       ]}
