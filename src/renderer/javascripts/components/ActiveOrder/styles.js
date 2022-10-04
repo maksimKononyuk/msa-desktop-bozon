@@ -1,9 +1,17 @@
 import { StyleSheet } from 'react-native-web'
 
 const styles = StyleSheet.create({
+  jsonTreeContainer: {
+    alignSelf: 'flex-start',
+    paddingRight: 10,
+    marginBottom: 15,
+    flex: 1,
+    overflow: 'auto'
+  },
   labelText: {
     fontSize: 14,
-    color: 'black'
+    color: 'black',
+    wordBreak: 'normal'
   },
   qrcodeIcon: {
     width: 60,
