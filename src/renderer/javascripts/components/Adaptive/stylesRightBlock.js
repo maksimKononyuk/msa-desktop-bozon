@@ -3,7 +3,9 @@ import { StyleSheet } from 'react-native-web'
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#000',
+    width: '25%',
     minWidth: 250,
+    maxWidth: 300,
     justifyContent: 'space-between'
   },
   previousOperation: {
