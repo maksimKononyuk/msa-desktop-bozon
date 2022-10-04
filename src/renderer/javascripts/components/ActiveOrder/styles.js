@@ -3,7 +3,8 @@ import { StyleSheet } from 'react-native-web'
 const styles = StyleSheet.create({
   labelText: {
     fontSize: 14,
-    color: 'black'
+    color: 'black',
+    wordBreak: 'normal'
   },
   qrcodeIcon: {
     width: 60,
