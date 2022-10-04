@@ -62,6 +62,32 @@ const styles = StyleSheet.create({
   textContent: {
     position: 'absolute',
     zIndex: -1
+  },
+  modalContainer: {
+    flexDirection: 'row',
+    height: '100%',
+    justifyContent: 'space-between'
+  },
+  modalCancelBlock: {
+    width: 40,
+    height: 40,
+    backgroundColor: '#000',
+    marginTop: 15,
+    marginRight: 15,
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  closeModalButtonLine: {
+    width: 25,
+    height: 2,
+    backgroundColor: '#fff'
+  },
+  closeModalButtonLeftLine: {
+    transform: [{ rotate: '45deg' }, { translateY: 1 }]
+  },
+  closeModalButtonRightLine: {
+    transform: [{ rotate: '-45deg' }, { translateY: -1 }]
   }
 })
 
