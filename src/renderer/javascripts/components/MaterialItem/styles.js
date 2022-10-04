@@ -26,8 +26,8 @@ const styles = StyleSheet.create({
     color: '#000'
   },
   input: {
-    justifyContent: 'center',
     width: '30.4%',
+    paddingHorizontal: 20,
     height: 60,
     backgroundColor: '#F2F2F2',
     borderRadius: 30,
