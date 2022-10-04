@@ -1,13 +1,10 @@
 {
-  "name": "MsaDesktop",
+  "name": "msa-desktop",
   "version": "0.1.0",
-  "description": "MsaDesktop application build with Electron",
-  "author": {
-    "name": "Naskella &lt;boryskatowsky@gmail.com&gt;",
-    "email": ""
-  },
+  "description": "MSA Desktop application built with Electron",
   "scripts": {
-    "start": "bozon start --reload"
+    "start": "bozon start --reload",
+    "build": "bozon package windows"
   },
   "repository": {},
   "dependencies": {
@@ -31,6 +28,7 @@
     "@babel/preset-react": "^7.18.6",
     "babel-loader": "^8.2.5",
     "bozon": "1.3.3",
+    "dmg-license": "^1.0.11",
     "file-loader": "^6.2.0",
     "jest": "28.1.3",
     "spectron": "19.0.0"

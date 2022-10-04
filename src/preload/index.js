@@ -1,8 +1,8 @@
 import { contextBridge, ipcRenderer } from 'electron'
 
 contextBridge.exposeInMainWorld('subscribeForEntries', {
-  subGetSrtorage: (callback) => {
-    ipcRenderer.once('subGetSrtorage', callback)
+  subGetStorage: (callback) => {
+    ipcRenderer.once('subGetStorage', callback)
   },
   getStorage: () => {
     ipcRenderer.send('getStorage')

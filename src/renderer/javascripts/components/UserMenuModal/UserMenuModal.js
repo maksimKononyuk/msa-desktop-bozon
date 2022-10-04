@@ -126,7 +126,7 @@ const UsersMenuModal = ({ logOut }) => {
   }
 
   const getStorage = () => {
-    subscribeForEntries.subGetSrtorage((_, data) => {
+    subscribeForEntries.subGetStorage((_, data) => {
       setFsStorage(data)
     })
     subscribeForEntries.getStorage()
