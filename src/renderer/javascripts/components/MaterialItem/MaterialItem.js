@@ -32,7 +32,7 @@ const MaterialItem = ({ index }) => {
       <TextInput
         style={styles.input}
         keyboardType='numeric'
-        textAlign='center'
+        textAlign={'center'}
         value={materials.value.toString()}
         onChangeText={(text) => changeValue(text)}
       />
