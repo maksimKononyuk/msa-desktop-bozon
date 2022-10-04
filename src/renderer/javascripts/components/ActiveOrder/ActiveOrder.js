@@ -18,7 +18,6 @@ const ActiveOrder = () => {
       <View style={[styles.container, { backgroundColor: '#fff' }]}>
         {orderStarted ? (
           <View>
-            <Text>Json Tree</Text>
             <JSONTree
               data={order?.order?.list || {}}
               theme={{
