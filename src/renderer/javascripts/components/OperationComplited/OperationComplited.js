@@ -15,7 +15,7 @@ const OperationComplited = ({ setIsOperationComplited }) => {
           style={styles.alertButton}
           onPress={buttonHandler}
         >
-          <Text style={styles.alertText}>OK!</Text>
+          <Text style={[styles.alertText, { color: '#fff' }]}>OK!</Text>
         </TouchableOpacity>
       </View>
     </View>
