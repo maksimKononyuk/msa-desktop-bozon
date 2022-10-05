@@ -44,7 +44,7 @@ const MessageItem = ({ isYourMessage, userName, operation, date, message }) => {
         <Text
           style={[
             styles.text,
-            { fontSize: 12 },
+            { fontSize: 12, width: '20%' },
             isYourMessage && { color: '#ffffff' }
           ]}
         >

@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native-web'
 
 const styles = StyleSheet.create({
   container: {
-    width: '80%',
+    width: '95%',
     borderRadius: 14,
     paddingHorizontal: 5,
     paddingVertical: 10,
@@ -10,12 +10,14 @@ const styles = StyleSheet.create({
   },
   infoBlock: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent: 'space-batween',
+    width: '100%'
   },
   leftPart: {
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    width: '80%'
   },
   avatar: {
     width: 20,
@@ -34,7 +36,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto'
   },
   operationText: {
-    width: 100
+    width: '70%'
   }
 })
 
