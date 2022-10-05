@@ -1,9 +1,6 @@
 import axios from 'axios'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ActivityIndicator, View } from 'react-native-web'
-// import AppIntroSlider from 'react-native-app-intro-slider'
-// import ImageZoom from 'react-native-image-pan-zoom'
-// import { Video } from 'expo-av'
 import styles from './styles'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -21,11 +18,14 @@ const TechMaps = () => {
   )
   const mapsArr = useSelector((state) => state.TechMaps.mapsArr)
 
+  const [isLoading, setIsLoading] = useState(true)
+
   useEffect(() => {
     axios
       .get(`order_worker_techmap/${operationId}`)
       .then((response) => {
         dispatch(setMapsArr(response.data[0].technical_maps))
+        setIsLoading(false)
       })
       .catch((err) => {
         console.log('Network error when receiving technical maps ' + err)
@@ -35,9 +35,9 @@ const TechMaps = () => {
   }, [])
 
   return (
-    <View style={[styles.container, { height: '89%' }]}>
-      {mapsArr?.length > 0 ? (
-        <ImageCorousel />
+    <View style={styles.container}>
+      {!isLoading ? (
+        mapsArr?.length > 0 && <ImageCorousel />
       ) : (
         <ActivityIndicator size='large' color='#000088' />
       )}
