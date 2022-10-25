@@ -1,13 +1,15 @@
 import React from 'react'
 import { View } from 'react-native-web'
-import { carouselItems } from '../../Constants'
+import { getCouruselItems } from '../../Constants'
 import MenuItem from '../MenuItem/MenuItem'
+import { useSelector, useDispatch } from 'react-redux'
 import styles from './styles'
 
 const CarouselComponent = () => {
+  const language = useSelector((state) => state.main.language)
   return (
     <View style={styles.container}>
-      {carouselItems.map((item, index) => (
+      {getCouruselItems(language).map((item, index) => (
         <MenuItem item={item} index={index} key={index} />
       ))}
     </View>

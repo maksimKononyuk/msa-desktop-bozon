@@ -10,8 +10,8 @@ const createWindow = async () => {
     title: CONFIG.name,
     width: CONFIG.width,
     height: CONFIG.height,
-    minWidth: 730,
-    minHeight: 500,
+    minWidth: 1024,
+    minHeight: 640,
     webPreferences: {
       worldSafeExecuteJavaScript: true,
       preload: path.join(app.getAppPath(), 'preload', 'index.js')

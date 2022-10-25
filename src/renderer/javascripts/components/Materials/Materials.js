@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import {
   ActivityIndicator,
   View,
@@ -8,12 +8,16 @@ import {
 import { useSelector, useDispatch } from 'react-redux'
 import { setShowMaterialsComponent } from '../../redux/actionCreators'
 import MaterialItem from '../MaterialItem/MaterialItem'
+import { MaterialsTranslate } from '../../Constants'
 import styles from './styles'
 
 const Materials = ({ finishOrder }) => {
   const dispatch = useDispatch()
   const materialsArr = useSelector((state) => state.main.materialsArr)
   const finishOrderParams = useSelector((state) => state.main.finishOrderParams)
+
+  const language = useSelector((state) => state.main.language)
+  const translate = useMemo(() => new MaterialsTranslate(language), [language])
 
   const cancelButtonHandler = () => {
     dispatch(setShowMaterialsComponent(false))
@@ -22,9 +26,7 @@ const Materials = ({ finishOrder }) => {
   return (
     <>
       <View style={styles.header}>
-        <Text style={styles.headerText}>
-          Materials, semi-finished products, finished products
-        </Text>
+        <Text style={styles.headerText}>{translate.getTitleLabel()}</Text>
       </View>
       <View style={styles.container}>
         {materialsArr.length === 0 ? (

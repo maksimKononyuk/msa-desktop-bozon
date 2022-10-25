@@ -256,7 +256,6 @@ const Main = () => {
           .then(async (res) => {
             if (res.data.length) {
               clearInterval(checkCancelOrder)
-              // Alert.alert('MSA Mobile', 'Your order has been cancelled.')
               dispatch(setOrderCancelModalVisible(true))
               dispatch(setOrderStarted(false))
             }

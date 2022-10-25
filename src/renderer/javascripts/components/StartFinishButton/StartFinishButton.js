@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { View, TouchableOpacity, Image, Text, Alert } from 'react-native-web'
 import { useDispatch, useSelector } from 'react-redux'
 import { setModalVisible, setIsConfirmation } from '../../redux/actionCreators'
 import styles from '../../styles/Styles'
 import componentStyles from './styles'
+import { StartFinishButtonTranslate } from '../../Constants'
 import okIcon from '../../assets/images/ok.png'
 import closeIcon from '../../assets/images/close.png'
 
@@ -14,6 +15,12 @@ const StartFinishButton = ({ startOrder }) => {
   const selectedItems = useSelector((state) => state.main.selectedItems)
   const isEquipmentEmpty = useSelector(
     (state) => state.startFinishButton.isEquipmentEmpty
+  )
+
+  const language = useSelector((state) => state.main.language)
+  const translate = useMemo(
+    () => new StartFinishButtonTranslate(language),
+    [language]
   )
 
   return (
@@ -61,11 +68,13 @@ const StartFinishButton = ({ startOrder }) => {
               ? dispatch(setIsConfirmation(true))
               : isEquipmentEmpty || selectedItems.length > 0
               ? dispatch(setIsConfirmation(true))
-              : Alert.alert('Choose equipment!')
+              : Alert.alert(translate.getStartAlert())
           }}
         >
           <Text style={componentStyles.titleText}>
-            {orderStarted ? 'FINISH' : 'START'}
+            {orderStarted
+              ? translate.getFinishLable()
+              : translate.getStartLable()}
           </Text>
         </TouchableOpacity>
       )}

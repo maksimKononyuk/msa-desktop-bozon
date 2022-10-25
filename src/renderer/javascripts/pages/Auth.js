@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
   TextInput,
@@ -15,18 +15,26 @@ import {
   setLogin,
   setPassword,
   setAppIsReady,
-  setShowError
+  setShowError,
+  setLanguage
 } from '../redux/actionCreators'
 import authLogo from '../assets/images/auth.png'
 import passwordIcon from '../assets/icons/passwordVisible.png'
+import MenuButton from '../components/MenuButton/MenuButton'
+import SettingsComponent from '../components/SettingsComponent/SettingsComponent'
+import { AuthTranslate, storageClear } from '../Constants'
 
 function Auth() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const [isSettingsVisible, setIsSettingsVisible] = useState(false)
   const login = useSelector((state) => state.auth.login)
   const password = useSelector((state) => state.auth.password)
   const appIsReady = useSelector((state) => state.auth.appIsReady)
   const showError = useSelector((state) => state.auth.showError)
+
+  const language = useSelector((state) => state.main.language)
+  const translate = useMemo(() => new AuthTranslate(language), [language])
 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false)
 
@@ -35,7 +43,7 @@ function Auth() {
   useEffect(() => {
     async function prepare() {
       try {
-        localStorage.clear()
+        storageClear()
       } catch (e) {
         console.log(e)
       } finally {
@@ -43,6 +51,11 @@ function Auth() {
       }
     }
     prepare()
+  }, [])
+
+  useEffect(() => {
+    const storageLang = localStorage.getItem('lang')
+    storageLang && dispatch(setLanguage(storageLang))
   }, [])
 
   if (!appIsReady) {
@@ -82,11 +95,27 @@ function Auth() {
   }
 
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        {
+          justifyContent: 'space-between',
+          paddingBottom: 100,
+          paddingVertical: 20,
+          paddingHorizontal: 20
+        }
+      ]}
+    >
+      <View style={{ alignSelf: 'flex-end' }}>
+        <MenuButton
+          buttonColor={'#000'}
+          handler={() => setIsSettingsVisible((prev) => !prev)}
+        />
+      </View>
       <View style={styles.authContainer}>
         <Image style={{ width: '100%', height: 130 }} source={authLogo} />
         <TextInput
-          placeholder='Login'
+          placeholder={translate.getLoginLabel()}
           placeholderTextColor={'grey'}
           value={login}
           onChangeText={(text) => dispatch(setLogin(text))}
@@ -99,7 +128,7 @@ function Auth() {
         />
         <View style={{ width: '100%', marginTop: 50 }}>
           <TextInput
-            placeholder='Password'
+            placeholder={translate.getPasswordLabel()}
             placeholderTextColor={'grey'}
             value={password}
             onChangeText={(text) => dispatch(setPassword(text))}
@@ -129,10 +158,12 @@ function Auth() {
           onPress={() => tryAuth()}
           style={styles.authButton}
         >
-          <Text style={styles.authText}>Sign in</Text>
+          <Text style={styles.authText}>{translate.getSignInLabel()}</Text>
         </TouchableOpacity>
       </View>
-
+      {isSettingsVisible && (
+        <SettingsComponent setIsSettingsVisible={setIsSettingsVisible} />
+      )}
       {showError && (
         <View
           style={styles.authError}

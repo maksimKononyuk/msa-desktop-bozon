@@ -3,10 +3,18 @@ import { View, Text, Image } from 'react-native-web'
 import avatar from '../../assets/images/avatar_local.png'
 import styles from './styles'
 import { parseDate } from '../../Constants'
+import { useSelector } from 'react-redux'
+import { OperationContainerTranslate } from '../../Constants'
 
 const MessageItem = ({ isYourMessage, userName, operation, date, message }) => {
   const scrollRef = useRef()
   const dateStr = useMemo(() => parseDate(date), [])
+
+  const language = useSelector((state) => state.main.language)
+  const translate = useMemo(
+    () => new OperationContainerTranslate(language),
+    [language]
+  )
 
   useEffect(() => {
     scrollRef.current?.scrollIntoView(false)
@@ -38,7 +46,7 @@ const MessageItem = ({ isYourMessage, userName, operation, date, message }) => {
               isYourMessage && { color: '#ffffff' }
             ]}
           >
-            Operation: {operation}
+            {translate.getTitleLabel()}: {operation}
           </Text>
         </View>
         <Text

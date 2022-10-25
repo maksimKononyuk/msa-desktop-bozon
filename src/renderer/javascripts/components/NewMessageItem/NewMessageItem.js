@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, useMemo } from 'react'
 import { View, TouchableOpacity, TextInput, Image } from 'react-native-web'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
 import {
   setErrorMessage,
@@ -8,10 +8,14 @@ import {
 } from '../../redux/actionCreators'
 import sendButton from '../../assets/images/send.png'
 import styles from './styles'
+import { MessagesTranslale } from '../../Constants'
 
 const NewMessagesItem = ({ orderId, userId }) => {
   const dispatch = useDispatch()
   const [newMessage, setNewMessage] = useState('')
+
+  const language = useSelector((state) => state.main.language)
+  const translate = useMemo(() => new MessagesTranslale(language))
 
   const buttonHandler = (message) => {
     if (message) {
@@ -50,7 +54,7 @@ const NewMessagesItem = ({ orderId, userId }) => {
       <TextInput
         ref={input}
         style={styles.input}
-        placeholder='New message'
+        placeholder={translate.getNewMessageLabel()}
         value={newMessage}
         onChangeText={(text) => setNewMessage(text)}
       />

@@ -1,7 +1,8 @@
 import axios from 'axios'
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { View, Text } from 'react-native-web'
 import { useSelector, useDispatch } from 'react-redux'
+import { MessagesTranslale } from '../../Constants'
 import {
   setMessages,
   setErrorMessage,
@@ -19,6 +20,9 @@ const Messages = ({ userName }) => {
   const operation = useSelector(
     (state) => state.main.activeOrder.description.name
   )
+
+  const language = useSelector((state) => state.main.language)
+  const translate = useMemo(() => new MessagesTranslale(language), [language])
 
   useEffect(() => {
     const getMessage = setInterval(() => {
@@ -41,7 +45,7 @@ const Messages = ({ userName }) => {
   return (
     <View style={styles.container}>
       {messages.length === 0 ? (
-        <Text style={styles.notMessageText}>You have not messages</Text>
+        <Text style={styles.notMessageText}>{translate.getInfoLabel()}</Text>
       ) : (
         <View style={styles.messagesBlock}>
           {messages.map((item, index) => {

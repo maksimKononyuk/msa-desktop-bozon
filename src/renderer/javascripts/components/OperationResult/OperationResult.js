@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { View, Text, TouchableOpacity, Image } from 'react-native-web'
 import styles from '../../styles/Styles'
 import axios from 'axios'
@@ -12,19 +12,23 @@ import {
   setErrorMessage,
   setIsErrorComponentVisible
 } from '../../redux/actionCreators'
+import { OperationResultTranslate } from '../../Constants'
 import arrowWhiteIcon from '../../assets/images/arrow_white.png'
 import closeIcon from '../../assets/images/close.png'
 // import ErrorComponent from '../ErrorComponent/ErrorComponent'
 
 const OperationResult = ({ finishOrder }) => {
   const dispatch = useDispatch()
-
   const activeOrder = useSelector((state) => state.main.activeOrder)
-
   const userId = useSelector((state) => state.main.user.u_id)
-
   const isErrorComponentVisible = useSelector(
     (state) => state.error.isErrorComponentVisible
+  )
+
+  const language = useSelector((state) => state.main.language)
+  const translate = useMemo(
+    () => new OperationResultTranslate(language),
+    [language]
   )
 
   const maretialsRequest = (index) => {
@@ -53,7 +57,9 @@ const OperationResult = ({ finishOrder }) => {
       }}
     >
       <View style={componentStyles.resultContainer}>
-        <Text style={componentStyles.resultText}>Operation result</Text>
+        <Text style={componentStyles.resultText}>
+          {translate.getTitleLable()}
+        </Text>
       </View>
       {activeOrder?.operation.relation.map((item, index) => (
         <TouchableOpacity

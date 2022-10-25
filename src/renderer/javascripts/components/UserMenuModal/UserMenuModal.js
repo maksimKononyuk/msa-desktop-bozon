@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import {
   View,
   Text,
@@ -11,6 +11,8 @@ import styles from '../../styles/Styles'
 import componentStyles from './styles'
 import axios from 'axios'
 import CompleteWorkShift from '../CompleteWorkShift/CompleteWorkShift'
+import UserMenuItem from '../UserMenuItem/UserMenuItem'
+import SettingsComponent from '../SettingsComponent/SettingsComponent'
 import {
   setIsUserMenuModal,
   setIsCompleteWorkShiftVisible,
@@ -21,7 +23,9 @@ import {
   setErrorMessage
 } from '../../redux/actionCreators'
 import { useDispatch, useSelector } from 'react-redux'
-import closeIcon from '../../assets/images/close.png'
+import { UserMenuModalTranslate } from '../../Constants'
+import CancelButton from '../CancelButton/CancelButton'
+import OKButton from '../OKButton/OKButton'
 // import ErrorComponent from '../ErrorComponent/ErrorComponent'
 
 const UsersMenuModal = ({ logOut }) => {
@@ -43,6 +47,13 @@ const UsersMenuModal = ({ logOut }) => {
 
   const isErrorComponentVisible = useSelector(
     (state) => state.error.isCompleteWorkShiftVisible
+  )
+
+  const [isSettingsVisible, setIsSettingsVisible] = useState(false)
+  const language = useSelector((state) => state.main.language)
+  const translate = useMemo(
+    () => new UserMenuModalTranslate(language),
+    [language]
   )
 
   const textInputHandler = (text, key) => {
@@ -147,42 +158,31 @@ const UsersMenuModal = ({ logOut }) => {
         {!isModalGetDetails && !isModalNewOrder && !isFileSystemVisible && (
           <>
             <View style={componentStyles.menuItemBlock}>
-              <TouchableOpacity
-                activeOpacity={0.5}
-                style={componentStyles.menuItem}
-                onPress={getNewOrder}
-              >
-                <Text style={componentStyles.menuItemText}>New order</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                activeOpacity={0.5}
-                style={componentStyles.menuItem}
-                onPress={() => dispatch(setIsCompleteWorkShiftVisible(true))}
-              >
-                <Text style={componentStyles.menuItemText}>Logout</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                activeOpacity={0.5}
-                style={componentStyles.menuItem}
-                onPress={() => setIsFileSystemVisible(true)}
-              >
-                <Text style={componentStyles.menuItemText}>File system</Text>
-              </TouchableOpacity>
+              <UserMenuItem
+                title={translate.getNewOrderLabel()}
+                handler={getNewOrder}
+              />
+              <UserMenuItem
+                title={translate.getSettingsLabel()}
+                handler={() => setIsSettingsVisible((prev) => !prev)}
+              />
+              <UserMenuItem
+                title={translate.getLogoutLabel()}
+                handler={() => dispatch(setIsCompleteWorkShiftVisible(true))}
+              />
+              <UserMenuItem
+                title={translate.getFileSystemLabel()}
+                handler={() => setIsFileSystemVisible(true)}
+              />
             </View>
             <View style={componentStyles.closeButtomContainer}>
-              <TouchableOpacity
-                activeOpacity={0.5}
-                style={{
-                  ...styles.center,
-                  ...styles.cancelContainer
-                }}
-                onPress={() => dispatch(setIsUserMenuModal(false))}
-              >
-                <Image style={componentStyles.closeIcon} source={closeIcon} />
-                <Text style={componentStyles.cancelText}>Cancel</Text>
-              </TouchableOpacity>
+              <CancelButton
+                handler={() => dispatch(setIsUserMenuModal(false))}
+              />
             </View>
-            <Text style={styles.versionText}>Version: 1.0.1</Text>
+            <Text style={styles.versionText}>
+              {translate.getVersionLabel()}: 1.0.1
+            </Text>
           </>
         )}
         {isModalNewOrder && (
@@ -194,7 +194,7 @@ const UsersMenuModal = ({ logOut }) => {
                   componentStyles.newOrderText
                 ]}
               >
-                New order
+                {translate.getNewOrderLabel()}
               </Text>
               <View style={componentStyles.menuItemBlock}>
                 {orders.map((item, index) => {
@@ -213,17 +213,7 @@ const UsersMenuModal = ({ logOut }) => {
                 })}
               </View>
             </View>
-            <TouchableOpacity
-              activeOpacity={0.5}
-              style={{
-                ...styles.center,
-                ...styles.cancelContainer
-              }}
-              onPress={() => setIsModalNewOrder(false)}
-            >
-              <Image style={componentStyles.closeIcon} source={closeIcon} />
-              <Text style={componentStyles.cancelText}>Cancel</Text>
-            </TouchableOpacity>
+            <CancelButton handler={() => setIsModalNewOrder(false)} />
           </>
         )}
         {isModalGetDetails && (
@@ -254,27 +244,13 @@ const UsersMenuModal = ({ logOut }) => {
                       </View>
                     ))}
               </View>
-              <TouchableOpacity
-                activeOpacity={0.5}
-                style={componentStyles.okButton}
-                onPress={() => sendFormData()}
-              >
-                <Text style={componentStyles.okButtonText}>OK!</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                activeOpacity={0.5}
-                style={{
-                  ...styles.center,
-                  ...styles.cancelContainer
-                }}
-                onPress={() => {
+              <OKButton handler={sendFormData} />
+              <CancelButton
+                handler={() => {
                   setIsModalGetDetails(false)
                   setIsModalNewOrder(true)
                 }}
-              >
-                <Image style={componentStyles.closeIcon} source={closeIcon} />
-                <Text style={componentStyles.cancelText}>Cancel</Text>
-              </TouchableOpacity>
+              />
             </View>
           </>
         )}
@@ -287,7 +263,7 @@ const UsersMenuModal = ({ logOut }) => {
                   componentStyles.newOrderText
                 ]}
               >
-                File System
+                {translate.getFileSystemLabel()}
               </Text>
               <View style={componentStyles.getSetButtons}>
                 <TouchableOpacity
@@ -316,17 +292,13 @@ const UsersMenuModal = ({ logOut }) => {
                 <Text>{fsStorage}</Text>
               </View>
             </View>
-            <TouchableOpacity
-              activeOpacity={0.5}
-              style={[styles.center, styles.cancelContainer]}
-              onPress={() => setIsFileSystemVisible(false)}
-            >
-              <Image style={componentStyles.closeIcon} source={closeIcon} />
-              <Text style={componentStyles.cancelText}>Cancel</Text>
-            </TouchableOpacity>
+            <CancelButton handler={() => setIsFileSystemVisible(false)} />
           </>
         )}
         {isCompleteWorkShiftVisible && <CompleteWorkShift logOut={logOut} />}
+        {isSettingsVisible && (
+          <SettingsComponent setIsSettingsVisible={setIsSettingsVisible} />
+        )}
         {/* {isErrorComponentVisible && <ErrorComponent />} */}
       </View>
       {/* {isErrorComponentVisible && <ErrorComponent />} */}
