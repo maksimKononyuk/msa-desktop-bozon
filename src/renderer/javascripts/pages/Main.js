@@ -208,7 +208,7 @@ const Main = () => {
         function: materialsArr
       })
       .then(() => {
-        setIsOperationComplited(true)
+        dispatch(setActiveOrder(null))
         setOperationFinishLoading(false)
         dispatch(setModalVisible(false))
         dispatch(setOrderStarted(false))
@@ -216,8 +216,8 @@ const Main = () => {
         dispatch(setShowMaterialsComponent(false))
         dispatch(setActiveIndex(1))
         dispatch(setMessages([]))
-        dispatch(setActiveOrder(null))
         dispatch(setIsEquipmentEmpty(false))
+        setIsOperationComplited(true)
       })
       .catch((err) => {
         console.log('Network error at the end of the operation ' + err)
