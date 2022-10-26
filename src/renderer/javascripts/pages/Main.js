@@ -216,6 +216,8 @@ const Main = () => {
         dispatch(setShowMaterialsComponent(false))
         dispatch(setActiveIndex(1))
         dispatch(setMessages([]))
+        dispatch(setActiveOrder(null))
+        dispatch(setIsEquipmentEmpty(false))
       })
       .catch((err) => {
         console.log('Network error at the end of the operation ' + err)
