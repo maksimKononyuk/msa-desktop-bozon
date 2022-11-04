@@ -2,22 +2,21 @@ import { StyleSheet } from 'react-native-web'
 
 const styles = StyleSheet.create({
   container: {
-    width: '95%',
+    width: '100%',
     borderRadius: 14,
     paddingHorizontal: 5,
     paddingVertical: 10,
     marginBottom: 15
   },
-  infoBlock: {
+  infoBlock: {},
+  upPart: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-batween',
-    width: '100%'
+    justifyContent: 'space-between'
   },
-  leftPart: {
+  logoAndUserName: {
     flexDirection: 'row',
-    alignItems: 'center',
-    width: '80%'
+    alignItems: 'center'
   },
   avatar: {
     width: 20,
@@ -26,17 +25,25 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 14,
     marginHorizontal: 5,
-    fontFamily: 'Roboto',
     color: '#8F8F8F'
+  },
+  operationBlock: {
+    marginLeft: 20
   },
   message: {
     marginLeft: 25,
     color: '#282A2D',
-    fontSize: 18,
-    fontFamily: 'Roboto'
+    fontSize: 18
   },
   operationText: {
-    width: '70%'
+    width: '100%'
+  },
+  fileIconsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    flexWrap: 'wrap',
+    width: '90%',
+    marginTop: 10
   }
 })
 

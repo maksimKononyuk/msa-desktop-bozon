@@ -11,6 +11,7 @@ import usersMenuModalReducer from './reducers/usersMenuModalReducer'
 import authReducer from './reducers/authReducer'
 import startFinishButtonReducer from './reducers/startFinishButtonReducer'
 import errorReduser from './reducers/errorReduser'
+import newMessageItemReducer from './reducers/newMessageItemReducer'
 
 const rootReducer = combineReducers({
   main: mainReducer,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   TechMaps: techMapsReducer,
   barCode: barCodeReducer,
   equipmentItem: equipmentItemReducer,
+  newMessageItem: newMessageItemReducer,
   order: orderReducer,
   usersMenuModal: usersMenuModalReducer,
   auth: authReducer,

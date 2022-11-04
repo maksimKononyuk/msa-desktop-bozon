@@ -9,10 +9,12 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 15
+    marginTop: 15,
+    borderWidth: 1,
+    borderColor: '#95918C'
   },
   input: {
-    width: '90%',
+    width: '100%',
     padding: 5,
     outlineWidth: 0,
     fontFamily: 'Roboto',
@@ -25,6 +27,11 @@ const styles = StyleSheet.create({
   sendButtonImage: {
     width: '100%',
     height: '100%'
+  },
+  filePickerAndInputContainer: {
+    width: '90%',
+    flexDirection: 'row',
+    alignItems: 'center'
   }
 })
 

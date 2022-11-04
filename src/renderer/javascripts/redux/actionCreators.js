@@ -45,7 +45,8 @@ import {
   SET_USER,
   SET_USER_MENU_ORDERS,
   SET_IS_EQUIPMENT_LOADING,
-  SET_LANGUAGE
+  SET_LANGUAGE,
+  SET_NEW_MESSAGE
 } from './actionTypes'
 
 // For mainReducer
@@ -306,6 +307,15 @@ export const setIsChecked = (index) => {
 export const setIsLoading = (data) => {
   return {
     type: SET_IS_LOADING,
+    data
+  }
+}
+
+// For newMessageItemReducer
+
+export const setNewMessage = (data) => {
+  return {
+    type: SET_NEW_MESSAGE,
     data
   }
 }

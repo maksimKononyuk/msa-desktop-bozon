@@ -5,6 +5,7 @@ import styles from './styles'
 import { parseDate } from '../../Constants'
 import { useSelector } from 'react-redux'
 import { OperationContainerTranslate } from '../../Constants'
+import MessageFile from '../MessageFile/MessageFile'
 
 const MessageItem = ({ isYourMessage, userName, operation, date, message }) => {
   const scrollRef = useRef()
@@ -34,11 +35,20 @@ const MessageItem = ({ isYourMessage, userName, operation, date, message }) => {
       ref={scrollRef}
     >
       <View style={styles.infoBlock}>
-        <View style={styles.leftPart}>
-          <Image source={avatar} style={styles.avatar} />
-          <Text style={[styles.text, isYourMessage && { color: '#ffffff' }]}>
-            {userName}
-          </Text>
+        <View style={styles.upPart}>
+          <View style={styles.logoAndUserName}>
+            <Image source={avatar} style={styles.avatar} />
+            <Text style={[styles.text, isYourMessage && { color: '#ffffff' }]}>
+              {userName}
+            </Text>
+          </View>
+          <View>
+            <Text style={[styles.text, isYourMessage && { color: '#ffffff' }]}>
+              {new Date(date).toLocaleString()}
+            </Text>
+          </View>
+        </View>
+        <View style={styles.operationBlock}>
           <Text
             style={[
               styles.text,
@@ -49,19 +59,32 @@ const MessageItem = ({ isYourMessage, userName, operation, date, message }) => {
             {translate.getTitleLabel()}: {operation}
           </Text>
         </View>
-        <Text
-          style={[
-            styles.text,
-            { fontSize: 12, width: '20%' },
-            isYourMessage && { color: '#ffffff' }
-          ]}
-        >
-          {dateStr}
-        </Text>
       </View>
-      <Text style={[styles.message, isYourMessage && { color: '#ffffff' }]}>
-        {message}
-      </Text>
+      {message.includes('%iconLink%') ? (
+        <View style={{ alignItems: 'center' }}>
+          <Text
+            style={[
+              styles.message,
+              { marginLeft: 0, width: '90%' },
+              isYourMessage && { color: '#ffffff' }
+            ]}
+          >
+            {message.split('%iconLink%')[0]}
+          </Text>
+          <View style={styles.fileIconsContainer}>
+            {message
+              .split('%iconLink%')[1]
+              .split(',')
+              .map((item, index) => (
+                <MessageFile uri={item} key={index} />
+              ))}
+          </View>
+        </View>
+      ) : (
+        <Text style={[styles.message, isYourMessage && { color: '#ffffff' }]}>
+          {message}
+        </Text>
+      )}
     </View>
   )
 }

@@ -54,6 +54,10 @@ export const SET_IS_CHECKED_ARR = 'SET_IS_CHECKED_ARR'
 export const SET_IS_CHECKED = 'SET_IS_CHECKED'
 export const SET_IS_LOADING = 'SET_IS_LOADING'
 
+// For newMessageItemReducer
+
+export const SET_NEW_MESSAGE = 'SET_NEW_MESSAGE'
+
 // For orderReducer
 
 export const SET_IMG_TAG = 'SET_IMG_TAG'
