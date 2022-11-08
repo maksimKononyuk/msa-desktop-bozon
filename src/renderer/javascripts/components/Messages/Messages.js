@@ -18,7 +18,7 @@ let massageInSendDocumentModal = ''
 
 const Messages = ({ userName }) => {
   const OAuth_token =
-    'OAuth y0_AgAAAAAQghR9AAiMSQAAAADS296d02g2EPl7SsWjQ9EqWLwnq3R9u7c'
+    'OAuth y0_AgAAAABl96PzAAiSFgAAAADTZi6eBsur82fvRwOaFAf6oPfBjcRClOQ'
 
   const dispatch = useDispatch()
   const orderId = useSelector((state) => state.main.activeOrder?._id)
