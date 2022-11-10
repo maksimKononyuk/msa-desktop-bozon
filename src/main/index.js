@@ -3,6 +3,7 @@
 import path from 'path'
 import { app, BrowserWindow, ipcMain } from 'electron'
 import Storage from './Storage'
+import iconView from '../../resources/icon.png'
 
 const createWindow = async () => {
   // Create the browser window.
@@ -15,7 +16,8 @@ const createWindow = async () => {
     webPreferences: {
       worldSafeExecuteJavaScript: true,
       preload: path.join(app.getAppPath(), 'preload', 'index.js')
-    }
+    },
+    icon: path.join(__dirname, iconView)
   })
 
   const storage = new Storage()

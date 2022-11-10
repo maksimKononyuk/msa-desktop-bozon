@@ -27,6 +27,15 @@ module.exports = {
     entry: './src/preload/index.js'
   },
   main: {
-    entry: './src/main/index.js'
+    entry: './src/main/index.js',
+    module: {
+      rules: [
+        {
+          test: /\.(png|jpg|gif|svg|mp3)$/,
+          loader: 'file-loader',
+          exclude: /node_modules/
+        }
+      ]
+    }
   }
 }
