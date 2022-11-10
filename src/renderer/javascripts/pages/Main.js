@@ -85,19 +85,21 @@ const Main = () => {
   const [isOperationComplited, setIsOperationComplited] = useState(false)
 
   const equipmentBusy = (isBusy) => {
-    axios
-      .put(
-        'equipment_busy',
-        selectedItems.map((item) => ({
-          _id: item,
-          occupied: isBusy
-        }))
-      )
-      .catch((err) => {
-        console.log('Network error when releasing equipment ' + err)
-        dispatch(setErrorMessage('when releasing equipment ' + err))
-        dispatch(setIsErrorComponentVisible(true))
-      })
+    if (selectedItems.length > 0) {
+      axios
+        .put(
+          'equipment_busy',
+          selectedItems.map((item) => ({
+            _id: item,
+            occupied: isBusy
+          }))
+        )
+        .catch((err) => {
+          console.log('Network error when releasing equipment ' + err)
+          dispatch(setErrorMessage('when releasing equipment ' + err))
+          dispatch(setIsErrorComponentVisible(true))
+        })
+    }
   }
 
   const logOut = () => {
