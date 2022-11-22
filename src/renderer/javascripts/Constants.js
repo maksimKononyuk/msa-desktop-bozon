@@ -96,6 +96,11 @@ export const parseDate = (dateStr) => {
   return date
 }
 
+export const localStorageClear = () => {
+  localStorage.removeItem('user')
+  localStorage.removeItem('role')
+}
+
 export class SettingsComponentTranslate {
   constructor(lang) {
     this.lang = lang

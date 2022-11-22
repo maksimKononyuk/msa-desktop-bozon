@@ -45,6 +45,7 @@ import {
   setActiveIndex,
   setMessages
 } from '../redux/actionCreators'
+import { localStorageClear } from '../Constants'
 import OperationComplited from '../components/OperationComplited/OperationComplited'
 import addNotification, { Notifications } from 'react-push-notification'
 import soundNitify from '../assets/sounds/sound.mp3'
@@ -109,7 +110,7 @@ const Main = () => {
         at_work: false
       })
       .then(async () => {
-        localStorage.clear()
+        localStorageClear()
         navigate('/')
         dispatch(setOrders([]))
         dispatch(setIsUserMenuModal(false))
@@ -199,6 +200,7 @@ const Main = () => {
   }
 
   const finishOrder = (nextOperationId, relationId) => {
+    dispatch(setActiveOrder(null))
     setOperationFinishLoading(true)
     axios
       .put('order_worker_finish', {
@@ -210,7 +212,6 @@ const Main = () => {
         function: materialsArr
       })
       .then(() => {
-        dispatch(setActiveOrder(null))
         setOperationFinishLoading(false)
         dispatch(setModalVisible(false))
         dispatch(setOrderStarted(false))
@@ -302,7 +303,7 @@ const Main = () => {
           .then(async (res) => {
             if (res.data[0].at_work === false) {
               clearInterval(checkLogout)
-              localStorage.clear()
+              localStorageClear()
               Updates.reloadAsync()
               Alert.alert(
                 'MSA Mobile',
