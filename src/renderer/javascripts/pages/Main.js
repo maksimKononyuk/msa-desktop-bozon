@@ -135,6 +135,7 @@ const Main = () => {
           dispatch(setOrders(res.data))
           if (res.data.length > ordersCount) {
             notificationCall()
+            subscribeForEntries.setNotifications() // Передача в main процесс события о показе системного уведомления
           }
           ordersCount = res.data.length
           if (res.data.length) {

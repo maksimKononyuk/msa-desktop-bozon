@@ -12,5 +12,8 @@ contextBridge.exposeInMainWorld('subscribeForEntries', {
   },
   deleteStorage: () => {
     ipcRenderer.send('deleteStorage')
+  },
+  setNotifications: () => {
+    ipcRenderer.send('setNonifications') // отправка в main процесс события системного уведомления
   }
 })

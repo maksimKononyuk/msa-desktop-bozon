@@ -1,7 +1,7 @@
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 import path from 'path'
-import { app, BrowserWindow, ipcMain } from 'electron'
+import { app, BrowserWindow, ipcMain, Notification } from 'electron'
 import Storage from './Storage'
 import iconView from '../../resources/icon.png'
 
@@ -43,6 +43,22 @@ const createWindow = async () => {
   ipcMain.on('deleteStorage', (event, data) => {
     storage.deleteFile('storageFile')
   })
+
+  const showNotification = () => {
+    if (win.isMinimized()) {
+      console.log('Окно свернуто')
+      const notification = new Notification({
+        subtitle: 'MSA',
+        title: 'MSA',
+        body: 'You have a new order',
+        icon: path.join(__dirname, iconView)
+      })
+      notification.show()
+      notification.once('click', () => win.show())
+    }
+  }
+
+  ipcMain.on('setNonifications', showNotification)
 }
 
 // This method will be called when Electron has finished
