@@ -5,9 +5,11 @@ import { app, BrowserWindow, ipcMain, Notification } from 'electron'
 import Storage from './Storage'
 import iconView from '../../resources/icon.png'
 
-const createWindow = async () => {
+let win
+const createWindow = () => {
   // Create the browser window.
-  let win = new BrowserWindow({
+  win = new BrowserWindow({
+    show: false,
     title: CONFIG.name,
     width: CONFIG.width,
     height: CONFIG.height,
@@ -30,6 +32,10 @@ const createWindow = async () => {
 
   win.on('closed', () => {
     win = null
+  })
+
+  win.once('ready-to-show', () => {
+    win.show()
   })
 
   ipcMain.on('getStorage', () => {
@@ -60,6 +66,31 @@ const createWindow = async () => {
 
   ipcMain.on('setNonifications', showNotification)
 }
+
+const createPdfChild = (url) => {
+  let childWin = new BrowserWindow({
+    parent: win,
+    modal: true,
+    show: false,
+    title: CONFIG.name,
+    width: CONFIG.width,
+    height: CONFIG.height,
+    minWidth: 1024,
+    minHeight: 768,
+    webPreferences: {
+      worldSafeExecuteJavaScript: true,
+      preload: path.join(app.getAppPath(), 'preload', 'index.js')
+    },
+    icon: path.join(__dirname, iconView)
+  })
+  childWin.loadURL(url)
+  childWin.once('ready-to-show', () => childWin.show())
+  childWin.on('closed', () => (childWin = null))
+}
+
+ipcMain.on('openChildWindow', (event, url) => {
+  createPdfChild(url)
+})
 
 // This method will be called when Electron has finished
 
