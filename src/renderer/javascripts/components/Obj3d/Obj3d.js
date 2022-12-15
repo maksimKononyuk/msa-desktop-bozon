@@ -4,8 +4,10 @@ import {
   Scene,
   PerspectiveCamera,
   WebGLRenderer,
-  DirectionalLight
+  DirectionalLight,
+  Group
 } from 'three'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js'
 
 const Obj3d = ({ url }) => {
@@ -14,10 +16,17 @@ const Obj3d = ({ url }) => {
 
   useEffect(() => {
     const scene = new Scene()
-    const camera = new PerspectiveCamera(45, 1.77, 0.1, 1000)
+    const camera = new PerspectiveCamera(
+      75,
+      container.current.offsetWidth / container.current.offsetHeight,
+      0.1,
+      1000
+    )
     const light = new DirectionalLight(0xffffff, 0.5)
     light.position.set(5, 5, 5)
-    scene.add(light)
+    const lightHolder = new Group()
+    lightHolder.add(light)
+    scene.add(lightHolder)
     const renderer = new WebGLRenderer()
     container.current.appendChild(renderer.domElement)
     renderer.setSize(
@@ -25,17 +34,22 @@ const Obj3d = ({ url }) => {
       container.current.offsetHeight
     )
     renderer.setClearColor('#4a708b')
-    camera.position.z = 4
+    camera.position.z = 5
     const update = (obj) => {
-      obj.rotation.y += 0.01
+      obj.rotation.y += 0.005
+      lightHolder.quaternion.copy(camera.quaternion)
+      camera.aspect =
+        container.current.offsetWidth / container.current.offsetHeight
       renderer.setSize(
         container.current.offsetWidth,
         container.current.offsetHeight
       )
     }
+    const controls = new OrbitControls(camera, renderer.domElement)
+
     const loader = new OBJLoader()
     loader.load(url, (obj) => {
-      obj.scale.set(0.065, 0.065, 0.065)
+      obj.scale.set(0.2, 0.2, 0.2)
       scene.add(obj)
       const animate = () => {
         update(obj)
