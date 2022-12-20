@@ -32,17 +32,9 @@ export const storageClear = () => {
 export const getCouruselItems = (lang) => {
   switch (lang) {
     case 'en':
-      return [
-        { title: 'Messages' },
-        { title: 'Order' },
-        { title: 'Tech. maps' }
-      ]
+      return [{ title: 'Reports' }, { title: 'Order' }, { title: 'Tech. maps' }]
     case 'ru':
-      return [
-        { title: 'Сообщения' },
-        { title: 'Заказ' },
-        { title: 'Тех. карты' }
-      ]
+      return [{ title: 'Отчеты' }, { title: 'Заказ' }, { title: 'Тех. карты' }]
     default:
       return [
         { title: 'Messages' },
