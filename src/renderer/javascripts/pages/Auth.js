@@ -19,7 +19,8 @@ import {
   setLanguage
 } from '../redux/actionCreators'
 import authLogo from '../assets/images/auth.png'
-import passwordIcon from '../assets/icons/passwordVisible.png'
+import passwordVisibleIcon from '../assets/icons/passwordVisible.svg'
+import passwordUnvisibleIcon from '../assets/icons/passwordUnvisible.svg'
 import MenuButton from '../components/MenuButton/MenuButton'
 import SettingsComponent from '../components/SettingsComponent/SettingsComponent'
 import { AuthTranslate, storageClear } from '../Constants'
@@ -149,7 +150,9 @@ function Auth() {
           >
             <Image
               style={{ width: '100%', height: '100%' }}
-              source={passwordIcon}
+              source={
+                !isPasswordVisible ? passwordVisibleIcon : passwordUnvisibleIcon
+              }
             />
           </TouchableOpacity>
         </View>

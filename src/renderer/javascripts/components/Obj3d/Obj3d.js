@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react'
-import { View } from 'react-native-web'
+import React, { useEffect, useRef, useState } from 'react'
+import { View, ActivityIndicator } from 'react-native-web'
 import {
   Scene,
   PerspectiveCamera,
@@ -13,6 +13,8 @@ import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js'
 const Obj3d = ({ url }) => {
   let requestAnimationId
   const container = useRef(null)
+
+  const [isLoad, setIsLoad] = useState(true)
 
   useEffect(() => {
     const scene = new Scene()
@@ -54,15 +56,29 @@ const Obj3d = ({ url }) => {
       const animate = () => {
         update(obj)
         renderer.render(scene, camera)
+        setIsLoad(false)
         requestAnimationId = requestAnimationFrame(animate)
       }
       animate()
     })
     return () => cancelAnimationFrame(requestAnimationId)
   }, [])
-
   return (
-    <View style={{ width: ' 100%', height: '100%' }} ref={container}></View>
+    <>
+      {isLoad && (
+        <View
+          style={{
+            height: '100%',
+            width: '100%',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}
+        >
+          <ActivityIndicator size='large' color='#000088' />
+        </View>
+      )}
+      <View style={{ width: ' 100%', height: '100%' }} ref={container}></View>
+    </>
   )
 }
 

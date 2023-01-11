@@ -66,18 +66,13 @@ const styles = StyleSheet.create({
   },
   modalContainer: {
     flexDirection: 'row',
-    height: '100%',
-    justifyContent: 'space-between'
+    height: '100%'
   },
   modalCancelBlock: {
-    width: 40,
-    height: 40,
-    backgroundColor: '#000',
-    marginTop: 15,
-    marginRight: 15,
-    borderRadius: 20,
-    justifyContent: 'center',
-    alignItems: 'center'
+    position: 'absolute',
+    top: '3%',
+    right: '3%',
+    zIndex: 1
   },
   closeModalButtonLine: {
     width: 25,

@@ -7,7 +7,9 @@ const initialState = {
 const startFinishButtonReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_IS_EQUIPMENT_EMPTY:
-      return { ...state, isEquipmentEmpty: action.data }
+      if (state.isEquipmentEmpty !== action.data)
+        return { ...state, isEquipmentEmpty: action.data }
+      else return state
     default:
       return state
   }

@@ -3,7 +3,8 @@ import { useSelector } from 'react-redux'
 import { Text, View, TouchableOpacity, Image, Modal } from 'react-native-web'
 import styles from './styles'
 import Obj3d from '../Obj3d/Obj3d'
-import pdfIcon from '../../assets/icons/pdf.png'
+import pdfIcon from '../../assets/icons/pdfFile.svg'
+import objIcon from '../../assets/icons/objFile.svg'
 
 const ImageCorousel = () => {
   const mapsArr = useSelector((state) => state.TechMaps.mapsArr)
@@ -42,10 +43,18 @@ const ImageCorousel = () => {
               'obj'
             )
               return (
-                <View key={item.file_name} style={styles.item}>
+                <TouchableOpacity
+                  style={styles.item}
+                  key={item.file_name}
+                  onPress={() => imageHandler(index)}
+                >
                   <Text style={styles.itemText}>{item.file_name}</Text>
-                  <Obj3d url={item.file_url} />
-                </View>
+                  <Image
+                    source={objIcon}
+                    resizeMode={'contain'}
+                    style={{ width: '100%', height: '100%' }}
+                  />
+                </TouchableOpacity>
               )
             if (
               item.file_name.substr(item.file_name.lastIndexOf('.') + 1) ===
@@ -121,11 +130,18 @@ const ImageCorousel = () => {
       </View>
       <Modal visible={modalVisible} transparent={false}>
         <View style={styles.modalContainer}>
-          <Image
-            style={[styles.itemImage, { width: '90%' }]}
-            source={{ uri: mapsArr[imgIndexForModal].file_url }}
-            resizeMode={'contain'}
-          />
+          {mapsArr[imgIndexForModal].file_name.substr(
+            mapsArr[imgIndexForModal].file_name.lastIndexOf('.') + 1
+          ) === 'obj' ? (
+            <Obj3d url={mapsArr[imgIndexForModal].file_url} />
+          ) : (
+            <Image
+              style={[styles.itemImage, { width: '90%' }]}
+              source={{ uri: mapsArr[imgIndexForModal].file_url }}
+              resizeMode={'contain'}
+            />
+          )}
+
           <TouchableOpacity
             activeOpacity={0.5}
             onPress={cancelHandler}
