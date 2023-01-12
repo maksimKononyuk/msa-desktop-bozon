@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { View, ActivityIndicator } from 'react-native-web'
+import { View, ActivityIndicator, Text } from 'react-native-web'
 import {
   Scene,
   PerspectiveCamera,
@@ -18,6 +18,7 @@ const Obj3d = ({ url }) => {
   const container = useRef(null)
 
   const [isLoad, setIsLoad] = useState(true)
+  const [loaderCount, setLoaderCount] = useState(0)
 
   useEffect(() => {
     const scene = new Scene()
@@ -44,11 +45,11 @@ const Obj3d = ({ url }) => {
       // obj.rotation.y += 0.005
       lightHolder.quaternion.copy(camera.quaternion)
       camera.aspect =
-        container?.current.offsetWidth / container?.current.offsetHeight
+        container.current?.offsetWidth / container.current?.offsetHeight
       camera.updateProjectionMatrix()
       renderer.setSize(
-        container?.current.offsetWidth,
-        container?.current.offsetHeight
+        container.current?.offsetWidth,
+        container.current?.offsetHeight
       )
     }
     const frameArea = (sizeToFitOnScreen, boxSize, boxCenter, camera) => {
@@ -79,24 +80,29 @@ const Obj3d = ({ url }) => {
     const controls = new OrbitControls(camera, renderer.domElement)
 
     const loader = new OBJLoader()
-    loader.load(url, (obj) => {
-      // obj.scale.set(0.2, 0.2, 0.2)
-      scene.add(obj)
-      const box = new Box3().setFromObject(obj)
-      const boxSize = box.getSize(new Vector3()).length()
-      const boxCenter = box.getCenter(new Vector3())
-      frameArea(boxSize * 1.2, boxSize, boxCenter, camera)
-      controls.maxDistance = boxSize * 10
-      controls.target.copy(boxCenter)
-      controls.update()
-      const animate = () => {
-        update(obj)
-        renderer.render(scene, camera)
-        setIsLoad(false)
-        requestAnimationId = requestAnimationFrame(animate)
-      }
-      animate()
-    })
+    loader.load(
+      url,
+      (obj) => {
+        // obj.scale.set(0.2, 0.2, 0.2)
+        scene.add(obj)
+        const box = new Box3().setFromObject(obj)
+        const boxSize = box.getSize(new Vector3()).length()
+        const boxCenter = box.getCenter(new Vector3())
+        frameArea(boxSize * 1.2, boxSize, boxCenter, camera)
+        controls.maxDistance = boxSize * 10
+        controls.target.copy(boxCenter)
+        controls.update()
+        const animate = () => {
+          update(obj)
+          renderer.render(scene, camera)
+          setIsLoad(false)
+          requestAnimationId = requestAnimationFrame(animate)
+        }
+        animate()
+      },
+      (xhr) => setLoaderCount(Math.round((xhr.loaded / xhr.total) * 100)),
+      (err) => console.log(err)
+    )
     return () => cancelAnimationFrame(requestAnimationId)
   }, [])
   return (
@@ -110,6 +116,7 @@ const Obj3d = ({ url }) => {
             alignItems: 'center'
           }}
         >
+          <Text>{loaderCount} % loaded</Text>
           <ActivityIndicator size='large' color='#000088' />
         </View>
       )}
