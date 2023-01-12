@@ -72,7 +72,13 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: '3%',
     right: '3%',
-    zIndex: 1
+    zIndex: 1,
+    backgroundColor: '#000',
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   closeModalButtonLine: {
     width: 25,
