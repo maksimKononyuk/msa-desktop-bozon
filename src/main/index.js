@@ -1,9 +1,43 @@
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 import path from 'path'
-import { app, BrowserWindow, ipcMain, Notification } from 'electron'
+import {
+  app,
+  BrowserWindow,
+  ipcMain,
+  Notification,
+  autoUpdater,
+  dialog
+} from 'electron'
 import Storage from './Storage'
 import iconView from '../../resources/icon.png'
+
+if (app.isPackaged) {
+  const server = 'https://repo-msa-desktop-nh31d5unv-maksimkononyuk.vercel.app'
+  const url = `${server}/update/${process.platform}/${app.getVersion()}`
+  autoUpdater.setFeedURL({ url })
+  setInterval(() => {
+    autoUpdater.checkForUpdates()
+  }, 30000)
+  autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
+    const dialogOpts = {
+      type: 'info',
+      buttons: ['Restart', 'Later'],
+      title: 'Application Update',
+      message: process.platform === 'win32' ? releaseNotes : releaseName,
+      detail:
+        'A new version has been downloaded. Restart the application to apply the updates.'
+    }
+
+    dialog.showMessageBox(dialogOpts).then((returnValue) => {
+      if (returnValue.response === 0) autoUpdater.quitAndInstall()
+    })
+  })
+  autoUpdater.on('error', (message) => {
+    console.error('There was a problem updating the application')
+    console.error(message)
+  })
+}
 
 let win
 const createWindow = () => {
