@@ -1,6 +1,6 @@
 {
   "name": "msa-desktop",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "MSA Desktop application built with Electron",
   "scripts": {
     "start": "bozon start --reload",
