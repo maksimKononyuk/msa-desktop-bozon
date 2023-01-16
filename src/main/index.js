@@ -12,32 +12,6 @@ import {
 import Storage from './Storage'
 import iconView from '../../resources/icon.png'
 
-if (app.isPackaged) {
-  const server = 'https://repo-msa-desktop-nh31d5unv-maksimkononyuk.vercel.app'
-  const url = `${server}/update/${process.platform}/${app.getVersion()}`
-  autoUpdater.setFeedURL({ url })
-  setInterval(() => {
-    autoUpdater.checkForUpdates()
-  }, 30000)
-  autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
-    const dialogOpts = {
-      type: 'info',
-      buttons: ['Restart', 'Later'],
-      title: 'Application Update',
-      message: process.platform === 'win32' ? releaseNotes : releaseName,
-      detail: 'Новая версия готова.'
-    }
-
-    dialog.showMessageBox(dialogOpts).then((returnValue) => {
-      if (returnValue.response === 0) autoUpdater.quitAndInstall()
-    })
-  })
-  autoUpdater.on('error', (message) => {
-    console.error('There was a problem updating the application')
-    console.error(message)
-  })
-}
-
 let win
 const createWindow = () => {
   // Create the browser window.
@@ -98,7 +72,35 @@ const createWindow = () => {
   }
 
   ipcMain.on('setNonifications', showNotification)
+
+  console.log(app.isPackaged)
+  if (app.isPackaged) {
+    const server = 'https://update-repo-brshq73in-maksimkononyuk.vercel.app'
+    const url = `${server}/update/${process.platform}/${app.getVersion()}`
+    console.log(url)
+    autoUpdater.setFeedURL({ url })
+    autoUpdater.checkForUpdates()
+    console.log('It is ok')
+  }
 }
+
+autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
+  const dialogOpts = {
+    type: 'info',
+    buttons: ['Restart', 'Later'],
+    title: 'Application Update',
+    message: process.platform === 'win32' ? releaseNotes : releaseName,
+    detail: 'Новая версия готова.'
+  }
+
+  dialog.showMessageBox(dialogOpts).then((returnValue) => {
+    if (returnValue.response === 0) autoUpdater.quitAndInstall()
+  })
+})
+autoUpdater.on('error', (message) => {
+  console.error('There was a problem updating the application')
+  console.error(message)
+})
 
 const createPdfChild = (url) => {
   let childWin = new BrowserWindow({
