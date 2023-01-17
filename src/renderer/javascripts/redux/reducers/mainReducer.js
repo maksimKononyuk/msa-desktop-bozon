@@ -50,15 +50,11 @@ const mainReducer = (state = initialState, action) => {
     case SET_USER:
       return { ...state, user: action.data }
     case SET_ORDERS:
-      if (state.orders.length !== action.data.length)
-        return { ...state, orders: action.data }
-      else return state
+      return { ...state, orders: action.data }
     case SET_PLAY_SOUND:
       return { ...state, isPlaySound: action.data }
     case SET_ACTIVE_ORDER:
-      if (!state.activeOrder || state.activeOrder._id !== action.data._id)
-        return { ...state, activeOrder: action.data }
-      else return state
+      return { ...state, activeOrder: action.data }
     case SET_ACTIVE_INDEX:
       return { ...state, activeIndex: action.data }
     case SET_ACTIVE_BARCODE:
@@ -70,9 +66,7 @@ const mainReducer = (state = initialState, action) => {
     case SET_ORDER_CANCEL_MODAL_VISIBLE:
       return { ...state, orderCancelModalVisible: action.data }
     case SET_PRIVIOUS_OPERATION:
-      if (state.previousOperation.length !== action.data.length)
-        return { ...state, previousOperation: action.data }
-      else return state
+      return { ...state, previousOperation: action.data }
     case SET_CONFIRMATION:
       return { ...state, isConfirmation: action.data }
     case SET_MATERIALS_ARR:
@@ -94,22 +88,9 @@ const mainReducer = (state = initialState, action) => {
     case SET_SHOW_MATERIALS_COMPONENT:
       return { ...state, showMaterialsComponent: action.data }
     case SET_EQUIPMENT_ARR:
-      let isChangeBusy = false
-      if (state.equipmentArr.length) {
-        for (let i = 0; i < state.equipmentArr.length; i++) {
-          if (state.equipmentArr[i].occupied !== action.data[i].occupied) {
-            isChangeBusy = true
-            break
-          }
-        }
-      }
-      if (isChangeBusy || state.equipmentArr.length !== action.data.length) {
-        return { ...state, equipmentArr: action.data }
-      } else return state
+      return { ...state, equipmentArr: action.data }
     case SET_IS_EQUIPMENT_LOADING:
-      if (state.isEquipmentLoading !== action.data)
-        return { ...state, isEquipmentLoading: action.data }
-      else return state
+      return { ...state, isEquipmentLoading: action.data }
     case SET_EQUIPMENT_VISIBLE:
       return { ...state, isEquipmentVisible: action.data }
     case SET_SELECTED_ITEMS_CHECKED:
