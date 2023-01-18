@@ -2,10 +2,15 @@
 // code. You can also put them in separate files and require them here.
 import path from 'path'
 import { app, BrowserWindow, ipcMain, Notification } from 'electron'
+import { autoUpdater, AppUpdater } from 'electron-updater'
 import Storage from './Storage'
 import iconView from '../../resources/icon.png'
 
 let win
+
+autoUpdater.autoDownload = false
+autoUpdater.autoInstallOnAppQuit = true
+
 const createWindow = () => {
   // Create the browser window.
   win = new BrowserWindow({
@@ -96,7 +101,26 @@ ipcMain.on('openChildWindow', (event, url) => {
 
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.whenReady().then(createWindow)
+app.whenReady().then(() => {
+  createWindow()
+  autoUpdater.checkForUpdates()
+  console.log('Проверяются обновления', 'Checking for update')
+})
+
+autoUpdater.on('update-available', (info) => {
+  console.log('Обновления доступны', 'Update available')
+  const pathUpdate = autoUpdater.downloadUpdate()
+  console.log(pathUpdate)
+})
+autoUpdater.on('update-not-available', (info) => {
+  console.log('Нет доступных обновлений', 'No update available')
+})
+autoUpdater.on('update-downloaded', (info) => {
+  console.log('Обновления загружены', 'Update downloaded')
+})
+autoUpdater.on('error', (error) => {
+  console.log(error)
+})
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
