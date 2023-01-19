@@ -1,8 +1,8 @@
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 import path from 'path'
-import { app, BrowserWindow, ipcMain, Notification } from 'electron'
-import { autoUpdater, AppUpdater } from 'electron-updater'
+import { app, BrowserWindow, ipcMain, Notification, dialog } from 'electron'
+import { autoUpdater } from 'electron-updater'
 import Storage from './Storage'
 import iconView from '../../resources/icon.png'
 
@@ -103,20 +103,34 @@ ipcMain.on('openChildWindow', (event, url) => {
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   createWindow()
-  autoUpdater.checkForUpdates()
-  console.log('Проверяются обновления', 'Checking for update')
+  if (process.env.NODE_ENV !== 'development') {
+    autoUpdater.checkForUpdates()
+    console.log('Checking for update')
+  }
 })
 
 autoUpdater.on('update-available', (info) => {
-  console.log('Обновления доступны', 'Update available')
+  console.log('Update available')
   const pathUpdate = autoUpdater.downloadUpdate()
   console.log(pathUpdate)
 })
 autoUpdater.on('update-not-available', (info) => {
-  console.log('Нет доступных обновлений', 'No update available')
+  console.log('No update available')
 })
-autoUpdater.on('update-downloaded', (info) => {
-  console.log('Обновления загружены', 'Update downloaded')
+autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
+  console.log('Update downloaded')
+  const dialogOpts = {
+    type: 'info',
+    buttons: ['Restart', 'Later'],
+    title: 'Application Update',
+    message: process.platform === 'win32' ? releaseNotes : releaseName,
+    detail:
+      'A new version has been downloaded. Restart the application to apply the updates.'
+  }
+
+  dialog.showMessageBox(dialogOpts).then((returnValue) => {
+    if (returnValue.response === 0) autoUpdater.quitAndInstall()
+  })
 })
 autoUpdater.on('error', (error) => {
   console.log(error)
