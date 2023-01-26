@@ -167,6 +167,14 @@ const UsersMenuModal = ({ logOut }) => {
                 handler={() => setIsSettingsVisible((prev) => !prev)}
               />
               <UserMenuItem
+                title={'Board vizualizer'}
+                handler={() =>
+                  subscribeForEntries.openChildWindow(
+                    'https://openscopeproject.org/InteractiveHtmlBomDemo/html/motherboard.html'
+                  )
+                }
+              />
+              <UserMenuItem
                 title={translate.getLogoutLabel()}
                 handler={() => dispatch(setIsCompleteWorkShiftVisible(true))}
               />
@@ -181,7 +189,7 @@ const UsersMenuModal = ({ logOut }) => {
               />
             </View>
             <Text style={styles.versionText}>
-              {translate.getVersionLabel()}: 1.0.1
+              {translate.getVersionLabel()}: 1.0.2
             </Text>
           </>
         )}

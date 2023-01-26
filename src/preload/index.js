@@ -16,7 +16,7 @@ contextBridge.exposeInMainWorld('subscribeForEntries', {
   setNotifications: () => {
     ipcRenderer.send('setNonifications') // отправка в main процесс события системного уведомления
   },
-  openChildWindow: (urlPdf) => {
-    ipcRenderer.send('openChildWindow', urlPdf)
+  openChildWindow: (url) => {
+    ipcRenderer.send('openChildWindow', url)
   }
 })

@@ -72,7 +72,7 @@ const createWindow = () => {
   ipcMain.on('setNonifications', showNotification)
 }
 
-const createPdfChild = (url) => {
+const createChild = (url) => {
   let childWin = new BrowserWindow({
     parent: win,
     modal: true,
@@ -94,7 +94,7 @@ const createPdfChild = (url) => {
 }
 
 ipcMain.on('openChildWindow', (event, url) => {
-  createPdfChild(url)
+  createChild(url)
 })
 
 // This method will be called when Electron has finished
