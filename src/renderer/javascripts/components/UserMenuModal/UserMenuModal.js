@@ -4,7 +4,6 @@ import {
   Text,
   Modal,
   TouchableOpacity,
-  Image,
   TextInput
 } from 'react-native-web'
 import styles from '../../styles/Styles'
@@ -165,14 +164,6 @@ const UsersMenuModal = ({ logOut }) => {
               <UserMenuItem
                 title={translate.getSettingsLabel()}
                 handler={() => setIsSettingsVisible((prev) => !prev)}
-              />
-              <UserMenuItem
-                title={'Board vizualizer'}
-                handler={() =>
-                  subscribeForEntries.openChildWindow(
-                    'https://openscopeproject.org/InteractiveHtmlBomDemo/html/motherboard.html'
-                  )
-                }
               />
               <UserMenuItem
                 title={translate.getLogoutLabel()}

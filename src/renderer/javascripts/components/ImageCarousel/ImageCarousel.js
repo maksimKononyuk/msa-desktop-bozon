@@ -5,6 +5,7 @@ import styles from './styles'
 import Obj3d from '../Obj3d/Obj3d'
 import pdfIcon from '../../assets/icons/pdfFile.svg'
 import objIcon from '../../assets/icons/objFile.svg'
+import htmlIcon from '../../assets/icons/html.svg'
 
 const ImageCorousel = () => {
   const mapsArr = useSelector((state) => state.TechMaps.mapsArr)
@@ -72,7 +73,7 @@ const ImageCorousel = () => {
               )
             if (
               item.file_name.substr(item.file_name.lastIndexOf('.') + 1) ===
-              'pdf'
+              'pdf' || item.file_name.substr(item.file_name.lastIndexOf('.') + 1) === 'html'
             )
               return (
                 <TouchableOpacity
@@ -85,7 +86,8 @@ const ImageCorousel = () => {
                   <Text style={styles.itemText}>{item.file_name}</Text>
                   <Image
                     style={styles.itemImage}
-                    source={pdfIcon}
+                    source={item.file_name.substr(item.file_name.lastIndexOf('.') + 1) ===
+                    'pdf' ? pdfIcon : htmlIcon}
                     resizeMode={'contain'}
                   />
                 </TouchableOpacity>
