@@ -180,7 +180,7 @@ const UsersMenuModal = ({ logOut }) => {
               />
             </View>
             <Text style={styles.versionText}>
-              {translate.getVersionLabel()}: 1.0.2
+              {translate.getVersionLabel()}: 1.0.3
             </Text>
           </>
         )}

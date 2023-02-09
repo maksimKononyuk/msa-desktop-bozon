@@ -1,6 +1,6 @@
 {
   "name": "msa-desktop",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "MSA Desktop application built with Electron",
   "author": "MSA",
   "scripts": {
