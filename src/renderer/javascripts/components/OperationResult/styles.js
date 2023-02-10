@@ -22,6 +22,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#fff'
   },
+  unionRelationsBlock: {
+    width: '90%', 
+    marginBottom: 5, 
+    alignItems: 'center', 
+    borderColor: 'grey', borderRadius: 10, 
+  },
   arrowIcon: {
     width: 20,
     height: 20
