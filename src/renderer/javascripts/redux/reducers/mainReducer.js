@@ -54,6 +54,25 @@ const mainReducer = (state = initialState, action) => {
     case SET_PLAY_SOUND:
       return { ...state, isPlaySound: action.data }
     case SET_ACTIVE_ORDER:
+      if (action.data) {
+        const unionArr = action.data.operation.relation
+        const mapped = unionArr.reduce((accumulator, elem) => {
+          if (
+            !accumulator[
+              elem.firstPointIndex.toString() + elem.secondPointIndex.toString()
+            ]
+          )
+            accumulator[
+              elem.firstPointIndex.toString() + elem.secondPointIndex.toString()
+            ] = []
+          accumulator[
+            elem.firstPointIndex.toString() + elem.secondPointIndex.toString()
+          ].push(elem)
+          return accumulator
+        }, {})
+        const res = Object.values(mapped)
+        action.data.operation.relation = res
+      }
       return { ...state, activeOrder: action.data }
     case SET_ACTIVE_INDEX:
       return { ...state, activeIndex: action.data }

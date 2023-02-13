@@ -200,9 +200,10 @@ const Main = () => {
     equipmentBusy(true)
   }
 
-  const finishOrder = (nextOperationId, relationId) => {
-    dispatch(setActiveOrder(null))
-    setOperationFinishLoading(true)
+  const finishOrder = (nextOperationId, relationId, isLast) => {
+    if (!isLast) {
+      setOperationFinishLoading(true)
+    }
     axios
       .put('order_worker_finish', {
         order_id: activeOrder?._id,
@@ -213,25 +214,30 @@ const Main = () => {
         function: materialsArr
       })
       .then(() => {
-        setOperationFinishLoading(false)
-        dispatch(setModalVisible(false))
-        dispatch(setOrderStarted(false))
-        dispatch(setMaterialsArr([]))
-        dispatch(setShowMaterialsComponent(false))
-        dispatch(setActiveIndex(1))
-        dispatch(setMessages([]))
-        dispatch(setIsEquipmentEmpty(false))
-        setIsOperationComplited(true)
+        if (isLast) {
+          setOperationFinishLoading(false)
+          dispatch(setModalVisible(false))
+          dispatch(setOrderStarted(false))
+          dispatch(setMaterialsArr([]))
+          dispatch(setShowMaterialsComponent(false))
+          dispatch(setActiveIndex(1))
+          dispatch(setMessages([]))
+          dispatch(setIsEquipmentEmpty(false))
+          setIsOperationComplited(true)
+          dispatch(setActiveOrder(null))
+        }
       })
       .catch((err) => {
         console.log('Network error at the end of the operation ' + err)
         dispatch(setErrorMessage('at the end of the operation ' + err))
         dispatch(setIsErrorComponentVisible(true))
       })
-    equipmentBusy(false)
-    dispatch(setSelectedItemsUnCheced('all'))
-    dispatch(setIsCheckedArr('empty'))
-    dispatch(setIsEquipmentVisible(true))
+    if (isLast) {
+      equipmentBusy(false)
+      dispatch(setSelectedItemsUnCheced('all'))
+      dispatch(setIsCheckedArr('empty'))
+      dispatch(setIsEquipmentVisible(true))
+    }
   }
 
   const equipmentRequest = (operationId) => {

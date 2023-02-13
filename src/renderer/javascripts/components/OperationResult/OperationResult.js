@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect, useState } from 'react'
+import React, { useMemo } from 'react'
 import { View, Text, TouchableOpacity, Image } from 'react-native-web'
 import styles from '../../styles/Styles'
 import axios from 'axios'
@@ -48,28 +48,12 @@ const OperationResult = ({ finishOrder }) => {
     }
   }
 
-  const [unionRelations, setUnionRelations] = useState([])
-
-  useEffect(() => {
-    if(activeOrder){
-      const unionArr = activeOrder.operation.relation
-      const mapped = unionArr.reduce((accumulator, elem) => {
-      if(!accumulator[elem.firstPointIndex.toString() + elem.secondPointIndex.toString()]) 
-        accumulator[elem.firstPointIndex.toString() + elem.secondPointIndex.toString()]=[]
-      accumulator[elem.firstPointIndex.toString() + elem.secondPointIndex.toString()].push(elem); 
-      return accumulator;
-      }, {});
-      const res = Object.values(mapped)
-      setUnionRelations(res)
-    }
-  }, [activeOrder.operation.relation])
-
   return (
     <View
       style={{
         ...styles.container,
         backgroundColor: '#fff',
-        justifyContent: 'flex-start',
+        justifyContent: 'flex-start'
       }}
     >
       <View style={componentStyles.resultContainer}>
@@ -77,41 +61,51 @@ const OperationResult = ({ finishOrder }) => {
           {translate.getTitleLable()}
         </Text>
       </View>
-      {unionRelations.map((elem, elIndex) => (<View key={elIndex} style={[componentStyles.unionRelationsBlock,{borderWidth: elem.length > 1 ? 1 : 0}]}>
-        {elem.map((item, index) => (
+      {activeOrder?.operation.relation.map((elem, elIndex) => (
+        <View
+          key={elIndex}
+          style={[
+            componentStyles.unionRelationsBlock,
+            { borderWidth: elem.length > 1 ? 1 : 0 }
+          ]}
+        >
+          {elem.map((item, index) => (
             <TouchableOpacity
               activeOpacity={0.5}
               onPress={() => {
-              dispatch(
-                setFinishOrderParams({
-                  nextOperationId: item.so_id,
-                  relationId: item._id
-                })
-              )
-              if (item.function.length > 0) {
-                maretialsRequest(index)
-                dispatch(setShowMaterialsComponent(true))
-              } else {
-                elem.forEach(el => {
-                  finishOrder(el.so_id, el._id)
-                })
-              }
-            }}
-            key={item._id}
-            style={{
-              ...styles.center,
-              ...styles.operationItem,
-              backgroundColor: item.bgr_color
-            }}
-          >
-            <Text style={componentStyles.itemResultText}>{item.result}</Text>
-            <Image style={componentStyles.arrowIcon} source={arrowWhiteIcon} />
-          </TouchableOpacity>
-        )
-        )}
-        </View>)
-      )}
-     
+                dispatch(
+                  setFinishOrderParams({
+                    nextOperationId: item.so_id,
+                    relationId: item._id
+                  })
+                )
+                if (item.function.length > 0) {
+                  maretialsRequest(index)
+                  dispatch(setShowMaterialsComponent(true))
+                } else {
+                  elem.forEach((el, index) => {
+                    const isLast = index === elem.length - 1
+                    finishOrder(el.so_id, el._id, isLast)
+                  })
+                }
+              }}
+              key={item._id}
+              style={{
+                ...styles.center,
+                ...styles.operationItem,
+                backgroundColor: item.bgr_color
+              }}
+            >
+              <Text style={componentStyles.itemResultText}>{item.result}</Text>
+              <Image
+                style={componentStyles.arrowIcon}
+                source={arrowWhiteIcon}
+              />
+            </TouchableOpacity>
+          ))}
+        </View>
+      ))}
+
       <View style={componentStyles.canselButtonContainer}>
         <TouchableOpacity
           activeOpacity={0.5}
