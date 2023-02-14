@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { View, Modal, ActivityIndicator, Text } from 'react-native-web'
+import { View, Modal, ActivityIndicator } from 'react-native-web'
 import Carousel from '../components/Carousel/CarouselComponent'
 import axios from 'axios'
 import Header from '../components/Header/Header'
@@ -200,7 +200,7 @@ const Main = () => {
     equipmentBusy(true)
   }
 
-  const finishOrder = (nextOperationId, relationId, isLast) => {
+  const finishOrder = (nextOperationId, relationId, isLast, completely) => {
     if (!isLast) {
       setOperationFinishLoading(true)
     }
@@ -211,7 +211,8 @@ const Main = () => {
         next_operation_id: nextOperationId,
         current_operation_id: activeOrder?.operation?._id,
         relation_id: relationId,
-        function: materialsArr
+        function: materialsArr,
+        completely
       })
       .then(() => {
         if (isLast) {

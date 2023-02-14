@@ -42,7 +42,9 @@ const Materials = ({ finishOrder }) => {
               onPress={() =>
                 finishOrder(
                   finishOrderParams.nextOperationId,
-                  finishOrderParams.relationId
+                  finishOrderParams.relationId,
+                  finishOrderParams.isLast,
+                  finishOrderParams.completely
                 )
               }
             >

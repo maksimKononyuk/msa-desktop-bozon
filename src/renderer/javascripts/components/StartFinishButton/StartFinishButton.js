@@ -1,7 +1,11 @@
 import React, { useMemo } from 'react'
 import { View, TouchableOpacity, Image, Text, Alert } from 'react-native-web'
 import { useDispatch, useSelector } from 'react-redux'
-import { setModalVisible, setIsConfirmation } from '../../redux/actionCreators'
+import {
+  setModalVisible,
+  setIsConfirmation,
+  setIsDegreeOfOperationComplation
+} from '../../redux/actionCreators'
 import styles from '../../styles/Styles'
 import componentStyles from './styles'
 import { StartFinishButtonTranslate } from '../../Constants'
@@ -23,6 +27,13 @@ const StartFinishButton = ({ startOrder }) => {
     [language]
   )
 
+  const startFinishHandler = () => {
+    if (orderStarted) {
+      dispatch(setModalVisible(true))
+      dispatch(setIsDegreeOfOperationComplation(true))
+    } else startOrder()
+  }
+
   return (
     <View style={componentStyles.container}>
       {isConfirmation ? (
@@ -33,11 +44,7 @@ const StartFinishButton = ({ startOrder }) => {
               componentStyles.buttonContainer,
               { backgroundColor: orderStarted ? '#029C6E' : '#0080FF' }
             ]}
-            onPress={
-              orderStarted
-                ? () => dispatch(setModalVisible(true))
-                : () => startOrder()
-            }
+            onPress={startFinishHandler}
           >
             <Image source={okIcon} style={componentStyles.okIcon} />
           </TouchableOpacity>

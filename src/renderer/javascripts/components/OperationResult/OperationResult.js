@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import { View, Text, TouchableOpacity, Image } from 'react-native-web'
 import styles from '../../styles/Styles'
 import axios from 'axios'
@@ -10,7 +10,8 @@ import {
   setShowMaterialsComponent,
   setFinishOrderParams,
   setErrorMessage,
-  setIsErrorComponentVisible
+  setIsErrorComponentVisible,
+  setIsDegreeOfOperationComplation
 } from '../../redux/actionCreators'
 import { OperationResultTranslate } from '../../Constants'
 import arrowWhiteIcon from '../../assets/images/arrow_white.png'
@@ -25,11 +26,17 @@ const OperationResult = ({ finishOrder }) => {
     (state) => state.error.isErrorComponentVisible
   )
 
+  const isDegreeOfOperationComplation = useSelector(
+    (state) => state.startFinishButton.isDegreeOfOperationCompletion
+  )
+
   const language = useSelector((state) => state.main.language)
   const translate = useMemo(
     () => new OperationResultTranslate(language),
     [language]
   )
+
+  const [completely, setCompletely] = useState(false)
 
   const maretialsRequest = (index) => {
     if (activeOrder) {
@@ -61,50 +68,78 @@ const OperationResult = ({ finishOrder }) => {
           {translate.getTitleLable()}
         </Text>
       </View>
-      {activeOrder?.operation.relation.map((elem, elIndex) => (
-        <View
-          key={elIndex}
-          style={[
-            componentStyles.unionRelationsBlock,
-            { borderWidth: elem.length > 1 ? 1 : 0 }
-          ]}
-        >
-          {elem.map((item, index) => (
+      {isDegreeOfOperationComplation
+        ? [0, 1].map((el) => (
             <TouchableOpacity
+              key={el}
               activeOpacity={0.5}
               onPress={() => {
-                dispatch(
-                  setFinishOrderParams({
-                    nextOperationId: item.so_id,
-                    relationId: item._id
-                  })
-                )
-                if (item.function.length > 0) {
-                  maretialsRequest(index)
-                  dispatch(setShowMaterialsComponent(true))
-                } else {
-                  elem.forEach((el, index) => {
-                    const isLast = index === elem.length - 1
-                    finishOrder(el.so_id, el._id, isLast)
-                  })
-                }
+                setCompletely(el === 1)
+                dispatch(setIsDegreeOfOperationComplation(false))
               }}
-              key={item._id}
               style={{
                 ...styles.center,
                 ...styles.operationItem,
-                backgroundColor: item.bgr_color
+                backgroundColor: '#000'
               }}
             >
-              <Text style={componentStyles.itemResultText}>{item.result}</Text>
+              <Text style={componentStyles.itemResultText}>
+                {el === 0 ? 'Выполнено частично' : 'Выполнено полностью'}
+              </Text>
               <Image
                 style={componentStyles.arrowIcon}
                 source={arrowWhiteIcon}
               />
             </TouchableOpacity>
+          ))
+        : activeOrder?.operation.relation.map((elem, elIndex) => (
+            <View
+              key={elIndex}
+              style={[
+                componentStyles.unionRelationsBlock,
+                { borderWidth: elem.length > 1 ? 1 : 0 }
+              ]}
+            >
+              {elem.map((item, index) => (
+                <TouchableOpacity
+                  activeOpacity={0.5}
+                  onPress={() => {
+                    const isLast = index === elem.length - 1
+                    dispatch(
+                      setFinishOrderParams({
+                        nextOperationId: item.so_id,
+                        relationId: item._id,
+                        isLast,
+                        completely
+                      })
+                    )
+                    elem.forEach((el, index) => {
+                      if (item.function.length > 0 && isLast) {
+                        maretialsRequest(index)
+                        dispatch(setShowMaterialsComponent(true))
+                      } else {
+                        finishOrder(el.so_id, el._id, isLast, completely)
+                      }
+                    })
+                  }}
+                  key={item._id}
+                  style={{
+                    ...styles.center,
+                    ...styles.operationItem,
+                    backgroundColor: item.bgr_color
+                  }}
+                >
+                  <Text style={componentStyles.itemResultText}>
+                    {item.result}
+                  </Text>
+                  <Image
+                    style={componentStyles.arrowIcon}
+                    source={arrowWhiteIcon}
+                  />
+                </TouchableOpacity>
+              ))}
+            </View>
           ))}
-        </View>
-      ))}
 
       <View style={componentStyles.canselButtonContainer}>
         <TouchableOpacity

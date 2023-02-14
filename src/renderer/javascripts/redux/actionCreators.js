@@ -46,7 +46,8 @@ import {
   SET_USER_MENU_ORDERS,
   SET_IS_EQUIPMENT_LOADING,
   SET_LANGUAGE,
-  SET_NEW_MESSAGE
+  SET_NEW_MESSAGE,
+  SET_IS_DEGREE_OF_OPERATION_COMPLETION
 } from './actionTypes'
 
 // For mainReducer
@@ -395,6 +396,13 @@ export const setShowError = (data) => {
 export const setIsEquipmentEmpty = (data) => {
   return {
     type: SET_IS_EQUIPMENT_EMPTY,
+    data
+  }
+}
+
+export const setIsDegreeOfOperationComplation = (data) => {
+  return {
+    type: SET_IS_DEGREE_OF_OPERATION_COMPLETION,
     data
   }
 }

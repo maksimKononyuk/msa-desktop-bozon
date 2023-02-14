@@ -80,6 +80,8 @@ export const SET_SHOW_ERROR = 'SET_SHOW_ERROR'
 // For startFinishButtonReducer
 
 export const SET_IS_EQUIPMENT_EMPTY = 'SET_IS_EQUIPMENT_EMPTY'
+export const SET_IS_DEGREE_OF_OPERATION_COMPLETION =
+  'SET_IS_DEGREE_OF_OPERATION_COMPLETION'
 
 // For errorReduser
 
