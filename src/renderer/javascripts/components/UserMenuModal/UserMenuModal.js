@@ -25,6 +25,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { UserMenuModalTranslate } from '../../Constants'
 import CancelButton from '../CancelButton/CancelButton'
 import OKButton from '../OKButton/OKButton'
+import packageJson from '../../../../../package.json'
 // import ErrorComponent from '../ErrorComponent/ErrorComponent'
 
 const UsersMenuModal = ({ logOut }) => {
@@ -180,7 +181,7 @@ const UsersMenuModal = ({ logOut }) => {
               />
             </View>
             <Text style={styles.versionText}>
-              {translate.getVersionLabel()}: 1.0.3
+              {`${translate.getVersionLabel()}: ${packageJson.version}`}
             </Text>
           </>
         )}

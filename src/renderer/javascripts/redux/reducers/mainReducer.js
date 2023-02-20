@@ -42,7 +42,7 @@ const initialState = {
   isEquipmentVisible: true,
   selectedItems: [],
   finishOrderParams: null,
-  language: localStorage.getItem('lang') ? localStorage.getItem('lang') : 'en'
+  language: localStorage.getItem('lang') ? localStorage.getItem('lang') : 'ru'
 }
 
 const mainReducer = (state = initialState, action) => {

@@ -11,6 +11,7 @@ import {
 } from '../../Constants'
 import axios from 'axios'
 import styles from './styles'
+import packageJson from '../../../../../package.json'
 
 const SettingsComponent = ({ setIsSettingsVisible }) => {
   const dispatch = useDispatch()
@@ -83,7 +84,9 @@ const SettingsComponent = ({ setIsSettingsVisible }) => {
           <OKButton handler={okButtonHandler} />
           <CancelButton handler={canselHandler} />
           <Text style={styles.versionText}>
-            {translateUserMenuModal.getVersionLabel()}:{' '}
+            {`${translateUserMenuModal.getVersionLabel()}: ${
+              packageJson.version
+            }`}
           </Text>
         </View>
       </View>
