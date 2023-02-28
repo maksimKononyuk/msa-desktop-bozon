@@ -28,7 +28,7 @@ const initialState = {
   orders: [],
   isPlaySound: false,
   activeOrder: null,
-  activeIndex: 1,
+  activeIndex: 0,
   activeBarCode: false,
   orderStarted: false,
   modalVisible: false,

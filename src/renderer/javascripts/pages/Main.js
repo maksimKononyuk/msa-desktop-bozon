@@ -11,6 +11,7 @@ import TechMaps from '../components/TechMaps/TechMaps'
 import ActiveOrderHeader from '../components/Adaptive/ActiveOrderHeader'
 import RightBlock from '../components/Adaptive/RightBlock'
 import OrderCancelModal from '../components/OrderCancelModal/OrderCancelModal'
+import Resources from '../components/Resources/Resources'
 import Messages from '../components/Messages/Messages'
 // import OperationContainer from '../components/OperationContainer/OperationContainer'
 // import styles from '../styles/Styles'
@@ -376,10 +377,10 @@ const Main = () => {
         <View style={{ flexDirection: 'row', width: '100%', flex: 1 }}>
           <View style={{ flex: 1 }}>
             <Carousel />
-            {activeIndex === 0 && orders.length ? (
+            {activeIndex === 3 && orders.length ? (
               <Messages userName={state.userName} />
             ) : null}
-            {activeIndex === 1 && orders.length ? (
+            {activeIndex === 0 && orders.length ? (
               <>
                 <ActiveOrderHeader />
                 {isEquipmentLoading ? (
@@ -395,6 +396,7 @@ const Main = () => {
                 )}
               </>
             ) : null}
+            {activeIndex === 1 ? <Resources /> : null}
             {activeIndex === 2 ? <TechMaps /> : null}
           </View>
           <RightBlock startOrder={startOrder} />
