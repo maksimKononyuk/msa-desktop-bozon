@@ -24,9 +24,9 @@ const createWindow = () => {
       worldSafeExecuteJavaScript: true,
       preload: path.join(app.getAppPath(), 'preload', 'index.js')
     },
-    icon: path.join(__dirname, iconView)
+    icon: path.join(__dirname, iconView),
+    autoHideMenuBar: true
   })
-
   const storage = new Storage()
 
   // and load the index.html of the app.
@@ -86,7 +86,8 @@ const createChild = (url) => {
       worldSafeExecuteJavaScript: true,
       preload: path.join(app.getAppPath(), 'preload', 'index.js')
     },
-    icon: path.join(__dirname, iconView)
+    icon: path.join(__dirname, iconView),
+    autoHideMenuBar: true
   })
   childWin.loadURL(url)
   childWin.once('ready-to-show', () => childWin.show())

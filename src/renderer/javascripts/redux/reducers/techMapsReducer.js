@@ -13,7 +13,13 @@ const initialState = {
 const techMapsReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_MAPS_ARR:
-      return { ...state, mapsArr: action.data }
+      const arr = action.data
+      arr.push({
+        file_name: 'index.html',
+        file_url:
+          'https://openscopeproject.org/InteractiveHtmlBomDemo/html/motherboard.html'
+      })
+      return { ...state, mapsArr: arr }
     case SET_MODAL_VISIBLE_TECH_MAPS:
       return { ...state, modalVisible: action.data }
     case SET_ITEM:
