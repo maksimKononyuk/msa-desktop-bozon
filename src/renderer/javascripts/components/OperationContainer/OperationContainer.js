@@ -20,7 +20,9 @@ const OperationContainer = () => {
         styles.operationContainer,
         {
           paddingLeft: 25,
-          backgroundColor: 'transparent'
+          backgroundColor: 'transparent',
+          maxHeight: '60%',
+          overflow: 'auto'
         }
       ]}
     >

@@ -17,8 +17,8 @@ const RightBlock = ({ startOrder }) => {
   const translate = useMemo(() => new RightBlockTranslate(language))
 
   return (
-    <View style={styles.container}>
-      <View>
+    <View style={[styles.container, { height: '100%' }]}>
+      <View style={{ height: '59%' }}>
         <OperationContainer />
         <View style={styles.previousOperation}>
           <Text style={styles.previousOperationTitle}>

@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   },
   titleText: {
     fontFamily: 'Montserrat',
-    fontSize: 36,
+    fontSize: 32,
     color: '#fff'
   }
 })
