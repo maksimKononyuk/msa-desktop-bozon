@@ -56,7 +56,10 @@ function Auth() {
 
   useEffect(() => {
     const storageLang = localStorage.getItem('lang')
-    storageLang && dispatch(setLanguage(storageLang))
+    if (storageLang) {
+      dispatch(setLanguage(storageLang))
+      subscribeForEntries.setLanguageInMainProcess(storageLang)
+    }
   }, [])
 
   if (!appIsReady) {

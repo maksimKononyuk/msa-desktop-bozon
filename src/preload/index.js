@@ -18,5 +18,8 @@ contextBridge.exposeInMainWorld('subscribeForEntries', {
   },
   openChildWindow: (url) => {
     ipcRenderer.send('openChildWindow', url)
+  },
+  setLanguageInMainProcess: (language) => {
+    ipcRenderer.send('language', language)
   }
 })

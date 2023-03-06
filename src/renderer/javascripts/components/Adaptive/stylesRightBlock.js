@@ -20,11 +20,10 @@ const styles = StyleSheet.create({
   },
   previousOperationTextContainer: {
     marginTop: 7,
-    width: '100%',
     height: 55,
     backgroundColor: '#CF3B23',
-    alignSelf: 'center',
-    padding: 10
+    padding: 10,
+    justifyContent: 'center'
   },
   resultPreviousOperation: {
     marginTop: 20,

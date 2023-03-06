@@ -8,6 +8,8 @@ import iconView from '../../resources/icon.png'
 
 let win
 
+let language = 'ru'
+
 autoUpdater.autoDownload = false
 autoUpdater.autoInstallOnAppQuit = true
 
@@ -54,6 +56,8 @@ const createWindow = () => {
   ipcMain.on('deleteStorage', (event, data) => {
     storage.deleteFile('storageFile')
   })
+
+  ipcMain.once('language', (_, data) => (language = data))
 
   const showNotification = () => {
     if (win.isMinimized()) {
@@ -122,11 +126,16 @@ autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
   console.log('Update downloaded')
   const dialogOpts = {
     type: 'info',
-    buttons: ['Restart', 'Later'],
-    title: 'Application Update',
+    buttons: [
+      language === 'ru' ? 'Перезапустить' : 'Restart',
+      language === 'ru' ? 'Позже' : 'Later'
+    ],
+    title: language === 'ru' ? 'Обновление приложения' : 'Application Update',
     message: process.platform === 'win32' ? releaseNotes : releaseName,
     detail:
-      'A new version has been downloaded. Restart the application to apply the updates.'
+      language === 'ru'
+        ? 'Была загружена новая версия. Перезапустите приложение, чтобы применить обновления.'
+        : 'A new version has been downloaded. Restart the application to apply the updates.'
   }
 
   dialog.showMessageBox(dialogOpts).then((returnValue) => {
