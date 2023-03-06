@@ -46,6 +46,7 @@ const SettingsComponent = ({ setIsSettingsVisible }) => {
     dispatch(setIsUserMenuModal(false))
   }
   const okButtonHandler = () => {
+    subscribeForEntries.setLanguageInMainProcess(language)
     localStorage.setItem('lang', language)
     localStorage.setItem('hosting', hosting)
     dispatch(setLanguage(language))

@@ -62,7 +62,9 @@ const Materials = ({ finishOrder }) => {
           <View style={[styles.line, styles.upLine]}></View>
           <View style={[styles.line, styles.downLine]}></View>
         </View>
-        <Text style={styles.cancelButtonText}>Cancel</Text>
+        <Text style={styles.cancelButtonText}>
+          {language === 'en' ? 'Cancel' : 'Отмена'}
+        </Text>
       </TouchableOpacity>
     </>
   )

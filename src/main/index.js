@@ -57,15 +57,16 @@ const createWindow = () => {
     storage.deleteFile('storageFile')
   })
 
-  ipcMain.once('language', (_, data) => (language = data))
+  ipcMain.on('language', (_, data) => {
+    language = data
+  })
 
   const showNotification = () => {
     if (win.isMinimized()) {
-      console.log('Окно свернуто')
       const notification = new Notification({
         subtitle: 'MSA',
         title: 'MSA',
-        body: 'You have a new order',
+        body: language === 'en' ? 'You have a new order' : 'У Вас новый заказ',
         icon: path.join(__dirname, iconView)
       })
       notification.show()

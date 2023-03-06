@@ -15,6 +15,7 @@ import {
 } from '../../redux/actionCreators'
 import { OperationResultTranslate } from '../../Constants'
 import arrowWhiteIcon from '../../assets/images/arrow_white.png'
+import CancelButton from '../CancelButton/CancelButton'
 import closeIcon from '../../assets/images/close.png'
 // import ErrorComponent from '../ErrorComponent/ErrorComponent'
 
@@ -84,7 +85,13 @@ const OperationResult = ({ finishOrder }) => {
               }}
             >
               <Text style={componentStyles.itemResultText}>
-                {el === 0 ? 'Выполнено частично' : 'Выполнено полностью'}
+                {el === 0
+                  ? language === 'en'
+                    ? 'Partially completed'
+                    : 'Выполнено частично'
+                  : language === 'en'
+                  ? 'Completed completely'
+                  : 'Выполнено полностью'}
               </Text>
               <Image
                 style={componentStyles.arrowIcon}
@@ -140,18 +147,8 @@ const OperationResult = ({ finishOrder }) => {
               ))}
             </View>
           ))}
-
       <View style={componentStyles.canselButtonContainer}>
-        <TouchableOpacity
-          activeOpacity={0.5}
-          style={{ ...styles.center, ...styles.cancelContainer }}
-          onPress={() => {
-            dispatch(setModalVisible(false))
-          }}
-        >
-          <Image style={componentStyles.closeIcon} source={closeIcon} />
-          <Text style={componentStyles.canselButtonTitle}>Cancel</Text>
-        </TouchableOpacity>
+        <CancelButton handler={() => dispatch(setModalVisible(false))} />
       </View>
       {/* {isErrorComponentVisible && <ErrorComponent />} */}
     </View>

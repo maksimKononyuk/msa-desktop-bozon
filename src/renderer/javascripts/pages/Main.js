@@ -222,7 +222,7 @@ const Main = () => {
           dispatch(setOrderStarted(false))
           dispatch(setMaterialsArr([]))
           dispatch(setShowMaterialsComponent(false))
-          dispatch(setActiveIndex(1))
+          dispatch(setActiveIndex(0))
           dispatch(setMessages([]))
           dispatch(setIsEquipmentEmpty(false))
           setIsOperationComplited(true)
@@ -347,14 +347,26 @@ const Main = () => {
   }, [modalVisible])
 
   const notify = () => {
-    addNotification({
-      duration: 5000,
-      title: 'Warning',
-      subtitle: 'New order',
-      message: 'You have a new order',
-      theme: 'darkblue',
-      closeButton: 'X'
-    })
+    const lang = localStorage.getItem('lang')
+    if (lang === 'en') {
+      addNotification({
+        duration: 5000,
+        title: 'Warning',
+        subtitle: 'New order',
+        message: 'You have a new order',
+        theme: 'darkblue',
+        closeButton: 'X'
+      })
+    } else {
+      addNotification({
+        duration: 5000,
+        title: 'Уведомление',
+        subtitle: 'Новый заказ',
+        message: 'У Вас новый заказ',
+        theme: 'darkblue',
+        closeButton: 'X'
+      })
+    }
   }
 
   const notificationCall = () => {
