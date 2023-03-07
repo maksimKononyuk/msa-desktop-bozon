@@ -118,7 +118,7 @@ const Main = () => {
         dispatch(setOrderStarted(false))
         dispatch(setIsCompleteWorkShiftVisible(false))
         dispatch(setMessages([]))
-        dispatch(setActiveIndex(1))
+        dispatch(setActiveIndex(0))
       })
       .catch((err) => {
         console.log('Network error when logging out ' + err)
