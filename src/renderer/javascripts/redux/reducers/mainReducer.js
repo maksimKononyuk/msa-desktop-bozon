@@ -57,14 +57,19 @@ const mainReducer = (state = initialState, action) => {
       if (action.data) {
         const unionArr = action.data.operation.relation
         const mapped = unionArr.reduce((accumulator, elem) => {
+          if (!elem.hasOwnProperty('firstPointIndex')) {
+            elem.firstPointIndex = 0
+            elem.secondPointIndex = 0
+          }
           if (
             !accumulator[
               elem.firstPointIndex.toString() + elem.secondPointIndex.toString()
             ]
-          )
+          ) {
             accumulator[
               elem.firstPointIndex.toString() + elem.secondPointIndex.toString()
             ] = []
+          }
           accumulator[
             elem.firstPointIndex.toString() + elem.secondPointIndex.toString()
           ].push(elem)
