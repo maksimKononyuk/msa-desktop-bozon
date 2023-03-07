@@ -16,7 +16,7 @@ import packageJson from '../../../../../package.json'
 const SettingsComponent = ({ setIsSettingsVisible }) => {
   const dispatch = useDispatch()
   const globalLanguage = useSelector((state) => state.main.language)
-  const [hosting, setHosting] = useState('https://demomsa.com/api')
+  const [hosting, setHosting] = useState(axios.defaults.baseURL)
   const [language, setStateLanguage] = useState(globalLanguage)
   const translate = useMemo(
     () => new SettingsComponentTranslate(language),
@@ -27,10 +27,9 @@ const SettingsComponent = ({ setIsSettingsVisible }) => {
     [language]
   )
   useEffect(() => {
-    const setHost = async () => {
+    const setHost = () => {
       const host = localStorage.getItem('hosting')
       if (host) setHosting(host)
-      axios.defaults.baseURL = hosting
     }
     setHost()
   }, [])

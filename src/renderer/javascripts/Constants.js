@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 export const setAxiosSettings = () => {
-  const url = 'https://demomsa.com/api/' // dev
+  let url = localStorage.getItem('hosting')
+  if (!url) url = 'https://demomsa.com/api/' // dev
   //const url = 'https://customer.demomsa.com/api' // prod
 
   axios.defaults.baseURL = url
