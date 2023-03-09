@@ -194,11 +194,11 @@ export class UserMenuModalTranslate {
   getLogoutLabel() {
     switch (this.lang) {
       case 'en':
-        return 'Logout'
+        return 'End shift'
       case 'ru':
-        return 'Выйти'
+        return 'Завершить смену'
       default:
-        return 'Logout'
+        return 'End shift'
     }
   }
   getSettingsLabel() {
@@ -242,7 +242,7 @@ export class ActiveOrderTranslate {
       case 'en':
         return 'Complete order information will appear after clicking "START"'
       case 'ru':
-        return 'Полная информация о заказе появится после нажатия кнопки "НАЧАТЬ"'
+        return 'Полная информация о заказе появится после нажатия на кнопку "НАЧАТЬ"'
       default:
         return 'Complete order information will appear after clicking "START"'
     }

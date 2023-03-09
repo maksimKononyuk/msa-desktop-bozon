@@ -114,6 +114,7 @@ const Main = () => {
         localStorageClear()
         navigate('/')
         dispatch(setOrders([]))
+        dispatch(setActiveOrder(null))
         dispatch(setIsUserMenuModal(false))
         dispatch(setOrderStarted(false))
         dispatch(setIsCompleteWorkShiftVisible(false))
