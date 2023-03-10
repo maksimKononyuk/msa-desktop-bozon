@@ -178,12 +178,12 @@ function Auth() {
           // }
         >
           <Text style={{ fontSize: 18, fontFamily: 'Roboto', color: '#fff' }}>
-            The login or password is incorrect.
+            {translate.getIncorrectLoginLabel()}
           </Text>
           <Text
             style={{ fontSize: 14, fontFamily: 'Roboto', color: '#FFB5B5' }}
           >
-            Please try again or contact your administrator.
+            {translate.getContactAdminLabel()}
           </Text>
         </View>
       )}

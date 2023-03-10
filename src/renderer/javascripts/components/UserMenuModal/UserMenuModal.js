@@ -4,7 +4,8 @@ import {
   Text,
   Modal,
   TouchableOpacity,
-  TextInput
+  TextInput,
+  Image
 } from 'react-native-web'
 import styles from '../../styles/Styles'
 import componentStyles from './styles'
@@ -26,6 +27,7 @@ import { UserMenuModalTranslate } from '../../Constants'
 import CancelButton from '../CancelButton/CancelButton'
 import OKButton from '../OKButton/OKButton'
 import packageJson from '../../../../../package.json'
+import closeIcon from '../../assets/images/close.png'
 // import ErrorComponent from '../ErrorComponent/ErrorComponent'
 
 const UsersMenuModal = ({ logOut }) => {
@@ -158,6 +160,18 @@ const UsersMenuModal = ({ logOut }) => {
         {!isModalGetDetails && !isModalNewOrder && !isFileSystemVisible && (
           <>
             <View style={componentStyles.menuItemBlock}>
+              <View style={componentStyles.closeContainer}>
+                <TouchableOpacity
+                  activeOpacity={0.5}
+                  style={componentStyles.closeContainerButton}
+                  onPress={() => dispatch(setIsUserMenuModal(false))}
+                >
+                  <Image
+                    style={componentStyles.closeContainerButtonImage}
+                    source={closeIcon}
+                  />
+                </TouchableOpacity>
+              </View>
               <UserMenuItem
                 title={translate.getNewOrderLabel()}
                 handler={getNewOrder}
@@ -175,14 +189,15 @@ const UsersMenuModal = ({ logOut }) => {
                 handler={() => setIsFileSystemVisible(true)}
               />
             </View>
-            <View style={componentStyles.closeButtomContainer}>
-              <CancelButton
-                handler={() => dispatch(setIsUserMenuModal(false))}
-              />
+            <View style={componentStyles.versionContainer}>
+              <Text style={[styles.versionText, { marginBottom: 14 }]}>
+                {`${translate.getVersionLabel()}: ${packageJson.version}`}
+              </Text>
+              <Text style={[styles.versionText, { lineHeight: 14 }]}>
+                {translate.getRightsLabel() + '\n'}
+                {translate.getDigitalPlatformLabel()}
+              </Text>
             </View>
-            <Text style={styles.versionText}>
-              {`${translate.getVersionLabel()}: ${packageJson.version}`}
-            </Text>
           </>
         )}
         {isModalNewOrder && (

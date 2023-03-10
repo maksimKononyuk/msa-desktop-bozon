@@ -231,6 +231,26 @@ export class UserMenuModalTranslate {
         return 'Version'
     }
   }
+  getRightsLabel() {
+    switch (this.lang) {
+      case 'en':
+        return '© 2023 All rights reserved.'
+      case 'ru':
+        return '© 2023 Все права защищены.'
+      default:
+        return '© 2023 All rights reserved.'
+    }
+  }
+  getDigitalPlatformLabel() {
+    switch (this.lang) {
+      case 'en':
+        return 'Digital platform MSA.'
+      case 'ru':
+        return 'Цифровая платформа MSA.'
+      default:
+        return 'Digital platform MSA.'
+    }
+  }
 }
 
 export class ActiveOrderTranslate {
@@ -470,6 +490,26 @@ export class AuthTranslate {
         return 'Пароль'
       default:
         return 'Password'
+    }
+  }
+  getIncorrectLoginLabel() {
+    switch (this.lang) {
+      case 'en':
+        return 'The login or password is incorrect.'
+      case 'ru':
+        return 'Неверный логин или пароль.'
+      default:
+        return 'The login or password is incorrect.'
+    }
+  }
+  getContactAdminLabel() {
+    switch (this.lang) {
+      case 'en':
+        return 'Please try again or contact your administrator.'
+      case 'ru':
+        return 'Пожалуйста, попробуйте еще раз или обратитесь к своему администратору.'
+      default:
+        return 'Please try again or contact your administrator.'
     }
   }
 }

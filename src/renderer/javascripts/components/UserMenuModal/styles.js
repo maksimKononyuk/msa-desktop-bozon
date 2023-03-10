@@ -7,7 +7,21 @@ const styles = StyleSheet.create({
     backgroundColor: '#000',
     height: '100vh',
     paddingTop: 20,
-    paddingBottom: 10
+    paddingBottom: 20
+  },
+  closeContainer: {
+    width: '85%',
+    alignItems: 'flex-end'
+  },
+  closeContainerButton: {
+    width: 50,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  closeContainerButtonImage: {
+    width: 30,
+    height: 30
   },
   scrollViewStyle: {
     backgroundColor: '#000'
@@ -38,9 +52,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: 'Roboto',
     outlineWidth: 0
-  },
-  closeButtomContainer: {
-    marginTop: 20
   },
   closeIcon: {
     width: 20,
@@ -123,6 +134,9 @@ const styles = StyleSheet.create({
     height: 400,
     backgroundColor: '#fff',
     marginTop: 10
+  },
+  versionContainer: {
+    width: '85%'
   }
 })
 

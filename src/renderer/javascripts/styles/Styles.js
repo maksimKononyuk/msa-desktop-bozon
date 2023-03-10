@@ -157,9 +157,6 @@ const styles = StyleSheet.create({
     borderRadius: 20
   },
   versionText: {
-    position: 'absolute',
-    bottom: 10,
-    left: 5,
     color: '#707070',
     fontFamily: 'Roboto',
     fontSize: 12,
