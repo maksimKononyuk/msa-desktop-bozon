@@ -21,5 +21,8 @@ contextBridge.exposeInMainWorld('subscribeForEntries', {
   },
   setLanguageInMainProcess: (language) => {
     ipcRenderer.send('language', language)
+  },
+  quitApp: () => {
+    ipcRenderer.send('quit')
   }
 })

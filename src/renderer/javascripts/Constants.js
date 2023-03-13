@@ -221,6 +221,16 @@ export class UserMenuModalTranslate {
         return 'File system'
     }
   }
+  getExitLabel() {
+    switch (this.lang) {
+      case 'en':
+        return 'Exit'
+      case 'ru':
+        return 'Выйти'
+      default:
+        return 'Exit'
+    }
+  }
   getVersionLabel() {
     switch (this.lang) {
       case 'en':
@@ -265,6 +275,16 @@ export class ActiveOrderTranslate {
         return 'Полная информация о заказе появится после нажатия на кнопку "НАЧАТЬ"'
       default:
         return 'Complete order information will appear after clicking "START"'
+    }
+  }
+  getPrintLabel() {
+    switch (this.lang) {
+      case 'en':
+        return 'Print'
+      case 'ru':
+        return 'Печать'
+      default:
+        return 'Print'
     }
   }
 }

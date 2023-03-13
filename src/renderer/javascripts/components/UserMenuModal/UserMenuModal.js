@@ -188,6 +188,10 @@ const UsersMenuModal = ({ logOut }) => {
                 title={translate.getFileSystemLabel()}
                 handler={() => setIsFileSystemVisible(true)}
               />
+              <UserMenuItem
+                title={translate.getExitLabel()}
+                handler={() => subscribeForEntries.quitApp()}
+              />
             </View>
             <View style={componentStyles.versionContainer}>
               <Text style={[styles.versionText, { marginBottom: 14 }]}>

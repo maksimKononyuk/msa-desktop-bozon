@@ -61,6 +61,8 @@ const createWindow = () => {
     language = data
   })
 
+  ipcMain.on('quit', () => app.quit())
+
   const showNotification = () => {
     if (win.isMinimized()) {
       const notification = new Notification({

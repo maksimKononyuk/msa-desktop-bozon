@@ -1,10 +1,11 @@
-import React, { useRef } from 'react'
+import React, { useRef, useMemo } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native-web'
 import { QRCodeSVG } from 'qrcode.react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setActiveBarCode } from '../../redux/actionCreators'
 import { useReactToPrint } from 'react-to-print'
 import ComponentToPrint from '../ComponentToPrint/ComponentToPrint'
+import { ActiveOrderTranslate } from '../../Constants'
 
 import styles from '../../styles/Styles'
 
@@ -13,6 +14,11 @@ const ActiveOrderHeader = () => {
   const dispatch = useDispatch()
   const activeBarCode = useSelector((state) => state.main.activeBarCode)
   const item = useSelector((state) => state.main.orders[0])
+  const language = useSelector((state) => state.main.language)
+  const translate = useMemo(
+    () => new ActiveOrderTranslate(language),
+    [language]
+  )
 
   const handlePrint = useReactToPrint({
     content: () => componentRef.current
@@ -65,7 +71,9 @@ const ActiveOrderHeader = () => {
           justifyContent: 'center'
         }}
       >
-        <Text style={{ fontSize: 15, fontFamily: 'Roboto' }}>print</Text>
+        <Text style={{ fontSize: 15, fontFamily: 'Roboto' }}>
+          {translate.getPrintLabel()}
+        </Text>
       </TouchableOpacity>
     </View>
   )
