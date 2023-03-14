@@ -9,7 +9,6 @@ import MessageFile from '../MessageFile/MessageFile'
 
 const MessageItem = ({ isYourMessage, userName, operation, date, message }) => {
   const scrollRef = useRef()
-  const dateStr = useMemo(() => parseDate(date), [])
 
   const language = useSelector((state) => state.main.language)
   const translate = useMemo(

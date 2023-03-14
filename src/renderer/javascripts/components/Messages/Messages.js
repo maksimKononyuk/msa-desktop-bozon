@@ -36,6 +36,8 @@ const Messages = ({ userName }) => {
   const [filesForSend, setFilesForSend] = useState([])
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [uries, setUries] = useState([])
+  const [isFileLoader, setIsFileLoader] = useState(false)
+  const [loadPersent, setLoadPersent] = useState(0)
 
   useEffect(() => {
     const getMessage = setInterval(() => {
@@ -67,6 +69,7 @@ const Messages = ({ userName }) => {
         .then(() => (massageInSendDocumentModal = ''))
       setFilesForSend([])
       setUries([])
+      setIsFileLoader(false)
     }
   }, [uries.length])
 
@@ -97,6 +100,7 @@ const Messages = ({ userName }) => {
 
   // Отправка одного файла и получение ссылки на файл
   const sendHandlerOneFile = async (dir, file) => {
+    setIsFileLoader(true)
     // Указание ссылки в яндекс диске с именем файла, куда будет загружен файл
     const urlDisk = `https://cloud-api.yandex.net/v1/disk/resources/upload?path=${dir}/${file.name}&overwrite=true`
     const urlForUploadRes = await fetch(urlDisk, {
@@ -109,32 +113,49 @@ const Messages = ({ userName }) => {
     const urlForUpload = await urlForUploadRes.json()
 
     // Загрузка самого файла по полученной ссылке для загрузки (При загрузке файла токен не требуется)
-    await fetch(urlForUpload.href, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: file
-    })
+    // await fetch(urlForUpload.href, {
+    //   method: 'PUT',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: file
+    // })
 
-    // Получение ссылки на загруженный файл
-    const hrefRes = await fetch(
-      `https://cloud-api.yandex.net/v1/disk/resources/download?path=${dir}/${file.name}`,
-      {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: OAuth_token
+    const xhr = new XMLHttpRequest()
+    xhr.open('PUT', urlForUpload.href)
+    xhr.setRequestHeader('Content-Type', 'application/json')
+    xhr.upload.onprogress = (e) => {
+      setLoadPersent(Math.round((e.loaded / e.total) * 100))
+    }
+    xhr.onreadystatechange = async function (e) {
+      if (e.target.readyState == 4) {
+        if (e.target.status == 201) {
+          // успешно отправили файл
+          // Получение ссылки на загруженный файл
+          const hrefRes = await fetch(
+            `https://cloud-api.yandex.net/v1/disk/resources/download?path=${dir}/${file.name}`,
+            {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: OAuth_token
+              }
+            }
+          )
+          // ссылка на загруженный файл в яндекс диск; передается в сообщении вместе с текстом сообщения для дальнейшего отображения картинки в блоке сообщения
+          const href = await hrefRes.json()
+
+          setUries((prev) => {
+            prev.push(href.href)
+            return prev
+          })
+        } else {
+          // произошла ошибка
+          console.log('Error!')
         }
       }
-    )
-    // ссылка на загруженный файл в яндекс диск; передается в сообщении вместе с текстом сообщения для дальнейшего отображения картинки в блоке сообщения
-    const href = await hrefRes.json()
-
-    setUries((prev) => {
-      prev.push(href.href)
-      return prev
-    })
+    }
+    xhr.send(file)
   }
 
   // Обработчик кнопки "Отправить сообщение и файлы"
@@ -190,6 +211,11 @@ const Messages = ({ userName }) => {
 
   return (
     <View style={styles.container}>
+      {isFileLoader && (
+        <View style={styles.loader}>
+          <Text style={styles.loaderText}>{loadPersent} %</Text>
+        </View>
+      )}
       {messages.length === 0 ? (
         <Text style={styles.notMessageText}>{translate.getInfoLabel()}</Text>
       ) : (
