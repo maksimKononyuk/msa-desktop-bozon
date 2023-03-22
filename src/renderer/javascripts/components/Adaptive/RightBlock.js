@@ -30,7 +30,7 @@ const RightBlock = ({ startOrder }) => {
               : translate.getNoPreviousOperationLabel()}
           </Text>
         </View>
-        <View style={styles.resultPreviousOperation}>
+        {/* <View style={styles.resultPreviousOperation}>
           <Text style={{ ...styles.previousOperationTitle, paddingLeft: 10 }}>
             {translate.getResultOfPreviousOperationLabel()}
           </Text>
@@ -41,7 +41,7 @@ const RightBlock = ({ startOrder }) => {
                 : translate.getNoPreviousOperationLabel()}
             </Text>
           </View>
-        </View>
+        </View> */}
       </View>
       <View>
         <Timer />

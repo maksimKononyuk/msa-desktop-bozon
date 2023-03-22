@@ -1,7 +1,14 @@
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 import path from 'path'
-import { app, BrowserWindow, ipcMain, Notification, dialog } from 'electron'
+import {
+  app,
+  BrowserWindow,
+  ipcMain,
+  Notification,
+  dialog,
+  shell
+} from 'electron'
 import { autoUpdater } from 'electron-updater'
 import Storage from './Storage'
 import iconView from '../../resources/icon.png'
@@ -62,6 +69,10 @@ const createWindow = () => {
   })
 
   ipcMain.on('quit', () => app.quit())
+
+  ipcMain.on('openExternal', () =>
+    shell.openExternal('https://msaplatforma.ru/terms/')
+  )
 
   const showNotification = () => {
     if (win.isMinimized()) {

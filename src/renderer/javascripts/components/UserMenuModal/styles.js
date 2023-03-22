@@ -137,6 +137,56 @@ const styles = StyleSheet.create({
   },
   versionContainer: {
     width: '85%'
+  },
+  aboutPlatformModal: {
+    height: '100%',
+    backgroundColor: '#000',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  aboutPlatformContainer: {
+    width: 700,
+    height: 420,
+    backgroundColor: '#fff',
+    paddingHorizontal: 67,
+    paddingVertical: 37,
+    justifyContent: 'space-between'
+  },
+  closeBlockAboutPlatform: {
+    position: 'absolute',
+    top: 14,
+    right: 15,
+    width: 30,
+    height: 30,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  closeBlockAboutPlatformLines: {
+    width: '80%',
+    borderColor: '#525252',
+    borderWidth: 1
+  },
+  closeBlockAboutPlatformLine1: {
+    transform: [{ rotate: '45deg' }, { translateY: 1.5 }]
+  },
+  closeBlockAboutPlatformLine2: {
+    transform: [{ rotate: '-45deg' }, { translateY: -1 }]
+  },
+  aboutPlatformTitleText: {
+    fontFamily: 'Roboto',
+    fontSize: 40,
+    color: '#000000'
+  },
+  aboutPlatformRightsText: {
+    marginTop: 20,
+    fontFamily: 'Roboto',
+    color: '#525252',
+    fontSize: 20
+  },
+  aboutPlatformContentText: {
+    fontFamily: 'Roboto',
+    fontSize: 24,
+    color: '#000'
   }
 })
 

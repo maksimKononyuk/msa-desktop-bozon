@@ -35,6 +35,7 @@ const UsersMenuModal = ({ logOut }) => {
   const [isModalGetDetails, setIsModalGetDetails] = useState(false)
   const [isFileSystemVisible, setIsFileSystemVisible] = useState(false)
   const [fsStorage, setFsStorage] = useState('*******')
+  const [isAboutPlatform, setIsAboutPlatform] = useState(false)
 
   const dispatch = useDispatch()
   const activeOrder = useSelector((state) => state.main.activeOrder)
@@ -194,13 +195,26 @@ const UsersMenuModal = ({ logOut }) => {
               />
             </View>
             <View style={componentStyles.versionContainer}>
-              <Text style={[styles.versionText, { marginBottom: 14 }]}>
+              <Text style={styles.versionText}>
                 {`${translate.getVersionLabel()}: ${packageJson.version}`}
               </Text>
-              <Text style={[styles.versionText, { lineHeight: 14 }]}>
+              <Text
+                style={[
+                  styles.versionText,
+                  { lineHeight: 14, marginVertical: 14 }
+                ]}
+              >
                 {translate.getRightsLabel() + '\n'}
                 {translate.getDigitalPlatformLabel()}
               </Text>
+              <TouchableOpacity
+                activeOpacity={0.5}
+                onPress={() => setIsAboutPlatform(true)}
+              >
+                <Text style={styles.versionText}>
+                  {translate.getAboutLabel()}
+                </Text>
+              </TouchableOpacity>
             </View>
           </>
         )}
@@ -314,6 +328,56 @@ const UsersMenuModal = ({ logOut }) => {
             <CancelButton handler={() => setIsFileSystemVisible(false)} />
           </>
         )}
+        <Modal
+          animationType='slider'
+          transparent={false}
+          visible={isAboutPlatform}
+        >
+          <View style={componentStyles.aboutPlatformModal}>
+            <View style={componentStyles.aboutPlatformContainer}>
+              <TouchableOpacity
+                onPress={() => setIsAboutPlatform(false)}
+                activeOpacity={0.5}
+                style={componentStyles.closeBlockAboutPlatform}
+              >
+                <View
+                  style={[
+                    componentStyles.closeBlockAboutPlatformLines,
+                    componentStyles.closeBlockAboutPlatformLine1
+                  ]}
+                ></View>
+                <View
+                  style={[
+                    componentStyles.closeBlockAboutPlatformLines,
+                    componentStyles.closeBlockAboutPlatformLine2
+                  ]}
+                ></View>
+              </TouchableOpacity>
+              <View>
+                <Text style={componentStyles.aboutPlatformTitleText}>
+                  {translate.getAboutMSAPlatformLabel()}
+                </Text>
+                <Text style={componentStyles.aboutPlatformRightsText}>
+                  {translate.getRightsLabel() + ' '}
+                  {translate.getDigitalPlatformLabel()}
+                </Text>
+              </View>
+              <div style={componentStyles.aboutPlatformContentText}>
+                <div>{translate.getRegulatedLabel()}</div>
+                <span
+                  onClick={() => subscribeForEntries.openExternal()}
+                  style={{ color: '#007AFC', cursor: 'pointer' }}
+                >
+                  {translate.getLinkLabel() + ' '}
+                </span>
+                {translate.getUnlessLabel()}
+              </div>
+              <Text style={componentStyles.aboutPlatformContentText}>
+                {translate.getEndTextLabel()}
+              </Text>
+            </View>
+          </View>
+        </Modal>
         {isCompleteWorkShiftVisible && <CompleteWorkShift logOut={logOut} />}
         {isSettingsVisible && (
           <SettingsComponent setIsSettingsVisible={setIsSettingsVisible} />

@@ -261,6 +261,66 @@ export class UserMenuModalTranslate {
         return 'Digital platform MSA.'
     }
   }
+  getAboutLabel() {
+    switch (this.lang) {
+      case 'en':
+        return 'About the software'
+      case 'ru':
+        return 'О программном обеспечении'
+      default:
+        return 'About the software'
+    }
+  }
+  getAboutMSAPlatformLabel() {
+    switch (this.lang) {
+      case 'en':
+        return 'About the MSA platform'
+      case 'ru':
+        return 'О MSA платформе'
+      default:
+        return 'About the MSA platform'
+    }
+  }
+  getRegulatedLabel() {
+    switch (this.lang) {
+      case 'en':
+        return 'The use of the product is regulated'
+      case 'ru':
+        return 'Использование продукта регламентируется'
+      default:
+        return 'The use of the product is regulated'
+    }
+  }
+  getLinkLabel() {
+    switch (this.lang) {
+      case 'en':
+        return 'by the MSA license agreement,'
+      case 'ru':
+        return 'лицензионным договором MSA,'
+      default:
+        return 'by the MSA license agreement,'
+    }
+  }
+  getUnlessLabel() {
+    switch (this.lang) {
+      case 'en':
+        return 'unless otherwise specified.'
+      case 'ru':
+        return 'если не указано иное.'
+      default:
+        return 'unless otherwise specified.'
+    }
+  }
+  getEndTextLabel() {
+    switch (this.lang) {
+      case 'en':
+        return 'The product includes software developed by "MSA PLATFORM» LLC.'
+      case 'ru':
+        return 'Продукт включает программное обеспечение, разработанное ООО «МСА ПЛАТФОРМА».'
+      default:
+        return 'The product includes software developed by «MSA PLATFORM» LLC.'
+    }
+  }
 }
 
 export class ActiveOrderTranslate {
