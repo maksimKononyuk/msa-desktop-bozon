@@ -207,14 +207,16 @@ const UsersMenuModal = ({ logOut }) => {
                 {translate.getRightsLabel() + '\n'}
                 {translate.getDigitalPlatformLabel()}
               </Text>
-              <TouchableOpacity
-                activeOpacity={0.5}
-                onPress={() => setIsAboutPlatform(true)}
-              >
-                <Text style={styles.versionText}>
-                  {translate.getAboutLabel()}
-                </Text>
-              </TouchableOpacity>
+              {language === 'ru' && (
+                <TouchableOpacity
+                  activeOpacity={0.5}
+                  onPress={() => setIsAboutPlatform(true)}
+                >
+                  <Text style={styles.versionText}>
+                    О программном обеспечении
+                  </Text>
+                </TouchableOpacity>
+              )}
             </View>
           </>
         )}
@@ -355,25 +357,26 @@ const UsersMenuModal = ({ logOut }) => {
               </TouchableOpacity>
               <View>
                 <Text style={componentStyles.aboutPlatformTitleText}>
-                  {translate.getAboutMSAPlatformLabel()}
+                  О MSA платформе
                 </Text>
                 <Text style={componentStyles.aboutPlatformRightsText}>
-                  {translate.getRightsLabel() + ' '}
-                  {translate.getDigitalPlatformLabel()}
+                  {'© 2023 Все права защищены.' + ' '}
+                  Цифровая платформа MSA.
                 </Text>
               </View>
               <div style={componentStyles.aboutPlatformContentText}>
-                <div>{translate.getRegulatedLabel()}</div>
+                <div>Использование продукта регламентируется</div>
                 <span
                   onClick={() => subscribeForEntries.openExternal()}
                   style={{ color: '#007AFC', cursor: 'pointer' }}
                 >
-                  {translate.getLinkLabel() + ' '}
+                  {'лицензионным договором MSA,' + ' '}
                 </span>
-                {translate.getUnlessLabel()}
+                если не указано иное.
               </div>
               <Text style={componentStyles.aboutPlatformContentText}>
-                {translate.getEndTextLabel()}
+                Продукт включает программное обеспечение, разработанное ООО «МСА
+                ПЛАТФОРМА».
               </Text>
             </View>
           </View>

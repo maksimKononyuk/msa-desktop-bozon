@@ -67,6 +67,7 @@ const Messages = ({ userName }) => {
           message: massageInSendDocumentModal + '%iconLink%' + uries.join(',')
         })
         .then(() => (massageInSendDocumentModal = ''))
+        .catch((err) => console.log(err))
       setFilesForSend([])
       setUries([])
       setIsFileLoader(false)
