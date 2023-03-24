@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setIsCompleteWorkShiftVisible } from '../../redux/actionCreators'
 import { CompleteWorkShiftTranslate } from '../../Constants'
 
-const CompleteWorkShift = ({ logOut }) => {
+const CompleteWorkShift = ({ handler, completeWorkShiftVisibleParam }) => {
   const dispatch = useDispatch()
   const language = useSelector((state) => state.main.language)
   const translate = useMemo(
@@ -17,12 +17,16 @@ const CompleteWorkShift = ({ logOut }) => {
   return (
     <Modal animationType='slide' transparent={true} visible={true}>
       <View style={styles.container}>
-        <Text style={styles.modalTitle}>{translate.getInfoLable()}</Text>
+        <Text style={styles.modalTitle}>
+          {completeWorkShiftVisibleParam === 'shift'
+            ? translate.getInfoLableShift()
+            : translate.getInfoLableExit()}
+        </Text>
         <View style={styles.buttonBlock}>
           <TouchableOpacity
             activeOpacity={0.5}
             style={[styles.button, styles.greenButton]}
-            onPress={() => logOut()}
+            onPress={() => handler()}
           >
             <Image source={done} style={styles.okButton} />
             <Text style={styles.buttonText}>{translate.getYesLable()}</Text>

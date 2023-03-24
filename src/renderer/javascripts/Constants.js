@@ -375,7 +375,7 @@ export class CompleteWorkShiftTranslate {
   constructor(lang) {
     this.lang = lang
   }
-  getInfoLable() {
+  getInfoLableShift() {
     switch (this.lang) {
       case 'en':
         return 'Do you really want to complete your work shift?'
@@ -383,6 +383,16 @@ export class CompleteWorkShiftTranslate {
         return 'Вы действительно хотите завершить свою рабочую смену?'
       default:
         return 'Do you really want to complete your work shift?'
+    }
+  }
+  getInfoLableExit() {
+    switch (this.lang) {
+      case 'en':
+        return 'Are you sure you want to exit the app?'
+      case 'ru':
+        return 'Вы действительно хотите выйти из приложения?'
+      default:
+        return 'Are you sure you want to exit the app?'
     }
   }
   getYesLable() {
