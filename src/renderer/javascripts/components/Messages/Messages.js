@@ -59,6 +59,7 @@ const Messages = ({ userName }) => {
 
   // Отправка сообщиния и ссылок на выбранные файлы на сервер MSA после получения этих ссылок
   useEffect(() => {
+    console.log('Отработка')
     if (uries.length === filesForSend.length && uries.length !== 0) {
       axios
         .post('order_worker_new_message', {
@@ -147,8 +148,9 @@ const Messages = ({ userName }) => {
           const href = await hrefRes.json()
 
           setUries((prev) => {
-            prev.push(href.href)
-            return prev
+            const newArr = [...prev]
+            newArr.push(href.href)
+            return newArr
           })
         } else {
           // произошла ошибка
@@ -204,8 +206,9 @@ const Messages = ({ userName }) => {
     const { files } = event.target
     const filesArray = fileListToArray(files)
     setFilesForSend((prev) => {
-      prev.push.apply(prev, filesArray)
-      return prev
+      const newArr = [...prev]
+      newArr.push.apply(newArr, filesArray)
+      return newArr
     })
     setIsModalVisible(true)
   }
