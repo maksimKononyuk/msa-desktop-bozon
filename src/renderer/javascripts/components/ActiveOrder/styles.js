@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native-web'
 const styles = StyleSheet.create({
   jsonTreeContainer: {
     alignSelf: 'flex-start',
-    paddingRight: 10,
+    paddingHorizontal: 10,
     marginBottom: 15,
     flex: 1,
     overflow: 'auto'

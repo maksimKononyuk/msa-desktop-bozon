@@ -70,9 +70,7 @@ const createWindow = () => {
 
   ipcMain.on('quit', () => app.quit())
 
-  ipcMain.on('openExternal', () =>
-    shell.openExternal('https://msaplatforma.ru/terms/')
-  )
+  ipcMain.on('openExternal', (_, data) => shell.openExternal(data))
 
   const showNotification = () => {
     if (win.isMinimized()) {

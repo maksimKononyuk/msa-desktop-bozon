@@ -25,7 +25,7 @@ contextBridge.exposeInMainWorld('subscribeForEntries', {
   quitApp: () => {
     ipcRenderer.send('quit')
   },
-  openExternal: () => {
-    ipcRenderer.send('openExternal')
+  openExternal: (url) => {
+    ipcRenderer.send('openExternal', url)
   }
 })

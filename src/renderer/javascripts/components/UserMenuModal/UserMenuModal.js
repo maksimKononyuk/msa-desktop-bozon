@@ -376,7 +376,11 @@ const UsersMenuModal = ({ logOut }) => {
               <div style={componentStyles.aboutPlatformContentText}>
                 <div>Использование продукта регламентируется</div>
                 <span
-                  onClick={() => subscribeForEntries.openExternal()}
+                  onClick={() =>
+                    subscribeForEntries.openExternal(
+                      'https://msaplatforma.ru/terms/'
+                    )
+                  }
                   style={{ color: '#007AFC', cursor: 'pointer' }}
                 >
                   {'лицензионным договором MSA,' + ' '}

@@ -18,6 +18,23 @@ const ActiveOrder = () => {
     [language]
   )
 
+  const valueRandererHandler = (raw) => {
+    const rawWithoutQuotes = raw.slice(1, -1)
+    if (rawWithoutQuotes.startsWith('http')) {
+      return (
+        <Text
+          onPress={() => {
+            subscribeForEntries.openExternal(rawWithoutQuotes)
+          }}
+          style={[componentStyles.labelText, { color: 'blue' }]}
+        >
+          {raw}
+        </Text>
+      )
+    }
+    return <Text style={componentStyles.labelText}>{raw}</Text>
+  }
+
   return (
     <View style={styles.container}>
       {orderStarted ? (
@@ -39,9 +56,7 @@ const ActiveOrder = () => {
             labelRenderer={([label]) => (
               <Text style={componentStyles.labelText}>{label}:</Text>
             )}
-            valueRenderer={(raw) => (
-              <Text style={componentStyles.labelText}>{raw}</Text>
-            )}
+            valueRenderer={(raw) => valueRandererHandler(raw)}
           />
         </View>
       ) : (
