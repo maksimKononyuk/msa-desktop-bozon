@@ -26,8 +26,8 @@ const Order = ({ item, icon, idx }) => {
           <Text style={componentStyles.itemIdText}>{item._id}</Text>
           <Text
             style={componentStyles.itemNameText}
-            numberOfLines={1}
-            ellipsizeMode={'middle'}
+            // numberOfLines={1}
+            // ellipsizeMode={'middle'}
           >
             {item.name}
           </Text>
