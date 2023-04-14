@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { View, Text } from 'react-native-web'
 import { useSelector, useDispatch } from 'react-redux'
-import { MessagesTranslale } from '../../Constants'
+import { MessagesTranslale, yandexDiskHeaders } from '../../Constants'
 import {
   setMessages,
   setErrorMessage,
@@ -17,9 +17,6 @@ import styles from './styles'
 let massageInSendDocumentModal = ''
 
 const Messages = ({ userName }) => {
-  const OAuth_token =
-    'OAuth y0_AgAAAABl96PzAAiSFgAAAADTZi6eBsur82fvRwOaFAf6oPfBjcRClOQ'
-
   const dispatch = useDispatch()
   const orderId = useSelector((state) => state.main.activeOrder?._id)
   const userId = useSelector((state) => state.main.user.u_id)
@@ -59,7 +56,6 @@ const Messages = ({ userName }) => {
 
   // Отправка сообщиния и ссылок на выбранные файлы на сервер MSA после получения этих ссылок
   useEffect(() => {
-    console.log('Отработка')
     if (uries.length === filesForSend.length && uries.length !== 0) {
       axios
         .post('order_worker_new_message', {
@@ -81,20 +77,14 @@ const Messages = ({ userName }) => {
       `https://cloud-api.yandex.net/v1/disk/resources?path=/${userId}/`,
       {
         method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: OAuth_token
-        }
+        headers: yandexDiskHeaders
       }
     )
     await fetch(
       `https://cloud-api.yandex.net/v1/disk/resources?path=/${userId}/emploees/`,
       {
         method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: OAuth_token
-        }
+        headers: yandexDiskHeaders
       }
     )
     return `${userId}/emploees`
@@ -107,10 +97,7 @@ const Messages = ({ userName }) => {
     const urlDisk = `https://cloud-api.yandex.net/v1/disk/resources/upload?path=${dir}/${file.name}&overwrite=true`
     const urlForUploadRes = await fetch(urlDisk, {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: OAuth_token
-      }
+      headers: yandexDiskHeaders
     })
     const urlForUpload = await urlForUploadRes.json()
 
@@ -134,22 +121,21 @@ const Messages = ({ userName }) => {
         if (e.target.status == 201) {
           // успешно отправили файл
           // Получение ссылки на загруженный файл
-          const hrefRes = await fetch(
-            `https://cloud-api.yandex.net/v1/disk/resources/download?path=${dir}/${file.name}`,
-            {
-              method: 'GET',
-              headers: {
-                'Content-Type': 'application/json',
-                Authorization: OAuth_token
-              }
-            }
-          )
+          // const hrefRes = await fetch(
+          //   `https://cloud-api.yandex.net/v1/disk/resources/download?path=${dir}/${file.name}`,
+          //   {
+          //     method: 'GET',
+          //     headers: yandexDiskHeaders
+          //   }
+          // )
           // ссылка на загруженный файл в яндекс диск; передается в сообщении вместе с текстом сообщения для дальнейшего отображения картинки в блоке сообщения
-          const href = await hrefRes.json()
+          // const href = await hrefRes.json()
+          const fetchUrlForFileFromYaDisk = `https://cloud-api.yandex.net/v1/disk/resources/download?path=${dir}/${file.name}`
 
           setUries((prev) => {
             const newArr = [...prev]
-            newArr.push(href.href)
+            // newArr.push(href.href)
+            newArr.push(fetchUrlForFileFromYaDisk)
             return newArr
           })
         } else {

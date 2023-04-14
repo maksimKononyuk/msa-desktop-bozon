@@ -36,10 +36,7 @@ const MessageFile = ({ uri }) => {
         <Image
           onLoadEnd={() => setIsIconLoading(false)}
           source={
-            uri.toLowerCase().includes('jpg') ||
-            uri.toLowerCase().includes('jpeg') ||
-            uri.toLowerCase().includes('png') ||
-            uri.toLowerCase().includes('gif')
+            isImage
               ? {
                   uri: uri
                 }

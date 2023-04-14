@@ -30,6 +30,14 @@ export const storageClear = () => {
   localStorage.removeItem('role')
 }
 
+const OAuth_token =
+  'OAuth y0_AgAAAABl96PzAAiSFgAAAADTZi6eBsur82fvRwOaFAf6oPfBjcRClOQ'
+
+export const yandexDiskHeaders = {
+  'Content-Type': 'application/json',
+  Authorization: OAuth_token
+}
+
 export const getCouruselItems = (lang) => {
   switch (lang) {
     case 'en':

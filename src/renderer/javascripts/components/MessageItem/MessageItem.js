@@ -1,8 +1,8 @@
-import React, { useRef, useEffect, useMemo } from 'react'
-import { View, Text, Image } from 'react-native-web'
+import React, { useRef, useEffect, useMemo, useState } from 'react'
+import { View, Text, Image, ActivityIndicator } from 'react-native-web'
 import avatar from '../../assets/images/avatar_local.png'
 import styles from './styles'
-import { parseDate } from '../../Constants'
+import { yandexDiskHeaders } from '../../Constants'
 import { useSelector } from 'react-redux'
 import { OperationContainerTranslate } from '../../Constants'
 import MessageFile from '../MessageFile/MessageFile'
@@ -18,6 +18,38 @@ const MessageItem = ({ isYourMessage, userName, operation, date, message }) => {
 
   useEffect(() => {
     scrollRef.current?.scrollIntoView(false)
+  }, [])
+
+  const [isLoadingLinks, setIsLoadingLinks] = useState(true)
+  const [textMessage, setTextMessage] = useState('')
+  const [linksArr, setLinksArr] = useState([])
+
+  const getLinkForFileFromYaDisk = async (url) => {
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: yandexDiskHeaders
+    })
+    const data = await response.json()
+    return data.href
+  }
+
+  useEffect(() => {
+    if (message.includes('%iconLink%')) {
+      const messageDataArr = message.split('%iconLink%')
+      setTextMessage(messageDataArr[0])
+      messageDataArr[1].split(',').forEach(async (link) => {
+        const href = await getLinkForFileFromYaDisk(link)
+        setLinksArr((prev) => {
+          const newArr = [...prev]
+          newArr.push(href)
+          return newArr
+        })
+      })
+      setIsLoadingLinks(false)
+    } else {
+      setIsLoadingLinks(false)
+      setTextMessage(message)
+    }
   }, [])
 
   return (
@@ -59,7 +91,9 @@ const MessageItem = ({ isYourMessage, userName, operation, date, message }) => {
           </Text>
         </View>
       </View>
-      {message.includes('%iconLink%') ? (
+      {isLoadingLinks ? (
+        <ActivityIndicator size='large' color='#000088' />
+      ) : linksArr.length > 0 ? (
         <View style={{ alignItems: 'center' }}>
           <Text
             style={[
@@ -68,20 +102,17 @@ const MessageItem = ({ isYourMessage, userName, operation, date, message }) => {
               isYourMessage && { color: '#ffffff' }
             ]}
           >
-            {message.split('%iconLink%')[0]}
+            {textMessage}
           </Text>
           <View style={styles.fileIconsContainer}>
-            {message
-              .split('%iconLink%')[1]
-              .split(',')
-              .map((item, index) => (
-                <MessageFile uri={item} key={index} />
-              ))}
+            {linksArr.map((item, index) => (
+              <MessageFile uri={item} key={index} />
+            ))}
           </View>
         </View>
       ) : (
         <Text style={[styles.message, isYourMessage && { color: '#ffffff' }]}>
-          {message}
+          {textMessage}
         </Text>
       )}
     </View>
