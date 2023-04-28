@@ -28,53 +28,76 @@ const ActiveOrderHeader = () => {
     <View
       style={[
         styles.orderContainer,
-        { backgroundColor: '#FFFFFF', width: '100%', paddingHorizontal: 20 }
+        {
+          backgroundColor: '#FFFFFF',
+          paddingHorizontal: 20,
+          width: '100%'
+        }
       ]}
     >
       {/**Component for print (unvisible) */}
       <ComponentToPrint ref={componentRef} name={item.name} id={item._id} />
-      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          width: '100%'
+        }}
+      >
         <TouchableOpacity
           activeOpacity={0.5}
           onPress={() => {
-            activeBarCode
-              ? dispatch(setActiveBarCode(false))
-              : dispatch(setActiveBarCode(true))
+            // activeBarCode
+            //   ? dispatch(setActiveBarCode(false))
+            //   : dispatch(setActiveBarCode(true))
           }}
         >
           <QRCodeSVG value={item._id} size={58} />
         </TouchableOpacity>
-        <View style={{ flexDirection: 'column', paddingLeft: 10 }}>
+        <View
+          style={{
+            flexDirection: 'column',
+            flex: 1,
+            marginLeft: 10,
+            textAlign: 'left'
+          }}
+        >
           <Text
             style={{ fontFamily: 'Montserrat', fontSize: 26 }}
-            numberOfLines={2}
-            ellipsizeMode={'middle'}
+            // numberOfLines={2}
+            // ellipsizeMode={'middle'}
           >
-            {item.name}
+            {item.name} Пиздец подкрался незаметно
           </Text>
           <Text
-            style={{ color: '#8F8F8F', fontFamily: 'Roboto', fontSize: 13 }}
+            style={{
+              color: '#8F8F8F',
+              fontFamily: 'Roboto',
+              fontSize: 13,
+              marginLeft: 1
+            }}
           >
-            {item._id}
+            {item._id} пиздорван
           </Text>
         </View>
+        <TouchableOpacity
+          activeOpacity={0.5}
+          onPress={handlePrint}
+          style={{
+            width: 80,
+            height: 40,
+            backgroundColor: '#E0E0E0',
+            borderRadius: 20,
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginLeft: 10
+          }}
+        >
+          <Text style={{ fontSize: 15, fontFamily: 'Roboto' }}>
+            {translate.getPrintLabel()}
+          </Text>
+        </TouchableOpacity>
       </View>
-      <TouchableOpacity
-        activeOpacity={0.5}
-        onPress={handlePrint}
-        style={{
-          width: 80,
-          height: 40,
-          backgroundColor: '#E0E0E0',
-          borderRadius: 20,
-          alignItems: 'center',
-          justifyContent: 'center'
-        }}
-      >
-        <Text style={{ fontSize: 15, fontFamily: 'Roboto' }}>
-          {translate.getPrintLabel()}
-        </Text>
-      </TouchableOpacity>
     </View>
   )
 }

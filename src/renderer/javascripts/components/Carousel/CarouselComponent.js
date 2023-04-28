@@ -9,8 +9,8 @@ const CarouselComponent = () => {
   const language = useSelector((state) => state.main.language)
   return (
     <View style={styles.container}>
-      {getCouruselItems(language).map((item, index) => (
-        <MenuItem item={item} index={index} key={index} />
+      {getCouruselItems(language).map((item) => (
+        <MenuItem item={item} key={item.id} />
       ))}
     </View>
   )

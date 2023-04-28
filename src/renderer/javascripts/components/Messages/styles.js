@@ -34,6 +34,10 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto',
     fontSize: 18,
     padding: 15
+  },
+  activityIndicator: {
+    height: '40%',
+    justifyContent: 'flex-end'
   }
 })
 

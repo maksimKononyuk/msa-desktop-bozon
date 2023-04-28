@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
-import { View, Text } from 'react-native-web'
+import { View, Text, ActivityIndicator } from 'react-native-web'
 import { useSelector, useDispatch } from 'react-redux'
 import { MessagesTranslale, yandexDiskHeaders } from '../../Constants'
 import {
@@ -35,6 +35,7 @@ const Messages = ({ userName }) => {
   const [uries, setUries] = useState([])
   const [isFileLoader, setIsFileLoader] = useState(false)
   const [loadPersent, setLoadPersent] = useState(0)
+  const [isLoadMessages, setIsLoadMessages] = useState(true)
 
   useEffect(() => {
     const getMessage = setInterval(() => {
@@ -42,6 +43,7 @@ const Messages = ({ userName }) => {
         .get(`order_worker_message/${orderId}`)
         .then((res) => {
           dispatch(setMessages(res.data))
+          setIsLoadMessages(false)
         })
         .catch((err) => {
           console.log('Network error when receiving messages ' + err)
@@ -206,7 +208,11 @@ const Messages = ({ userName }) => {
           <Text style={styles.loaderText}>{loadPersent} %</Text>
         </View>
       )}
-      {messages.length === 0 ? (
+      {isLoadMessages ? (
+        <View style={styles.activityIndicator}>
+          <ActivityIndicator size='large' color='#000088' />
+        </View>
+      ) : messages.length === 0 ? (
         <Text style={styles.notMessageText}>{translate.getInfoLabel()}</Text>
       ) : (
         <View style={styles.messagesBlock}>

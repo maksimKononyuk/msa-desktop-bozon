@@ -409,7 +409,7 @@ const Main = () => {
                 )}
               </>
             ) : null}
-            {activeIndex === 1 ? <Resources /> : null}
+            {/* {activeIndex === 1 ? <Resources /> : null} */}
             {activeIndex === 2 ? <TechMaps /> : null}
           </View>
           <RightBlock startOrder={startOrder} />

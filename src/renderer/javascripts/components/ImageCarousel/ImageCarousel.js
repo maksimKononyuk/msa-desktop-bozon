@@ -53,7 +53,7 @@ const ImageCorousel = () => {
                   <Image
                     source={objIcon}
                     resizeMode={'contain'}
-                    style={{ width: '100%', height: '100%' }}
+                    style={{ width: '50%', height: '50%', marginTop: 50 }}
                   />
                 </TouchableOpacity>
               )
@@ -73,7 +73,9 @@ const ImageCorousel = () => {
               )
             if (
               item.file_name.substr(item.file_name.lastIndexOf('.') + 1) ===
-              'pdf' || item.file_name.substr(item.file_name.lastIndexOf('.') + 1) === 'html'
+                'pdf' ||
+              item.file_name.substr(item.file_name.lastIndexOf('.') + 1) ===
+                'html'
             )
               return (
                 <TouchableOpacity
@@ -85,9 +87,14 @@ const ImageCorousel = () => {
                 >
                   <Text style={styles.itemText}>{item.file_name}</Text>
                   <Image
-                    style={styles.itemImage}
-                    source={item.file_name.substr(item.file_name.lastIndexOf('.') + 1) ===
-                    'pdf' ? pdfIcon : htmlIcon}
+                    style={{ width: '50%', height: '50%', marginTop: 50 }}
+                    source={
+                      item.file_name.substr(
+                        item.file_name.lastIndexOf('.') + 1
+                      ) === 'pdf'
+                        ? pdfIcon
+                        : htmlIcon
+                    }
                     resizeMode={'contain'}
                   />
                 </TouchableOpacity>
@@ -112,8 +119,8 @@ const ImageCorousel = () => {
       </View>
       <View style={styles.buttons}>
         <TouchableOpacity
-          activeOpacity={0.5}
-          style={styles.button}
+          activeOpacity={itemNumber > 0 ? 0.5 : 0}
+          style={[styles.button, { opacity: itemNumber > 0 ? 100 : 0 }]}
           onPress={buttonHandler}
         >
           <View style={[styles.upLineLeft, styles.line]}></View>
@@ -121,8 +128,11 @@ const ImageCorousel = () => {
           <Text style={styles.textContent}>prev</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          activeOpacity={0.5}
-          style={styles.button}
+          activeOpacity={itemNumber < mapsArr.length - 1 ? 0.5 : 0}
+          style={[
+            styles.button,
+            { opacity: itemNumber < mapsArr.length - 1 ? 100 : 0 }
+          ]}
           onPress={buttonHandler}
         >
           <View style={[styles.upLineRight, styles.line]}></View>
