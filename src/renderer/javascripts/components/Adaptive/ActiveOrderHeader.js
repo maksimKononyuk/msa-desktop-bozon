@@ -67,7 +67,7 @@ const ActiveOrderHeader = () => {
             // numberOfLines={2}
             // ellipsizeMode={'middle'}
           >
-            {item.name} Пиздец подкрался незаметно
+            {item.name}
           </Text>
           <Text
             style={{
