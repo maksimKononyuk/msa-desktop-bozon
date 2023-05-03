@@ -77,7 +77,7 @@ const ActiveOrderHeader = () => {
               marginLeft: 1
             }}
           >
-            {item._id} пиздорван
+            {item._id}
           </Text>
         </View>
         <TouchableOpacity
