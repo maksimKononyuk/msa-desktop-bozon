@@ -11,17 +11,15 @@ const Order = ({ item, icon, idx }) => {
         styles.orderContainer,
         {
           width: '25%',
+          borderBottomWidth: 0.5,
           borderRightWidth: 0.5,
-          borderRightColor: '#00000029',
+          borderColor: '#00000015',
           backgroundColor: idx === 0 ? '#EBEBEB' : '#fff'
         }
       ]}
     >
       <View style={componentStyles.qrItemName}>
-        <Image
-          source={icon}
-          style={{ width: idx === 0 ? 16 : 8, height: idx === 0 ? 21 : 11 }}
-        ></Image>
+        <Image source={icon} style={{ width: 8, height: 11 }}></Image>
         <View style={componentStyles.itemIdName}>
           <Text style={componentStyles.itemIdText}>{item._id}</Text>
           <Text

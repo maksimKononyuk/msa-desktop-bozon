@@ -380,7 +380,8 @@ const Main = () => {
       style={{
         alignItems: 'center',
         backgroundColor: '#fff',
-        height: '100vh'
+        height: '100vh',
+        overflow: 'hidden'
       }}
     >
       <Notifications />

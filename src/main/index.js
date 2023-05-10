@@ -9,16 +9,12 @@ import {
   dialog,
   shell
 } from 'electron'
-import { autoUpdater } from 'electron-updater'
 import Storage from './Storage'
 import iconView from '../../resources/icon.png'
 
 let win
 
 let language = 'ru'
-
-autoUpdater.autoDownload = false
-autoUpdater.autoInstallOnAppQuit = true
 
 const createWindow = () => {
   // Create the browser window.
@@ -120,42 +116,6 @@ ipcMain.on('openChildWindow', (event, url) => {
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   createWindow()
-  if (process.env.NODE_ENV !== 'development') {
-    autoUpdater.checkForUpdates()
-    console.log('Checking for update')
-  }
-})
-
-autoUpdater.on('update-available', (info) => {
-  console.log('Update available')
-  const pathUpdate = autoUpdater.downloadUpdate()
-  console.log(pathUpdate)
-})
-autoUpdater.on('update-not-available', (info) => {
-  console.log('No update available')
-})
-autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
-  console.log('Update downloaded')
-  const dialogOpts = {
-    type: 'info',
-    buttons: [
-      language === 'ru' ? 'Перезапустить' : 'Restart',
-      language === 'ru' ? 'Позже' : 'Later'
-    ],
-    title: language === 'ru' ? 'Обновление приложения' : 'Application Update',
-    message: process.platform === 'win32' ? releaseNotes : releaseName,
-    detail:
-      language === 'ru'
-        ? 'Была загружена новая версия. Перезапустите приложение, чтобы применить обновления.'
-        : 'A new version has been downloaded. Restart the application to apply the updates.'
-  }
-
-  dialog.showMessageBox(dialogOpts).then((returnValue) => {
-    if (returnValue.response === 0) autoUpdater.quitAndInstall()
-  })
-})
-autoUpdater.on('error', (error) => {
-  console.log(error)
 })
 
 // Quit when all windows are closed.

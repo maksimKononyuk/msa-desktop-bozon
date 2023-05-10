@@ -5,8 +5,8 @@ import styles from '../../styles/Styles'
 import componentStyles from './styles'
 import { useSelector } from 'react-redux'
 import { OrdersTranslate } from '../../Constants'
-import arrowNotMain from '../../assets/icons/arrowNotMain.png'
-import arrowMain from '../../assets/icons/arrowMain.png'
+import arrowNotMain from '../../assets/icons/arrowNotMain.svg'
+import arrowMain from '../../assets/icons/arrowMain.svg'
 import { useHorizontalScroll } from '../../lib/useHorizontalScroll/useHorizontalScroll'
 
 const Orders = () => {

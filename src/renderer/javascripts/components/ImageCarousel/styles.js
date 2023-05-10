@@ -28,8 +28,7 @@ const styles = StyleSheet.create({
   },
   itemText: {
     fontSize: 16,
-    fontFamily: 'Roboto',
-    fontWeight: 'bold'
+    fontFamily: 'Roboto'
   },
   buttons: {
     flexDirection: 'row',

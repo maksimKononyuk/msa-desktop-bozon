@@ -3,14 +3,13 @@ import { StyleSheet } from 'react-native-web'
 const styles = StyleSheet.create({
   qrItemName: {
     flexDirection: 'row',
-    alignItems: 'center',
     flex: 1
   },
   iconStyle: {
     marginRight: 10
   },
   itemIdName: {
-    marginLeft: 10,
+    marginLeft: 8,
     width: '93%'
   },
   itemIdText: {

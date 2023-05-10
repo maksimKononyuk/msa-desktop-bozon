@@ -6,7 +6,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginBottom: 15,
     flex: 1,
-    overflow: 'auto'
+    overflow: 'auto',
+    width: '100%'
   },
   labelText: {
     fontSize: 14,
