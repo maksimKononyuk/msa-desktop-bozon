@@ -3,10 +3,13 @@ import { StyleSheet } from 'react-native-web'
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: 150,
+    paddingVertical: 15,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#000'
+  },
+  digitBlock: {
+    width: 160
   },
   titleText: {
     fontFamily: 'Roboto',

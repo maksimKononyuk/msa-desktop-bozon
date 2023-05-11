@@ -31,7 +31,10 @@ const ActiveOrderHeader = () => {
         {
           backgroundColor: '#FFFFFF',
           paddingHorizontal: 20,
-          width: '100%'
+          width: '100%',
+          borderTopWidth: 0.5,
+          borderBottomWidth: 0.5,
+          borderColor: '#00000015'
         }
       ]}
     >
@@ -69,16 +72,26 @@ const ActiveOrderHeader = () => {
           >
             {item.name}
           </Text>
-          <Text
-            style={{
-              color: '#8F8F8F',
-              fontFamily: 'Roboto',
-              fontSize: 13,
-              marginLeft: 1
-            }}
-          >
-            {item._id}
-          </Text>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <Text
+              style={{
+                color: '#8F8F8F',
+                fontFamily: 'Roboto',
+                fontSize: 13,
+                marginLeft: 1
+              }}
+            >
+              {item._id.slice(0, -5)}
+            </Text>
+            <Text
+              style={{
+                fontFamily: 'Roboto',
+                fontSize: 13
+              }}
+            >
+              {item._id.substr(item._id.length - 5)}
+            </Text>
+          </View>
         </View>
         <TouchableOpacity
           activeOpacity={0.5}
@@ -86,7 +99,7 @@ const ActiveOrderHeader = () => {
           style={{
             width: 80,
             height: 40,
-            backgroundColor: '#E0E0E0',
+            backgroundColor: '#e9e9e9',
             borderRadius: 20,
             alignItems: 'center',
             justifyContent: 'center',

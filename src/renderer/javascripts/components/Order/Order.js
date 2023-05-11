@@ -13,8 +13,8 @@ const Order = ({ item, icon, idx }) => {
           width: '25%',
           borderBottomWidth: 0.5,
           borderRightWidth: 0.5,
-          borderColor: '#00000015',
-          backgroundColor: idx === 0 ? '#EBEBEB' : '#fff'
+          borderColor: '#00000008',
+          backgroundColor: idx === 0 ? '#EBEBEBCC' : '#fff'
         }
       ]}
     >

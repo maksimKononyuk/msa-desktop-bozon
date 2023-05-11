@@ -42,17 +42,17 @@ export const getCouruselItems = (lang) => {
   switch (lang) {
     case 'en':
       return [
+        { id: 3, title: 'Messages' },
         { id: 0, title: 'Order' },
         // {id: 1 title: 'Resources' },
-        { id: 2, title: 'Tech. maps' },
-        { id: 3, title: 'Reports' }
+        { id: 2, title: 'Technical maps' }
       ]
     case 'ru':
       return [
+        { id: 3, title: 'Сообщения' },
         { id: 0, title: 'Заказ' },
         // {id: 1, title: 'Ресурсы' },
-        { id: 2, title: 'Тех. карты' },
-        { id: 3, title: 'Отчеты' }
+        { id: 2, title: 'Тех. карты' }
       ]
     default:
       return [
@@ -88,12 +88,12 @@ export const jsonTreeTheme = {
 export const options = {
   container: {
     backgroundColor: '#000',
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: 'center'
+    // alignItems: 'center'
   },
   text: {
     fontFamily: 'Montserrat',
-    fontSize: 46,
+    fontSize: 34,
     color: '#fff'
   }
 }

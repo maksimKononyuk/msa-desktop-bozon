@@ -20,7 +20,7 @@ const RightBlock = ({ startOrder }) => {
     <View style={[styles.container, { height: '100%' }]}>
       <View style={{ height: '59%' }}>
         <OperationContainer />
-        <View style={styles.previousOperation}>
+        {/* <View style={styles.previousOperation}>
           <Text style={styles.previousOperationTitle}>
             {translate.getPreviousOperationLabel()}
           </Text>
@@ -29,7 +29,7 @@ const RightBlock = ({ startOrder }) => {
               ? previousOperation.length[0].name_prev_operation
               : translate.getNoPreviousOperationLabel()}
           </Text>
-        </View>
+        </View> */}
         {/* <View style={styles.resultPreviousOperation}>
           <Text style={{ ...styles.previousOperationTitle, paddingLeft: 10 }}>
             {translate.getResultOfPreviousOperationLabel()}

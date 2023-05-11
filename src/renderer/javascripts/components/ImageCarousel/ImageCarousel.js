@@ -6,6 +6,9 @@ import Obj3d from '../Obj3d/Obj3d'
 import pdfIcon from '../../assets/icons/pdfFile.svg'
 import objIcon from '../../assets/icons/objFile.svg'
 import htmlIcon from '../../assets/icons/html.svg'
+import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch'
+import zoomInIcon from '../../assets/icons/zoomIn.svg'
+import zoomOutIcon from '../../assets/icons/zoomOut.svg'
 
 const ImageCorousel = () => {
   const mapsArr = useSelector((state) => state.TechMaps.mapsArr)
@@ -147,11 +150,34 @@ const ImageCorousel = () => {
           ) === 'obj' ? (
             <Obj3d url={mapsArr[imgIndexForModal].file_url} />
           ) : (
-            <Image
-              style={[styles.itemImage, { width: '90%' }]}
-              source={{ uri: mapsArr[imgIndexForModal].file_url }}
-              resizeMode={'contain'}
-            />
+            <TransformWrapper>
+              {({ zoomIn, zoomOut }) => (
+                <View>
+                  <TransformComponent>
+                    <img src={mapsArr[imgIndexForModal].file_url} />
+                  </TransformComponent>
+                  <View style={styles.zoomButtonBlock}>
+                    <TouchableOpacity
+                      activeOpacity={0.5}
+                      style={[styles.zoomButtonContainer, { marginRight: 10 }]}
+                      onPress={() => zoomIn()}
+                    >
+                      <Image style={styles.zoomButtonImg} source={zoomInIcon} />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      activeOpacity={0.5}
+                      style={styles.zoomButtonContainer}
+                      onPress={() => zoomOut()}
+                    >
+                      <Image
+                        style={styles.zoomButtonImg}
+                        source={zoomOutIcon}
+                      />
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              )}
+            </TransformWrapper>
           )}
 
           <TouchableOpacity

@@ -19,7 +19,6 @@ const OperationContainer = () => {
       style={[
         styles.operationContainer,
         {
-          paddingLeft: 25,
           backgroundColor: 'transparent',
           maxHeight: '60%',
           overflow: 'auto'
@@ -27,7 +26,7 @@ const OperationContainer = () => {
       ]}
     >
       <Text style={componentStyles.operationText}>
-        {translate.getTitleLabel()}
+        {translate.getTitleLabel()}:
       </Text>
       <Text style={componentStyles.descriptionNameText}>{name}</Text>
     </View>

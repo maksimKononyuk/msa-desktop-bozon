@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   },
   descriptionNameText: {
     fontFamily: 'Montserrat',
-    fontSize: '2vh',
+    fontSize: 18,
     color: '#fff'
   }
 })

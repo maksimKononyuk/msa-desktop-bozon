@@ -3,13 +3,13 @@ import { StyleSheet } from 'react-native-web'
 const styles = StyleSheet.create({
   jsonTreeContainer: {
     alignSelf: 'flex-start',
-    paddingHorizontal: 10,
-    marginBottom: 15,
+    paddingHorizontal: 25,
     flex: 1,
     overflow: 'auto',
     width: '100%'
   },
   labelText: {
+    fontFamily: 'Roboto',
     fontSize: 14,
     color: 'black',
     wordBreak: 'normal'

@@ -9,8 +9,8 @@ import {
 import styles from '../../styles/Styles'
 import componentStyles from './styles'
 import { StartFinishButtonTranslate } from '../../Constants'
-import okIcon from '../../assets/images/ok.png'
-import closeIcon from '../../assets/images/close.png'
+import okIcon from '../../assets/images/ok.svg'
+import closeIcon from '../../assets/images/close.svg'
 
 const StartFinishButton = ({ startOrder }) => {
   const dispatch = useDispatch()

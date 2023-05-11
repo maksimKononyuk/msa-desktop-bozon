@@ -89,6 +89,24 @@ const styles = StyleSheet.create({
   },
   closeModalButtonRightLine: {
     transform: [{ rotate: '-45deg' }, { translateY: -1 }]
+  },
+  zoomButtonBlock: {
+    flexDirection: 'row',
+    marginTop: 5,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  zoomButtonContainer: {
+    width: 35,
+    height: 35,
+    borderWidth: 1,
+    borderColor: '#a0a0a0',
+    borderRadius: 5
+  },
+  zoomButtonImg: {
+    width: '100%',
+    height: '100%'
   }
 })
 
