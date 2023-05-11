@@ -9,6 +9,7 @@ import htmlIcon from '../../assets/icons/html.svg'
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch'
 import zoomInIcon from '../../assets/icons/zoomIn.svg'
 import zoomOutIcon from '../../assets/icons/zoomOut.svg'
+import ElementNotView from './ElementNotView'
 
 const ImageCorousel = () => {
   const mapsArr = useSelector((state) => state.TechMaps.mapsArr)
@@ -47,18 +48,11 @@ const ImageCorousel = () => {
               'obj'
             )
               return (
-                <TouchableOpacity
-                  style={styles.item}
-                  key={item.file_name}
-                  onPress={() => imageHandler(index)}
-                >
-                  <Text style={styles.itemText}>{item.file_name}</Text>
-                  <Image
-                    source={objIcon}
-                    resizeMode={'contain'}
-                    style={{ width: '50%', height: '50%', marginTop: 50 }}
-                  />
-                </TouchableOpacity>
+                <ElementNotView
+                  handler={() => imageHandler(index)}
+                  fileName={item.file_name}
+                  icon={objIcon}
+                />
               )
             if (
               item.file_name.substr(item.file_name.lastIndexOf('.') + 1) ===
@@ -76,46 +70,40 @@ const ImageCorousel = () => {
               )
             if (
               item.file_name.substr(item.file_name.lastIndexOf('.') + 1) ===
-                'pdf' ||
-              item.file_name.substr(item.file_name.lastIndexOf('.') + 1) ===
-                'html'
+              'pdf'
             )
               return (
-                <TouchableOpacity
-                  style={styles.item}
+                <ElementNotView
                   key={item.file_name}
-                  onPress={() =>
+                  handler={() =>
                     subscribeForEntries.openChildWindow(item.file_url)
                   }
-                >
-                  <Text style={styles.itemText}>{item.file_name}</Text>
-                  <Image
-                    style={{ width: '50%', height: '50%', marginTop: 50 }}
-                    source={
-                      item.file_name.substr(
-                        item.file_name.lastIndexOf('.') + 1
-                      ) === 'pdf'
-                        ? pdfIcon
-                        : htmlIcon
-                    }
-                    resizeMode={'contain'}
-                  />
-                </TouchableOpacity>
+                  fileName={item.file_name}
+                  icon={pdfIcon}
+                />
+              )
+            if (
+              item.file_name.substr(item.file_name.lastIndexOf('.') + 1) ===
+              'html'
+            )
+              return (
+                <ElementNotView
+                  key={item.file_name}
+                  handler={() =>
+                    subscribeForEntries.openChildWindow(item.file_url)
+                  }
+                  fileName={item.file_name}
+                  icon={htmlIcon}
+                />
               )
             else
               return (
-                <TouchableOpacity
-                  style={styles.item}
+                <ElementNotView
                   key={item.file_name}
-                  onPress={() => imageHandler(index)}
-                >
-                  <Text style={styles.itemText}>{item.file_name}</Text>
-                  <Image
-                    style={styles.itemImage}
-                    source={{ uri: item.file_url }}
-                    resizeMode={'contain'}
-                  />
-                </TouchableOpacity>
+                  fileName={item.file_name}
+                  handler={() => imageHandler(index)}
+                  icon={{ uri: item.file_url }}
+                />
               )
           })}
         </View>
@@ -152,9 +140,15 @@ const ImageCorousel = () => {
           ) : (
             <TransformWrapper>
               {({ zoomIn, zoomOut }) => (
-                <View>
+                <View style={{ width: '95%' }}>
                   <TransformComponent>
-                    <img src={mapsArr[imgIndexForModal].file_url} />
+                    <View style={{ width: '100%', cursor: 'pointer' }}>
+                      <img
+                        width={'100%'}
+                        height={'100%'}
+                        src={mapsArr[imgIndexForModal].file_url}
+                      />
+                    </View>
                   </TransformComponent>
                   <View style={styles.zoomButtonBlock}>
                     <TouchableOpacity

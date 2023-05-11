@@ -102,6 +102,9 @@ const createChild = (url) => {
     autoHideMenuBar: true
   })
   childWin.loadURL(url)
+  if (url.includes('.html')) {
+    childWin.webContents.insertCSS('body {overflow: hidden}')
+  }
   childWin.once('ready-to-show', () => childWin.show())
   childWin.on('closed', () => (childWin = null))
 }
