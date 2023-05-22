@@ -262,11 +262,11 @@ export class UserMenuModalTranslate {
   getDigitalPlatformLabel() {
     switch (this.lang) {
       case 'en':
-        return 'Digital platform MSA.'
+        return `Digital platform MSA ${'\u24c7'}.`
       case 'ru':
-        return 'Цифровая платформа MSA.'
+        return `Цифровая платформа MSA ${'\u24c7'}.`
       default:
-        return 'Digital platform MSA.'
+        return `Digital platform MSA ${'\u24c7'}.`
     }
   }
 }
