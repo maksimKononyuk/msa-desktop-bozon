@@ -49,10 +49,11 @@ const styles = StyleSheet.create({
     padding: 5
   },
   buttonContainer: {
-    paddingBottom: 10,
+    flexDirection: 'row',
+    marginBottom: 30,
     alignItems: 'center',
-    borderColor: '#bbb',
-    borderTopWidth: 0.5
+    justifyContent: 'space-around',
+    borderColor: '#bbb'
   }
 })
 

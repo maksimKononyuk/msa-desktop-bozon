@@ -80,9 +80,11 @@ const SettingsComponent = ({ setIsSettingsVisible }) => {
             />
           </View>
         </View>
-        <View style={styles.buttonContainer}>
-          <OKButton handler={okButtonHandler} />
-          <CancelButton handler={canselHandler} />
+        <View>
+          <View style={styles.buttonContainer}>
+            <OKButton handler={okButtonHandler} />
+            <CancelButton handler={canselHandler} />
+          </View>
           <Text style={styles.versionText}>
             {`${translateUserMenuModal.getVersionLabel()}: ${
               packageJson.version

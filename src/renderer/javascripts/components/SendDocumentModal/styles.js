@@ -33,12 +33,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center'
   },
-  crossLine: {
-    width: 30,
-    borderWidth: 1,
-    borderColor: '#fff',
-    position: 'absolute'
-  },
   canselContainer: {
     alignItems: 'center'
   }

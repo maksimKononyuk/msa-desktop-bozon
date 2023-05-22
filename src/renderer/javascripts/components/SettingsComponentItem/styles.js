@@ -10,12 +10,13 @@ const styles = StyleSheet.create({
   },
   pickerContainer: {
     backgroundColor: '#fff',
-    borderRadius: 5,
-    paddingHorizontal: 10
+    borderRadius: 5
   },
   pickerStyle: {
     height: 60,
-    color: '#000'
+    color: '#000',
+    borderRadius: 5,
+    paddingHorizontal: 5
   }
 })
 

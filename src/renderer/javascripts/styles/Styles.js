@@ -60,8 +60,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     backgroundColor: '#000',
     width: '100%',
-    height: 42,
-    padding: 10
+    height: 42
   },
   headerName: {
     fontSize: 15,

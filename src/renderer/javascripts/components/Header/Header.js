@@ -23,8 +23,10 @@ const Header = ({ logOut, userName }) => {
         style={componentStyles.headerButton}
         onPress={() => dispatch(setIsUserMenuModal(true))}
       >
-        <View style={componentStyles.headerButtonLine}></View>
-        <View style={componentStyles.headerButtonLine}></View>
+        <View style={componentStyles.buttonsBlock}>
+          <View style={componentStyles.headerButtonLine}></View>
+          <View style={componentStyles.headerButtonLine}></View>
+        </View>
       </TouchableOpacity>
       {isUserMenuModal && <UsersMenuModal logOut={logOut} />}
     </View>

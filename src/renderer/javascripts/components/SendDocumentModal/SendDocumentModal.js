@@ -1,8 +1,9 @@
 import React from 'react'
-import { Modal, View, TouchableOpacity } from 'react-native-web'
+import { Modal, View, TouchableOpacity, Image } from 'react-native-web'
 import SendDocumentImageItem from '../SendDocumentImageItem/SendDocumentImageItem'
 import NewMessagesItem from '../NewMessageItem/NewMessageItem'
 import CancelButton from '../CancelButton/CancelButton'
+import plusSign from '../../assets/icons/plusSign.svg'
 import styles from './styles'
 
 const SendDocumentModal = ({
@@ -29,9 +30,9 @@ const SendDocumentModal = ({
             style={styles.addButton}
             onPress={chooseDocumentInDevice}
           >
-            <View style={styles.crossLine} />
-            <View
-              style={[styles.crossLine, { transform: [{ rotate: '90deg' }] }]}
+            <Image
+              source={plusSign}
+              style={{ width: '100%', height: '100%' }}
             />
           </TouchableOpacity>
           <NewMessagesItem

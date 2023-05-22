@@ -5,10 +5,13 @@ const styles = StyleSheet.create({
     width: 30,
     marginRight: 13
   },
+  buttonsBlock: {
+    justifyContent: 'space-between',
+    height: 13
+  },
   headerButtonLine: {
     backgroundColor: '#fff',
-    height: 3,
-    marginTop: 7
+    height: 3
   },
   personIcon: {
     width: 24,
