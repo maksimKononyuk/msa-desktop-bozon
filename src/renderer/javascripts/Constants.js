@@ -42,24 +42,24 @@ export const getCouruselItems = (lang) => {
   switch (lang) {
     case 'en':
       return [
-        { id: 3, title: 'Messages' },
+        { id: 3, title: 'Reports' },
         { id: 0, title: 'Order' },
         // {id: 1 title: 'Resources' },
         { id: 2, title: 'Technical maps' }
       ]
     case 'ru':
       return [
-        { id: 3, title: 'Сообщения' },
+        { id: 3, title: 'Отчeты' },
         { id: 0, title: 'Заказ' },
         // {id: 1, title: 'Ресурсы' },
         { id: 2, title: 'Тех. карты' }
       ]
     default:
       return [
-        { title: 'Order' },
-        { title: 'Resources' },
-        { title: 'Tech. maps' },
-        { title: 'Reports' }
+        { id: 3, title: 'Reports' },
+        { id: 0, title: 'Order' },
+        // {id: 1 title: 'Resources' },
+        { id: 2, title: 'Technical maps' }
       ]
   }
 }
