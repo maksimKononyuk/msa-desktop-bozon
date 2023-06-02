@@ -75,7 +75,9 @@ const MessageItem = ({ isYourMessage, userName, operation, date, message }) => {
           </View>
           <View>
             <Text style={[styles.text, isYourMessage && { color: '#ffffff' }]}>
-              {new Date(date).toLocaleString()}
+              {new Date(
+                new Date(date).setUTCHours(new Date(date).getUTCHours() - 2)
+              ).toLocaleString()}
             </Text>
           </View>
         </View>
