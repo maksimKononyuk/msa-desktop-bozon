@@ -7,12 +7,14 @@ const styles = StyleSheet.create({
   printContainer: {
     height: '100vh',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    padding: 35
   },
   text: {
     fontSize: 50,
     fontWeight: 'bold',
-    marginBottom: 20
+    marginBottom: 20,
+    textAlign: 'justify'
   }
 })
 
