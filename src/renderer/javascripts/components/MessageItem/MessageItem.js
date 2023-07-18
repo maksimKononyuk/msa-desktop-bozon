@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useMemo, useState } from 'react'
 import { View, Text, Image, ActivityIndicator } from 'react-native-web'
 import avatar from '../../assets/images/avatar_local.png'
+import avatarOtherUser from '../../assets/images/avatar_server.png'
 import styles from './styles'
 import { yandexDiskHeaders } from '../../Constants'
 import { useSelector } from 'react-redux'
@@ -68,7 +69,10 @@ const MessageItem = ({ isYourMessage, userName, operation, date, message }) => {
       <View style={styles.infoBlock}>
         <View style={styles.upPart}>
           <View style={styles.logoAndUserName}>
-            <Image source={avatar} style={styles.avatar} />
+            <Image
+              source={isYourMessage ? avatar : avatarOtherUser}
+              style={styles.avatar}
+            />
             <Text style={[styles.text, isYourMessage && { color: '#ffffff' }]}>
               {userName}
             </Text>

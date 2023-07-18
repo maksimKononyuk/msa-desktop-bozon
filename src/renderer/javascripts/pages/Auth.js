@@ -29,6 +29,7 @@ function Auth() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const [isSettingsVisible, setIsSettingsVisible] = useState(false)
+  const [isConnectForAuth, setIsConnectForAuth] = useState(true)
   const login = useSelector((state) => state.auth.login)
   const password = useSelector((state) => state.auth.password)
   const appIsReady = useSelector((state) => state.auth.appIsReady)
@@ -84,12 +85,16 @@ function Auth() {
           })
       })
       .catch((err) => {
+        if (err.message === 'Network Error') {
+          setIsConnectForAuth(false)
+        }
         console.warn(err)
         dispatch(setLogin(''))
         dispatch(setPassword(''))
         dispatch(setShowError(true))
         setTimeout(() => {
           dispatch(setShowError(false))
+          setIsConnectForAuth(true)
         }, 5000)
       })
   }
@@ -172,18 +177,25 @@ function Auth() {
       )}
       {showError && (
         <View
-          style={styles.authError}
+          style={[
+            styles.authError,
+            !isConnectForAuth && { backgroundColor: '#0080FF' }
+          ]}
           // onAnimationEnd={() =>
           //   setTimeout(() => dispatch(setShowError(false)), 3000)
           // }
         >
           <Text style={{ fontSize: 18, fontFamily: 'Roboto', color: '#fff' }}>
-            {translate.getIncorrectLoginLabel()}
+            {isConnectForAuth
+              ? translate.getIncorrectLoginLabel()
+              : language === 'ru'
+              ? 'Для авторизации в приложении, пожалуйста, подключите устройство к интернету.'
+              : 'To log in to the app, please connect your device to the Internet.'}
           </Text>
           <Text
             style={{ fontSize: 14, fontFamily: 'Roboto', color: '#FFB5B5' }}
           >
-            {translate.getContactAdminLabel()}
+            {isConnectForAuth && translate.getContactAdminLabel()}
           </Text>
         </View>
       )}
