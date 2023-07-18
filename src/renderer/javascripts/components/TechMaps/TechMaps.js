@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { ActivityIndicator, View } from 'react-native-web'
+import { ActivityIndicator, View, Text } from 'react-native-web'
 import styles from './styles'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -20,6 +20,8 @@ const TechMaps = () => {
 
   const [isLoading, setIsLoading] = useState(true)
 
+  const language = useSelector((state) => state.main.language)
+
   useEffect(() => {
     axios
       .get(`order_worker_techmap/${operationId}`)
@@ -36,10 +38,28 @@ const TechMaps = () => {
 
   return (
     <View style={styles.container}>
-      {!isLoading ? (
+      {/* {!isLoading ? (
         mapsArr?.length > 0 && <ImageCorousel />
       ) : (
         <ActivityIndicator size='large' color='#000088' />
+      )} */}
+      {isLoading && mapsArr?.length === 0 ? (
+        <ActivityIndicator size='large' color='#000088' />
+      ) : mapsArr?.length === 0 ? (
+        <Text
+          style={{
+            fontFamily: 'Roboto',
+            fontSize: 18,
+            padding: 15,
+            textAlign: 'center'
+          }}
+        >
+          {language === 'ru'
+            ? 'Нет приложенной документации'
+            : 'No attached documentation'}
+        </Text>
+      ) : (
+        mapsArr && <ImageCorousel />
       )}
     </View>
   )
