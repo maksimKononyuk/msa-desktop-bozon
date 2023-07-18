@@ -66,7 +66,7 @@ const ActiveOrderHeader = () => {
           }}
         >
           <Text
-            style={{ fontFamily: 'Montserrat', fontSize: 26 }}
+            style={{ fontFamily: 'Montserrat', fontSize: 23, lineHeight: 23 }}
             // numberOfLines={2}
             // ellipsizeMode={'middle'}
           >
