@@ -49,6 +49,7 @@ const ImageCorousel = () => {
             )
               return (
                 <ElementNotView
+                  key={item.file_name}
                   handler={() => imageHandler(index)}
                   fileName={item.file_name}
                   icon={objIcon}
