@@ -9,9 +9,7 @@ const styles = StyleSheet.create({
   modalTitleBlock: {
     height: 80,
     alignItems: 'center',
-    justifyContent: 'center',
-    borderColor: '#bbb',
-    borderBottomWidth: 0.5
+    justifyContent: 'center'
   },
   modalTitle: {
     color: '#fff',

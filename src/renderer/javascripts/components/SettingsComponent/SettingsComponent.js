@@ -13,7 +13,7 @@ import axios from 'axios'
 import styles from './styles'
 import packageJson from '../../../../../package.json'
 
-const SettingsComponent = ({ setIsSettingsVisible }) => {
+const SettingsComponent = ({ setIsSettingsVisible, isHostingVisible }) => {
   const dispatch = useDispatch()
   const globalLanguage = useSelector((state) => state.main.language)
   const [hosting, setHosting] = useState(axios.defaults.baseURL)
@@ -42,7 +42,6 @@ const SettingsComponent = ({ setIsSettingsVisible }) => {
   }
   const canselHandler = () => {
     setIsSettingsVisible((prev) => !prev)
-    dispatch(setIsUserMenuModal(false))
   }
   const okButtonHandler = () => {
     subscribeForEntries.setLanguageInMainProcess(language)
@@ -62,12 +61,14 @@ const SettingsComponent = ({ setIsSettingsVisible }) => {
             </Text>
           </View>
           <View style={{ paddingHorizontal: 25 }}>
-            <SettingsComponentItem
-              title={translate.getHostingLabel()}
-              type={'input'}
-              value={hosting}
-              handler={changeHostingHandler}
-            />
+            {isHostingVisible && (
+              <SettingsComponentItem
+                title={translate.getHostingLabel()}
+                type={'input'}
+                value={hosting}
+                handler={changeHostingHandler}
+              />
+            )}
             <SettingsComponentItem
               title={translate.getLanguageLabel()}
               selectedObjects={[

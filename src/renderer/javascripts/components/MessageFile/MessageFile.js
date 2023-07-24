@@ -30,7 +30,12 @@ const MessageFile = ({ uri }) => {
         activeOpacity={0.5}
         style={styles.pickerBlock}
         onPress={() => {
-          isImage && setIsModalVisible(true)
+          console.log(uri)
+          if (uri.toLowerCase().includes('pdf')) {
+            subscribeForEntries.openChildWindow(uri)
+            return
+          }
+          setIsModalVisible(true)
         }}
       >
         <Image

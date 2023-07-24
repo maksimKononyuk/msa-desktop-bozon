@@ -173,7 +173,10 @@ function Auth() {
         </TouchableOpacity>
       </View>
       {isSettingsVisible && (
-        <SettingsComponent setIsSettingsVisible={setIsSettingsVisible} />
+        <SettingsComponent
+          isHostingVisible={true}
+          setIsSettingsVisible={setIsSettingsVisible}
+        />
       )}
       {showError && (
         <View

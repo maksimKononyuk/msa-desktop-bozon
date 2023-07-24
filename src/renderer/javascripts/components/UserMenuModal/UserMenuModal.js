@@ -176,10 +176,10 @@ const UsersMenuModal = ({ logOut }) => {
                   />
                 </TouchableOpacity>
               </View>
-              <UserMenuItem
+              {/* <UserMenuItem
                 title={translate.getNewOrderLabel()}
                 handler={getNewOrder}
-              />
+              /> */}
               <UserMenuItem
                 title={translate.getSettingsLabel()}
                 handler={() => setIsSettingsVisible((prev) => !prev)}
@@ -191,10 +191,10 @@ const UsersMenuModal = ({ logOut }) => {
                   dispatch(setIsCompleteWorkShiftVisible(true))
                 }}
               />
-              <UserMenuItem
+              {/* <UserMenuItem
                 title={translate.getFileSystemLabel()}
                 handler={() => setIsFileSystemVisible(true)}
-              />
+              /> */}
               <UserMenuItem
                 title={translate.getExitLabel()}
                 handler={() => {
