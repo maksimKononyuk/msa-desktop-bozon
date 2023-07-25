@@ -6,12 +6,14 @@ import styles from './styles'
 const SendDocumentImageItem = ({ file, isOneItem }) => {
   const [src, setSrc] = useState('')
   useEffect(() => {
-    const reader = new FileReader()
-    reader.onload = (event) => {
-      const src = event.target.result
-      setSrc(src)
+    if (file) {
+      const reader = new FileReader()
+      reader.onload = (event) => {
+        const src = event.target.result
+        setSrc(src)
+      }
+      reader.readAsDataURL(file)
     }
-    reader.readAsDataURL(file)
   }, [])
   return (
     <View
@@ -23,7 +25,7 @@ const SendDocumentImageItem = ({ file, isOneItem }) => {
         }
       ]}
     >
-      {file.type.match('image') ? (
+      {file?.type.match('image') ? (
         <Image style={styles.image} resizeMode='contain' source={src} />
       ) : (
         <View style={{ alignItems: 'center', height: '100%' }}>
@@ -32,7 +34,7 @@ const SendDocumentImageItem = ({ file, isOneItem }) => {
             resizeMode='contain'
             source={fileIcon}
           />
-          <Text>{file.name}</Text>
+          <Text>{file?.name}</Text>
         </View>
       )}
     </View>

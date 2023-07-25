@@ -192,13 +192,15 @@ const Messages = ({ userName }) => {
 
   const selectedFiles = (event) => {
     const { files } = event.target
-    const filesArray = fileListToArray(files)
-    setFilesForSend((prev) => {
-      const newArr = [...prev]
-      newArr.push.apply(newArr, filesArray)
-      return newArr
-    })
-    setIsModalVisible(true)
+    if (files.length > 0) {
+      const filesArray = fileListToArray(files)
+      setFilesForSend((prev) => {
+        const newArr = [...prev]
+        newArr.push.apply(newArr, filesArray)
+        return newArr
+      })
+      setIsModalVisible(true)
+    }
   }
 
   return (

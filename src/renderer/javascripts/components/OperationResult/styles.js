@@ -6,8 +6,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 17,
     paddingTop: 30,
     paddingBottom: 40,
-    borderBottomWidth: 3,
-    borderBottomColor: '#00000029',
     elevation: 6,
     backgroundColor: 'white',
     marginBottom: 60
@@ -23,10 +21,11 @@ const styles = StyleSheet.create({
     color: '#fff'
   },
   unionRelationsBlock: {
-    width: '90%', 
-    marginBottom: 5, 
-    alignItems: 'center', 
-    borderColor: 'grey', borderRadius: 10, 
+    width: '90%',
+    marginBottom: 5,
+    alignItems: 'center',
+    borderColor: 'grey',
+    borderRadius: 10
   },
   arrowIcon: {
     width: 20,

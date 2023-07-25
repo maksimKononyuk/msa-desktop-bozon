@@ -17,9 +17,18 @@ const MaterialItem = ({ index }) => {
     dispatch(setMaterialsValue(inputValue, materials, index))
   }
 
+  const deleteAmountFromPathString = (str) => {
+    if (str.includes('.amount')) {
+      const result = str.replace('.amount', '')
+      return result
+    }
+  }
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{materials.path}</Text>
+      <Text style={styles.title}>
+        {deleteAmountFromPathString(materials.path)}
+      </Text>
       <TouchableOpacity
         activeOpacity={0.5}
         style={styles.sign}
