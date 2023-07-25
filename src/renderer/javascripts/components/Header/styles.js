@@ -7,7 +7,8 @@ const styles = StyleSheet.create({
   },
   buttonsBlock: {
     justifyContent: 'space-between',
-    height: 13
+    height: 15,
+    paddingVertical: 1
   },
   headerButtonLine: {
     backgroundColor: '#fff',
