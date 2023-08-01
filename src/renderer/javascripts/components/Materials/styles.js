@@ -4,10 +4,9 @@ const styles = StyleSheet.create({
   header: {
     paddingHorizontal: 17,
     paddingVertical: 19,
-    borderBottomWidth: 3,
-    borderBottomColor: '#00000029',
-    backgroundColor: '#fff',
-    elevation: 6
+    // borderBottomWidth: 3,
+    // borderBottomColor: '#00000029',
+    backgroundColor: '#fff'
   },
   headerText: {
     textAlign: 'center',
@@ -16,10 +15,16 @@ const styles = StyleSheet.create({
   },
   container: {
     backgroundColor: '#fff',
-    padding: 10
+    paddingVertical: 10,
+    paddingHorizontal: '6%'
+  },
+  buttonsBlock: {
+    marginTop: 50,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   okButton: {
-    marginTop: 50,
     alignSelf: 'center',
     width: 200,
     height: 66,
@@ -27,7 +32,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 10
+    marginRight: 20
   },
   okButtonText: {
     color: '#fff',
@@ -37,14 +42,14 @@ const styles = StyleSheet.create({
   cancelButton: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginVertical: 10,
     alignSelf: 'center',
     flexDirection: 'row',
     borderRadius: 50,
     borderColor: '#707070',
     borderWidth: 1,
     padding: 10,
-    width: 150
+    width: 200,
+    height: 66
   },
   cancelButtonText: {
     fontFamily: 'Roboto',

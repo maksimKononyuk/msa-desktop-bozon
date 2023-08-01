@@ -31,7 +31,10 @@ const MessageFile = ({ uri }) => {
         style={styles.pickerBlock}
         onPress={() => {
           console.log(uri)
-          if (uri.toLowerCase().includes('pdf')) {
+          if (
+            uri.toLowerCase().includes('pdf') ||
+            uri.toLowerCase().includes('docx')
+          ) {
             subscribeForEntries.openChildWindow(uri)
             return
           }

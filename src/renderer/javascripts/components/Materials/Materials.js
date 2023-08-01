@@ -34,38 +34,40 @@ const Materials = ({ finishOrder }) => {
         ) : (
           <>
             {materialsArr.map((item, index) => (
-              <MaterialItem key={item._id} index={index} />
+              <MaterialItem key={index} index={index} />
             ))}
-            <TouchableOpacity
-              activeOpacity={0.5}
-              style={styles.okButton}
-              onPress={() =>
-                finishOrder(
-                  finishOrderParams.nextOperationId,
-                  finishOrderParams.relationId,
-                  finishOrderParams.isLast,
-                  finishOrderParams.completely
-                )
-              }
-            >
-              <Text style={styles.okButtonText}>Ok</Text>
-            </TouchableOpacity>
           </>
         )}
       </View>
-      <TouchableOpacity
-        activeOpacity={0.5}
-        style={styles.cancelButton}
-        onPress={cancelButtonHandler}
-      >
-        <View style={styles.cross}>
-          <View style={[styles.line, styles.upLine]}></View>
-          <View style={[styles.line, styles.downLine]}></View>
-        </View>
-        <Text style={styles.cancelButtonText}>
-          {language === 'en' ? 'Cancel' : 'Отмена'}
-        </Text>
-      </TouchableOpacity>
+      <View style={styles.buttonsBlock}>
+        <TouchableOpacity
+          activeOpacity={0.5}
+          style={styles.okButton}
+          onPress={() =>
+            finishOrder(
+              finishOrderParams.nextOperationId,
+              finishOrderParams.relationId,
+              finishOrderParams.isLast,
+              finishOrderParams.completely
+            )
+          }
+        >
+          <Text style={styles.okButtonText}>Ok</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          activeOpacity={0.5}
+          style={styles.cancelButton}
+          onPress={cancelButtonHandler}
+        >
+          <View style={styles.cross}>
+            <View style={[styles.line, styles.upLine]}></View>
+            <View style={[styles.line, styles.downLine]}></View>
+          </View>
+          <Text style={styles.cancelButtonText}>
+            {language === 'en' ? 'Cancel' : 'Отмена'}
+          </Text>
+        </TouchableOpacity>
+      </View>
     </>
   )
 }
