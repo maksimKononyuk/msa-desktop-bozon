@@ -10,7 +10,8 @@ const SendDocumentModal = ({
   chooseDocumentInDevice,
   filesForSend,
   sendHandler,
-  canselModalHandler
+  canselModalHandler,
+  setFilesForSend
 }) => {
   return (
     <Modal visible={true} animationType='slide' transparent={true}>
@@ -19,7 +20,12 @@ const SendDocumentModal = ({
           <View style={styles.imageBlock}>
             {filesForSend.length > 1 ? (
               filesForSend.map((item, index) => (
-                <SendDocumentImageItem file={item} key={index} />
+                <SendDocumentImageItem
+                  file={item}
+                  key={index}
+                  index={index}
+                  setFilesForSend={setFilesForSend}
+                />
               ))
             ) : (
               <SendDocumentImageItem file={filesForSend[0]} isOneItem={true} />

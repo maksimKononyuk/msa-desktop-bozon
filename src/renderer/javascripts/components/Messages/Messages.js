@@ -252,6 +252,7 @@ const Messages = ({ userName }) => {
           sendHandler={sendHandler}
           canselModalHandler={canselModalHandler}
           messageButtonHandler={messageButtonHandler}
+          setFilesForSend={setFilesForSend}
         />
       )}
     </View>

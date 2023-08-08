@@ -13,6 +13,25 @@ const styles = StyleSheet.create({
     width: '50%',
     height: '50%',
     alignItems: 'center'
+  },
+  modalCancelBlock: {
+    width: 40,
+    height: 40,
+    backgroundColor: '#808080',
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  closeModalButtonLine: {
+    width: 25,
+    height: 2,
+    backgroundColor: '#fff'
+  },
+  closeModalButtonLeftLine: {
+    transform: [{ rotate: '45deg' }, { translateY: 1 }]
+  },
+  closeModalButtonRightLine: {
+    transform: [{ rotate: '-45deg' }, { translateY: -1 }]
   }
 })
 

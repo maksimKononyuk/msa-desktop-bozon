@@ -30,7 +30,6 @@ const MessageFile = ({ uri }) => {
         activeOpacity={0.5}
         style={styles.pickerBlock}
         onPress={() => {
-          console.log(uri)
           if (
             uri.toLowerCase().includes('pdf') ||
             uri.toLowerCase().includes('docx')
