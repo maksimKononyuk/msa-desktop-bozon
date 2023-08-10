@@ -34,10 +34,7 @@ const SendDocumentImageItem = ({ file, isOneItem, index, setFilesForSend }) => {
           <TouchableOpacity
             activeOpacity={0.5}
             onPress={() => {
-              setFilesForSend((prev) => {
-                const newArr = prev.filter((_, i) => i !== index)
-                return newArr
-              })
+              setFilesForSend((prev) => prev.filter((_, i) => i !== index))
             }}
             style={styles.modalCancelBlock}
           >
