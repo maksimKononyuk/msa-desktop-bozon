@@ -1,20 +1,34 @@
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 import path from 'path'
-import {
-  app,
-  BrowserWindow,
-  ipcMain,
-  Notification,
-  dialog,
-  shell
-} from 'electron'
+import { app, BrowserWindow, ipcMain, Notification, shell } from 'electron'
 import Storage from './Storage'
 import iconView from '../../resources/icon.png'
+import { readdir, unlink } from 'fs'
+import { openMessageFiles } from './openMessageFiles'
 
 let win
 
 let language = 'ru'
+
+const quitApp = () => {
+  readdir(path.join(app.getPath('userData'), 'MessageFiles'), (err, files) => {
+    if (err) throw err
+    files.forEach((file) => {
+      unlink(
+        path.join(app.getPath('userData'), 'MessageFiles', file),
+        (err) => {
+          if (err) throw err
+        }
+      )
+    })
+  })
+  // On macOS it is common for applications and their menu bar
+  // to stay active until the user quits explicitly with Cmd + Q
+  if (process.platform !== 'darwin') {
+    app.quit()
+  }
+}
 
 const createWindow = () => {
   // Create the browser window.
@@ -64,7 +78,7 @@ const createWindow = () => {
     language = data
   })
 
-  ipcMain.on('quit', () => app.quit())
+  ipcMain.on('quit', quitApp)
 
   ipcMain.on('openExternal', (_, data) => shell.openExternal(data))
 
@@ -84,7 +98,7 @@ const createWindow = () => {
   ipcMain.on('setNonifications', showNotification)
 }
 
-const createChild = (url) => {
+const createChild = (url, isMessageFile) => {
   let childWin = new BrowserWindow({
     parent: win,
     modal: true,
@@ -101,16 +115,20 @@ const createChild = (url) => {
     icon: path.join(__dirname, iconView),
     autoHideMenuBar: true
   })
+  if (isMessageFile) {
+    openMessageFiles(url, childWin)
+    return
+  }
   childWin.loadURL(url)
   if (url.includes('.html')) {
     childWin.webContents.insertCSS('body {overflow: hidden}')
   }
   childWin.once('ready-to-show', () => childWin.show())
-  childWin.on('closed', () => (childWin = null))
+  childWin.once('closed', () => (childWin = null))
 }
 
-ipcMain.on('openChildWindow', (event, url) => {
-  createChild(url)
+ipcMain.on('openChildWindow', (event, url, isMessageFile) => {
+  createChild(url, isMessageFile)
 })
 
 // This method will be called when Electron has finished
@@ -122,13 +140,7 @@ app.whenReady().then(() => {
 })
 
 // Quit when all windows are closed.
-app.on('window-all-closed', () => {
-  // On macOS it is common for applications and their menu bar
-  // to stay active until the user quits explicitly with Cmd + Q
-  if (process.platform !== 'darwin') {
-    app.quit()
-  }
-})
+app.on('window-all-closed', quitApp)
 
 app.on('activate', () => {
   // On macOS it's common to re-create a window in the app when the

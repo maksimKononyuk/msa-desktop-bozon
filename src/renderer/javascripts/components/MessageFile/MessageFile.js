@@ -34,7 +34,7 @@ const MessageFile = ({ uri }) => {
             uri.toLowerCase().includes('pdf') ||
             uri.toLowerCase().includes('docx')
           ) {
-            subscribeForEntries.openChildWindow(uri)
+            subscribeForEntries.openChildWindow(uri, true)
             return
           }
           setIsModalVisible(true)
