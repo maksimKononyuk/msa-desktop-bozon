@@ -4,7 +4,7 @@ import path from 'path'
 import { app, BrowserWindow, ipcMain, Notification, shell } from 'electron'
 import Storage from './Storage'
 import iconView from '../../resources/icon.png'
-import { readdir, unlink } from 'fs'
+import { readdirSync, unlinkSync, existsSync } from 'fs'
 import { openMessageFiles } from './openMessageFiles'
 
 let win
@@ -12,17 +12,13 @@ let win
 let language = 'ru'
 
 const quitApp = () => {
-  readdir(path.join(app.getPath('userData'), 'MessageFiles'), (err, files) => {
-    if (err) throw err
+  const messageFileDir = path.join(app.getPath('userData'), 'MessageFiles')
+  if (existsSync(messageFileDir)) {
+    const files = readdirSync(messageFileDir)
     files.forEach((file) => {
-      unlink(
-        path.join(app.getPath('userData'), 'MessageFiles', file),
-        (err) => {
-          if (err) throw err
-        }
-      )
+      unlinkSync(path.join(app.getPath('userData'), 'MessageFiles', file))
     })
-  })
+  }
   // On macOS it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
   if (process.platform !== 'darwin') {
