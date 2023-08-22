@@ -50,7 +50,7 @@ const MessageFile = ({ uri }) => {
               : iconFile
           }
           style={styles.pickerContainer}
-          resizeMode='cover'
+          resizeMode='contain'
         />
         {isIconLoading && (
           <View style={styles.activityIndicator}>
