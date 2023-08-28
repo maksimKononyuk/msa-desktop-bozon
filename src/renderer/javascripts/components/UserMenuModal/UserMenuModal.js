@@ -60,7 +60,7 @@ const UsersMenuModal = ({ logOut }) => {
   )
 
   const [completeWorkShiftVisibleParam, setCompleteWorkShiftVisibleParam] =
-    useState('shift')
+    useState('exit')
 
   const textInputHandler = (text, key) => {
     dispatch(setTempDetail(text, key))
@@ -184,13 +184,13 @@ const UsersMenuModal = ({ logOut }) => {
                 title={translate.getSettingsLabel()}
                 handler={() => setIsSettingsVisible((prev) => !prev)}
               />
-              <UserMenuItem
+              {/* <UserMenuItem
                 title={translate.getLogoutLabel()}
                 handler={() => {
                   setCompleteWorkShiftVisibleParam('shift')
                   dispatch(setIsCompleteWorkShiftVisible(true))
                 }}
-              />
+              /> */}
               {/* <UserMenuItem
                 title={translate.getFileSystemLabel()}
                 handler={() => setIsFileSystemVisible(true)}
@@ -399,7 +399,10 @@ const UsersMenuModal = ({ logOut }) => {
             handler={
               completeWorkShiftVisibleParam === 'shift'
                 ? logOut
-                : () => subscribeForEntries.quitApp()
+                : () => {
+                    logOut()
+                    subscribeForEntries.quitApp()
+                  }
             }
             completeWorkShiftVisibleParam={completeWorkShiftVisibleParam}
           />

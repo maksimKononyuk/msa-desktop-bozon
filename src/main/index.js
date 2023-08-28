@@ -11,7 +11,14 @@ let win
 
 let language = 'ru'
 
-const quitApp = () => {
+let isCloseListener = false
+
+const closeHandler = (e) => {
+  e.preventDefault()
+  win.webContents.send('closeApp')
+}
+
+const quitApp = (win) => {
   const messageFileDir = path.join(app.getPath('userData'), 'MessageFiles')
   if (existsSync(messageFileDir)) {
     const files = readdirSync(messageFileDir)
@@ -21,6 +28,7 @@ const quitApp = () => {
   }
   // On macOS it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
+  if (isCloseListener) win.removeAllListeners()
   if (process.platform !== 'darwin') {
     app.quit()
   }
@@ -58,6 +66,11 @@ const createWindow = () => {
     win.show()
   })
 
+  ipcMain.on('closeListener', () => {
+    isCloseListener = true
+    win.addListener('close', (e) => closeHandler(e))
+  })
+
   ipcMain.on('getStorage', () => {
     win.webContents.send('subGetStorage', storage.read('storageFile'))
   })
@@ -74,7 +87,7 @@ const createWindow = () => {
     language = data
   })
 
-  ipcMain.on('quit', quitApp)
+  ipcMain.on('quit', () => quitApp(win))
 
   ipcMain.on('openExternal', (_, data) => shell.openExternal(data))
 

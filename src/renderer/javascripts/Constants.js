@@ -403,6 +403,16 @@ export class CompleteWorkShiftTranslate {
         return 'Are you sure you want to exit the app?'
     }
   }
+  getInfoLabelExitIsOrderStarted() {
+    switch (this.lang) {
+      case 'en':
+        return 'To exit the application, please complete your production operation.'
+      case 'ru':
+        return 'Для выхода из приложения, пожалуйста, завершите свою производственную операцию.'
+      default:
+        return 'To exit the application, please complete your production operation.'
+    }
+  }
   getYesLable() {
     switch (this.lang) {
       case 'en':

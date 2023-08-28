@@ -86,6 +86,14 @@ const Main = () => {
   const [operationFinishLoading, setOperationFinishLoading] = useState(false)
   const [isOperationComplited, setIsOperationComplited] = useState(false)
 
+  useEffect(() => {
+    subscribeForEntries.closeApp(() => {
+      dispatch(setIsUserMenuModal(true))
+      dispatch(setIsCompleteWorkShiftVisible(true))
+    })
+    subscribeForEntries.closeListener()
+  }, [])
+
   const equipmentBusy = (isBusy) => {
     if (selectedItems.length > 0) {
       axios

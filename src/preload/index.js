@@ -27,5 +27,11 @@ contextBridge.exposeInMainWorld('subscribeForEntries', {
   },
   openExternal: (url) => {
     ipcRenderer.send('openExternal', url)
+  },
+  closeApp: (callback) => {
+    ipcRenderer.on('closeApp', callback)
+  },
+  closeListener: () => {
+    ipcRenderer.send('closeListener')
   }
 })
