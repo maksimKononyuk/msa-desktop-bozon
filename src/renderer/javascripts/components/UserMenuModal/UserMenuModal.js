@@ -351,7 +351,7 @@ const UsersMenuModal = ({ logOut }) => {
                 activeOpacity={0.5}
                 style={componentStyles.closeBlockAboutPlatform}
               >
-                <View
+                {/* <View
                   style={[
                     componentStyles.closeBlockAboutPlatformLines,
                     componentStyles.closeBlockAboutPlatformLine1
@@ -362,7 +362,8 @@ const UsersMenuModal = ({ logOut }) => {
                     componentStyles.closeBlockAboutPlatformLines,
                     componentStyles.closeBlockAboutPlatformLine2
                   ]}
-                ></View>
+                ></View> */}
+                <Image style={{ width: 20, height: 20 }} source={closeIcon} />
               </TouchableOpacity>
               <View>
                 <Text style={componentStyles.aboutPlatformTitleText}>

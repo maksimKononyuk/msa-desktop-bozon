@@ -11,7 +11,8 @@ const SendDocumentModal = ({
   filesForSend,
   sendHandler,
   canselModalHandler,
-  setFilesForSend
+  setFilesForSend,
+  inputFile
 }) => {
   return (
     <Modal visible={true} animationType='slide' transparent={true}>
@@ -25,11 +26,18 @@ const SendDocumentModal = ({
                   key={index}
                   index={index}
                   setFilesForSend={setFilesForSend}
+                  inputFile={inputFile}
                 />
               ))
-            ) : (
-              <SendDocumentImageItem file={filesForSend[0]} isOneItem={true} />
-            )}
+            ) : filesForSend.length === 1 ? (
+              <SendDocumentImageItem
+                file={filesForSend[0]}
+                isOneItem={true}
+                index={0}
+                setFilesForSend={setFilesForSend}
+                inputFile={inputFile}
+              />
+            ) : null}
           </View>
           <TouchableOpacity
             activeOpacity={0.5}

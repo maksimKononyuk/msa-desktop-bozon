@@ -164,6 +164,7 @@ const Messages = ({ userName }) => {
   const canselModalHandler = () => {
     setIsModalVisible(false)
     setFilesForSend([])
+    inputFile.current.value = ''
   }
 
   // Отправка сообщения без выбора файлов
@@ -253,6 +254,7 @@ const Messages = ({ userName }) => {
           canselModalHandler={canselModalHandler}
           messageButtonHandler={messageButtonHandler}
           setFilesForSend={setFilesForSend}
+          inputFile={inputFile}
         />
       )}
     </View>
