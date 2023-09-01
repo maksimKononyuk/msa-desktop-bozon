@@ -35,9 +35,10 @@ const Messages = ({ userName }) => {
   const [uries, setUries] = useState([])
   const [isFileLoader, setIsFileLoader] = useState(false)
   const [loadPersent, setLoadPersent] = useState(0)
-  const [isLoadMessages, setIsLoadMessages] = useState(true)
+  const [isLoadMessages, setIsLoadMessages] = useState(false)
 
   useEffect(() => {
+    if (!messages.length) setIsLoadMessages(true)
     const getMessage = setInterval(() => {
       axios
         .get(`order_worker_message/${orderId}`)
